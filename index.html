@@ -300,6 +300,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);color:var(--text
     <button onclick="switchTab('lsat170',8)">170+ Guide</button>
     <button onclick="switchTab('highschool',9)">HS Roadmap</button>
     <button onclick="switchTab('integrate',10)">Job APIs</button>
+    <button onclick="switchTab('mocktest',11)">Mock Test</button>
   </div>
 </nav>
 
@@ -330,6 +331,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);color:var(--text
   <button class="tab-btn" onclick="switchTab('lsat170',8)">170+ LSAT</button>
   <button class="tab-btn" onclick="switchTab('highschool',9)">HS Roadmap 🎓</button>
   <button class="tab-btn" onclick="switchTab('integrate',10)">Job Board APIs</button>
+  <button class="tab-btn" onclick="switchTab('mocktest',11)">Mock Test 📝</button>
 </div>
 
 <main class="main">
@@ -721,6 +723,11 @@ footer{background:var(--bg2);border-top:1px solid var(--border);color:var(--text
       <div class="info-box-title">💡 Pro tip</div>
       <div class="info-box-body">For the best results, use <strong>Indeed</strong> or <strong>LinkedIn</strong> for private sector roles, <strong>USAJobs</strong> for federal government, and <strong>Idealist</strong> for non-profit and public interest. Set up email alerts on each board with your keyword + location — you'll get new listings before most other applicants even know they exist.</div>
     </div>
+  </div>
+
+  <!-- MOCK TEST PANEL -->
+  <div class="section-panel" id="mockTestPanel">
+    <div id="mockTestApp"></div>
   </div>
 
   <!-- STANDARD CONTENT (all, lsat, internship) -->
@@ -1121,7 +1128,7 @@ function renderCards(listings){
 }
 
 function showPanel(name){
-  const panels=['schoolPanel','lawtypePanel','costPanel','salaryPanel','scholarshipPanel','lsat170Panel','highschoolPanel','integratePanel'];
+  const panels=['schoolPanel','lawtypePanel','costPanel','salaryPanel','scholarshipPanel','lsat170Panel','highschoolPanel','integratePanel','mockTestPanel'];
   panels.forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('active');});
   document.getElementById('cityBrowsePanel').classList.remove('visible');
   document.getElementById('standardContent').classList.remove('hidden');
@@ -1133,6 +1140,7 @@ function showPanel(name){
   else if(name==='lsat170'){document.getElementById('lsat170Panel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
   else if(name==='highschool'){document.getElementById('highschoolPanel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
   else if(name==='integrate'){document.getElementById('integratePanel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
+  else if(name==='mocktest'){document.getElementById('mockTestPanel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
   else if(name==='job'){document.getElementById('cityBrowsePanel').classList.add('visible');document.getElementById('standardContent').classList.add('hidden');}
 }
 
@@ -1151,13 +1159,14 @@ function switchTab(tab,idx){
   else if(tab==='lsat170'){showPanel('lsat170');}
   else if(tab==='highschool'){showPanel('highschool');}
   else if(tab==='integrate'){showPanel('integrate');}
+  else if(tab==='mocktest'){showPanel('mocktest');initMockTest();}
   else{showPanel('other');renderCards(ALL_LISTINGS.filter(l=>l.type!=='job'));}
 }
 
 function switchTab(tab){
   currentTab=tab;
   document.querySelectorAll('.tab-btn').forEach((b,i)=>{
-    const tabs=['all','lsat','internship','job','school','lawtype','cost','salary','scholarship','lsat170','highschool','integrate'];
+    const tabs=['all','lsat','internship','job','school','lawtype','cost','salary','scholarship','lsat170','highschool','integrate','mocktest'];
     b.classList.toggle('active',tabs[i]===tab);
   });
   if(tab==='job'){showPanel('job');buildCitySidebar();renderCityView();}
@@ -1169,6 +1178,7 @@ function switchTab(tab){
   else if(tab==='lsat170'){showPanel('lsat170');}
   else if(tab==='highschool'){showPanel('highschool');}
   else if(tab==='integrate'){showPanel('integrate');}
+  else if(tab==='mocktest'){showPanel('mocktest');initMockTest();}
   else{showPanel('other');renderCards(tab==='all'?ALL_LISTINGS.filter(l=>l.type!=='job'):ALL_LISTINGS.filter(l=>l.type===tab));}
 }
 
@@ -1268,6 +1278,559 @@ function quickSearch(keyword,location){
   if(ki)ki.value=keyword;
   if(li)li.value=location;
   buildBoards();
+}
+
+// ═══════════════════════════════════════════════════
+// MOCK TEST ENGINE (converted from React to vanilla JS)
+// ═══════════════════════════════════════════════════
+
+const MOCK_SECTIONS = [
+  {
+    id: 1, title: "Logical Reasoning", time: 35 * 60,
+    questions: [
+      { stim: "A recent study found that employees who take regular breaks during the workday report higher job satisfaction than those who do not. The researchers concluded that taking breaks causes increased job satisfaction. However, the study did not account for the fact that employees with more autonomy over their schedules are both more likely to take breaks and more likely to report satisfaction for independent reasons.", stem: "The reasoning in the argument is flawed in that it", choices: ["assumes that because two events are correlated, one must cause the other","generalizes from an unrepresentative sample to a broader population","relies on an ambiguous use of the term 'satisfaction'","ignores the possibility that job satisfaction leads to taking more breaks","fails to consider that not all employees have the opportunity to take breaks"], answer: 0, type: "Flaw", explanation: "The argument confuses correlation with causation — employee autonomy may be responsible for both breaks and satisfaction." },
+      { stim: "All medications that suppress inflammation also reduce fever. Some medications that reduce fever cause drowsiness. Ibuprofen suppresses inflammation.", stem: "Which one of the following, if assumed, allows the conclusion that ibuprofen causes drowsiness to be properly drawn?", choices: ["All medications that suppress inflammation cause drowsiness","All medications that reduce fever cause drowsiness","Some medications that suppress inflammation cause drowsiness","Ibuprofen is the only medication that both suppresses inflammation and reduces fever","Only medications that reduce fever cause drowsiness"], answer: 1, type: "Sufficient Assumption", explanation: "If ALL fever-reducing medications cause drowsiness (not just 'some'), then since ibuprofen reduces fever, it must cause drowsiness." },
+      { stim: "City officials argue that the new downtown parking garage will reduce traffic congestion because drivers currently circle blocks looking for street parking, contributing to gridlock. Once the garage opens, these drivers will go directly to the garage, reducing the number of cars circling the streets.", stem: "Which one of the following, if true, most weakens the argument?", choices: ["The parking garage will charge rates higher than the average cost of street parking","The availability of convenient parking downtown is likely to attract additional drivers who currently avoid the area","Some drivers who currently circle for parking do so for fewer than five minutes","The construction of the parking garage will temporarily increase congestion for several months","Other cities that have built downtown parking garages have not eliminated all traffic congestion"], answer: 1, type: "Weaken", explanation: "If the garage attracts new drivers to downtown, congestion may increase even as circling decreases — induced demand." },
+      { stim: "Professor Mehta argues that requiring students to take standardized tests does not improve educational outcomes. She points out that countries that rely less on standardized testing, such as Finland, consistently outperform countries that test frequently. Therefore, she concludes, the United States should reduce its emphasis on standardized testing in public schools.", stem: "The argument depends on the assumption that", choices: ["Finland's educational system is identical to that of the United States in all respects other than testing","standardized tests are an inaccurate measure of student knowledge","the difference in educational outcomes between Finland and the United States is not primarily attributable to factors unrelated to testing practices","no country that relies heavily on standardized testing has ever achieved strong educational outcomes","students in the United States would prefer fewer standardized tests"], answer: 2, type: "Necessary Assumption", explanation: "The argument compares Finland and the US on testing, so it must assume other factors aren't primarily responsible for the difference." },
+      { stim: "Archaeologists recently discovered pottery fragments in a cave in southern France that display geometric patterns previously found only in settlements along the Danube River, over 1,000 kilometers away. The archaeologists hypothesize that a trade network connected these distant communities during the Neolithic period.", stem: "Which one of the following, if true, most strengthens the archaeologists' hypothesis?", choices: ["The clay composition of the pottery fragments matches clay found near the Danube, not local French sources","Geometric patterns are commonly used in pottery across many ancient cultures","The cave in southern France shows signs of continuous habitation over several centuries","Other Neolithic communities in Europe also produced pottery with distinctive designs","The Danube River settlements were larger and more prosperous than most contemporary settlements"], answer: 0, type: "Strengthen", explanation: "If the clay matches Danube sources, the pottery was physically transported, directly supporting a trade network." },
+      { stim: "Critic: The mayor claims that the city's new recycling program has been a success because the total weight of recyclable materials collected has increased by 30 percent. But this increase is misleading. The city expanded its collection area to include three additional neighborhoods this year. When we look at the recycling rate per household in the original collection area, it has actually decreased by 5 percent.", stem: "The critic responds to the mayor's argument by", choices: ["providing an alternative explanation for the evidence the mayor cites","questioning the mayor's definition of what constitutes a successful program","showing that the evidence, when analyzed more precisely, supports a conclusion opposite to the mayor's","arguing that recycling programs in general are unlikely to succeed","demonstrating that the mayor's statistics are fabricated"], answer: 2, type: "Method of Reasoning", explanation: "The critic shows that per-household recycling actually decreased — the evidence supports the opposite of the mayor's claim." },
+      { stim: "Dr. Warren: Artificial intelligence will never truly replicate human creativity because creativity requires subjective experience and emotional depth, which machines fundamentally lack.\n\nDr. Kapoor: Recent AI systems have composed music and painted artwork that human experts could not distinguish from works created by humans. If the output is indistinguishable, then the process that produced it is, for all practical purposes, creative.", stem: "Dr. Warren and Dr. Kapoor disagree about whether", choices: ["AI systems are capable of producing outputs that resemble human creative works","subjective experience is a necessary component of genuine creativity","human experts can reliably distinguish AI-generated art from human-generated art","the quality of AI-generated creative works will improve over time","emotional depth is present in the works produced by AI systems"], answer: 1, type: "Point at Issue", explanation: "Warren says creativity requires subjective experience; Kapoor says indistinguishable output suffices. They disagree on whether subjective experience is necessary." },
+      { stim: "Every student who completed the honors thesis received a departmental distinction. Marcus did not receive a departmental distinction. Therefore, Marcus did not complete the honors thesis.", stem: "The pattern of reasoning in the argument above is most similar to that in which one of the following?", choices: ["All licensed physicians have passed the board examination. Dr. Torres passed the board examination. Therefore, Dr. Torres is a licensed physician.","Every member of the orchestra performed at the spring concert. Priya did not perform at the spring concert. Therefore, Priya is not a member of the orchestra.","Some students who study abroad become fluent in a second language. Kenji studied abroad. Therefore, Kenji became fluent in a second language.","All dogs are mammals. Not all mammals are dogs. Therefore, some mammals are not dogs.","Every published author has written a manuscript. Lee has written a manuscript. Therefore, Lee is a published author."], answer: 1, type: "Parallel Reasoning", explanation: "Both arguments have the form: All A are B. X is not B. Therefore X is not A (valid contrapositive)." },
+      { stim: "A recent survey found that 85 percent of respondents said they strongly support environmental conservation efforts and would be willing to pay higher taxes to fund them. Yet when a ballot measure to increase taxes by 2 percent for a conservation fund appeared in the same district, it was defeated by a wide margin.", stem: "Which one of the following, if true, most helps to resolve the apparent discrepancy?", choices: ["The ballot measure was poorly publicized, and many voters were unaware of its specific provisions","The survey was conducted among a representative sample of residents in the district","Respondents to surveys often express idealized preferences that do not reflect how they behave when facing actual financial consequences","Environmental conservation is consistently ranked as a top priority by voters in the district","The 2 percent tax increase was considered modest by most economists who studied the proposal"], answer: 2, type: "Resolve the Paradox", explanation: "Survey responses often reflect idealized attitudes rather than real behavior when actual costs are involved." },
+      { stim: "A pharmaceutical company conducted clinical trials showing that its new drug reduced symptoms in 60 percent of patients, compared to 45 percent for the existing treatment. The company submitted the drug for regulatory approval. However, the regulatory board denied approval because the new drug produced severe side effects in 8 percent of patients, whereas the existing treatment produced severe side effects in only 1 percent.", stem: "The regulatory board's decision most closely conforms to which one of the following principles?", choices: ["A new treatment should be approved only if it is more effective than all existing alternatives","Patient safety considerations should take precedence over marginal improvements in treatment efficacy","Regulatory boards should approve any treatment that demonstrates a statistically significant improvement","The cost of developing new treatments should be weighed against their incremental benefits","Clinical trials must show improvement in at least 75 percent of patients to warrant approval"], answer: 1, type: "Principle (Identify)", explanation: "The board prioritized safety (lower side effects) over the marginal efficacy improvement." },
+      { stim: "A school district proposes switching from printed textbooks to digital tablets for all students, arguing that this will improve learning outcomes. Research has shown that interactive digital content engages students more effectively than static text. The district estimates the switch will also save money over five years because digital content is cheaper to update than reprinting textbooks.", stem: "The answer to which one of the following questions would be most useful in evaluating the district's argument?", choices: ["What percentage of households in the district currently own tablets or similar devices?","Have students who use digital tablets for learning demonstrated better long-term retention of material compared to those using printed textbooks?","Do teachers in the district prefer using digital or printed instructional materials?","How many other school districts in the state have already adopted digital tablets?","What is the average lifespan of a printed textbook before it needs to be replaced?"], answer: 1, type: "Evaluate", explanation: "The key question is whether digital tablets actually improve learning outcomes vs. printed textbooks — directly testing the conclusion." },
+      { stim: "Whenever the city experiences a heat wave, ice cream sales increase dramatically. Last summer, ice cream sales in the city reached a record high. Therefore, last summer must have been unusually hot.", stem: "The reasoning in the argument is most vulnerable to criticism on the grounds that it", choices: ["treats a factor that is sufficient for an outcome as though it were necessary for that outcome","draws a conclusion about a cause from evidence about an effect","fails to consider whether the definition of 'heat wave' has changed over time","assumes without justification that ice cream sales are accurately measured","ignores the possibility that ice cream sales could increase for reasons other than heat waves"], answer: 4, type: "Flaw", explanation: "The argument assumes heat waves are the only cause of high ice cream sales, ignoring other possible reasons." },
+      { stim: "A technology company claims that its new open-plan office design has improved employee collaboration. As evidence, the company points to a 40 percent increase in the number of inter-departmental emails sent since the redesign was implemented six months ago.", stem: "Which one of the following, if true, most undermines the company's claim?", choices: ["Several employees have expressed a preference for private offices over the open-plan design","The increase in inter-departmental emails largely consists of messages asking colleagues to keep noise levels down","Other companies with open-plan offices have reported similar increases in email volume","The company also implemented a new email platform at the same time as the office redesign","Employee satisfaction surveys conducted before the redesign showed generally positive attitudes toward collaboration"], answer: 1, type: "Weaken", explanation: "If the increased emails are complaints about noise rather than collaborative messages, the 'collaboration' claim is undermined." },
+      { stim: "Literary critic: Novels written by committee — that is, by multiple authors working together — inevitably lack the coherent artistic vision that characterizes truly great literature. Therefore, no novel produced through collaborative authorship will ever be considered a masterpiece.", stem: "The critic's conclusion follows logically if which one of the following is assumed?", choices: ["All novels currently regarded as masterpieces were written by a single author","A coherent artistic vision is a necessary condition for a novel to be considered a masterpiece","Readers prefer novels written by a single author to those written by multiple authors","It is impossible for multiple authors to share a coherent artistic vision","The greatest works of literature are those that most clearly express a single perspective"], answer: 1, type: "Necessary Assumption", explanation: "If coherent artistic vision isn't needed for a masterpiece, then the lack of it doesn't prevent one." },
+      { stim: "Safety advocate: Autonomous vehicles are involved in fewer accidents per mile driven than human-driven vehicles. Yet 94 percent of car accidents are caused by human error. Some argue this proves autonomous vehicles are safer. But autonomous vehicles currently operate almost exclusively in controlled conditions — fair weather, well-maintained highways, low-traffic areas. The true test will come when they navigate the same chaotic conditions human drivers face daily.", stem: "The safety advocate proceeds by", choices: ["rejecting the statistical comparison entirely as invalid","accepting the premise that human error causes most accidents but arguing the autonomous vehicle data is not comparable due to different operating conditions","arguing autonomous vehicles are more dangerous than human drivers","suggesting that human drivers should be banned from challenging conditions","providing evidence that autonomous vehicles perform poorly in adverse conditions"], answer: 1, type: "Method of Reasoning", explanation: "The researcher concedes the premise (94%) but argues the conclusion doesn't follow due to new, unconsidered risks." },
+      { stim: "If a restaurant receives a health code violation, its inspection score drops below 90. If an inspection score drops below 90, the restaurant must undergo a follow-up inspection within 30 days. Bella's Bistro does not need to undergo a follow-up inspection within 30 days.", stem: "Which one of the following can be properly concluded from the statements above?", choices: ["Bella's Bistro has never received a health code violation","Bella's Bistro received a health code violation but corrected it","Bella's Bistro's inspection score is 90 or above","Bella's Bistro did not receive a health code violation","Bella's Bistro's last inspection was more than 30 days ago"], answer: 3, type: "Inference", explanation: "Via contrapositive chain: no follow-up → score not below 90 → no violation." },
+      { stim: "Principle: Public institutions should prioritize transparency over efficiency whenever the two conflict, because public trust depends on citizens being able to scrutinize institutional decisions.\n\nApplication: The city council's decision to hold its budget deliberations in closed sessions, while perhaps expediting the process, was unjustified.", stem: "The application follows logically from the principle if which one of the following is assumed?", choices: ["The city council is a public institution and its closed sessions prioritized efficiency over transparency","All city council decisions should be made in open sessions regardless of the subject matter","Citizens in the city have expressed dissatisfaction with the council's budget decisions","Closed budget sessions are never more efficient than open ones","Public trust in the city council has declined in recent years"], answer: 0, type: "Principle (Apply)", explanation: "The principle requires transparency over efficiency in public institutions. If the council is public and chose efficiency, the application follows." },
+      { stim: "A nutritionist argues that because vegetarians on average have lower rates of heart disease than non-vegetarians, adopting a vegetarian diet will reduce any individual's risk of heart disease.", stem: "The nutritionist's reasoning is most vulnerable to criticism on the grounds that it", choices: ["fails to consider that some vegetarian diets may be nutritionally deficient","overlooks the possibility that people who choose vegetarian diets may also engage in other health-promoting behaviors that contribute to lower heart disease rates","assumes that heart disease is the most significant health concern for the nutritionist's clients","ignores medical research that has identified genetic factors in heart disease","relies on a sample of vegetarians that may not be representative of the general population"], answer: 1, type: "Flaw", explanation: "Classic confounding variable flaw — vegetarians may exercise more, smoke less, etc." },
+      { stim: "A car manufacturer introduced a safety feature that automatically applies the brakes when sensors detect an imminent collision. Since the feature was introduced, the rate of rear-end collisions for vehicles equipped with it has decreased by 45 percent. Surprisingly, however, the overall accident rate for these vehicles has not decreased.", stem: "Which one of the following, if true, most helps to explain the surprising finding?", choices: ["The automatic braking system occasionally activates when no collision is actually imminent","Drivers of vehicles with the automatic braking feature tend to follow other vehicles more closely and pay less attention, increasing the frequency of other types of accidents","The automatic braking feature is standard on the manufacturer's most expensive models","Rear-end collisions account for approximately half of all accidents involving the manufacturer's vehicles","The sensors in the automatic braking system are more effective in clear weather conditions"], answer: 1, type: "Resolve the Paradox", explanation: "Risk compensation: the safety feature causes drivers to behave more recklessly, increasing other accident types." },
+      { stim: "Historian: The conventional view holds that the ancient city of Meridia was destroyed by an earthquake around 300 BCE. However, I believe the city was actually abandoned gradually due to prolonged drought. Core samples from a nearby lakebed reveal a sustained drop in water levels beginning around 320 BCE and lasting several decades.", stem: "Which one of the following, if true, most strengthens the historian's argument?", choices: ["Geological surveys of the region show no evidence of major seismic activity around 300 BCE","Other cities in the region that were destroyed by earthquakes show characteristic patterns of structural collapse not found in Meridia","Meridia was located in a region known for occasional drought","Some residents of Meridia may have relocated to coastal settlements","The lakebed core samples also contain evidence of volcanic ash from a distant eruption"], answer: 0, type: "Strengthen", explanation: "If no seismic activity occurred around 300 BCE, the earthquake explanation is undermined, strengthening the drought hypothesis." },
+      { stim: "The town of Millbridge has experienced a 15 percent decrease in public library usage over the past five years. During the same period, the library's digital lending platform saw a 200 percent increase in e-book and audiobook borrowing. The library's total annual budget has remained unchanged, but an increasing share has been allocated to digital content licensing at the expense of physical book acquisitions.", stem: "Which one of the following is most strongly supported by the information above?", choices: ["Residents of Millbridge read fewer books now than they did five years ago","The shift in budget allocation from physical to digital content is at least partly a response to changing borrowing patterns","The quality of the library's physical book collection has declined over the past five years","Digital lending platforms are more cost-effective for libraries than maintaining physical collections","The library's budget should be increased to accommodate both physical and digital collections"], answer: 1, type: "Inference", explanation: "The budget shift toward digital content while digital borrowing surges strongly suggests the budget follows usage patterns." },
+      { stim: "Psychologist: Children who regularly engage in unstructured outdoor play develop stronger problem-solving skills than children who spend most of their free time on structured indoor activities. Schools should therefore increase recess time to improve students' cognitive development.", stem: "The psychologist's argument requires the assumption that", choices: ["structured indoor activities provide no cognitive benefits to children","increasing recess time at school would result in students engaging in unstructured outdoor play rather than other activities","all schools currently provide insufficient recess time for students","problem-solving skills are more important than other cognitive skills for academic success","parents support increasing recess time in schools"], answer: 1, type: "Necessary Assumption", explanation: "The argument claims recess → outdoor play → better cognition. It must assume recess time leads to unstructured outdoor play." },
+      { stim: "Every employee who completed the leadership training received a promotion. Javier did not receive a promotion.", stem: "If the statements above are true, which one of the following must also be true?", choices: ["Javier was not eligible for the leadership training","Javier did not complete the leadership training","Javier will never receive a promotion","The leadership training is the only way to receive a promotion","Javier chose not to participate in the training"], answer: 1, type: "Inference", explanation: "By contrapositive: All who completed training got promoted. Javier didn't get promoted, so he didn't complete training." },
+      { stim: "Ecologist: Introducing wolves back into Yellowstone caused a trophic cascade — elk moved away from riverbanks, allowing willows to regrow, which stabilized stream banks and increased biodiversity. Therefore, reintroducing apex predators will restore ecosystems in any degraded habitat.", stem: "The ecologist's reasoning is most vulnerable to criticism on the grounds that it", choices: ["relies on a single case study to support a universal generalization","ignores the costs and risks of predator reintroduction","assumes that all ecosystems have the same trophic structure as Yellowstone","fails to consider whether the wolves caused other negative effects","overstates the significance of riparian vegetation"], answer: 0, type: "Flaw", explanation: "Generalizing from one successful case (Yellowstone) to all degraded habitats is a hasty generalization." },
+      { stim: "Board member: Our company's profits increased by 15% this quarter. The CEO attributes this to the restructuring plan she implemented last year. However, every major company in our industry saw similar profit increases this quarter due to favorable market conditions.", stem: "The board member's response to the CEO's claim is most analogous to which one of the following?", choices: ["A student claims studying caused a high test score, but the teacher notes the entire class scored high because the test was easier than usual","A chef claims a new recipe is popular, but a critic notes the restaurant was already popular","A coach claims new training methods improved team performance, but a reporter notes the team played weaker opponents","Both A and C","None of the above"], answer: 0, type: "Parallel Reasoning", explanation: "Both show an alternative explanation (external conditions) for a result claimed to be caused by an internal action." },
+    ]
+  },
+  {
+    id: 2, title: "Reading Comprehension", time: 35 * 60,
+    questions: [
+      ...[
+        { stem: "Which one of the following most accurately expresses the main point of the passage?", choices: ["Regulatory capture is an inevitable consequence of government regulation of industry","The debate over regulatory capture involves competing views about the extent of industry influence on regulatory agencies and how to address it","Structural reforms to regulatory agencies have been proven more effective than procedural safeguards","George Stigler's theory of regulatory capture has been definitively refuted by more recent scholarship","The public's inability to participate effectively in regulatory processes is the primary cause of regulatory capture"], answer: 1, type: "Main Point" },
+        { stem: "According to the passage, Stigler's theory is based primarily on the idea that", choices: ["regulatory agencies lack the technical expertise to oversee complex industries","industries have concentrated interests and greater resources to influence regulation than the diffuse public does","elected officials deliberately design regulatory agencies to benefit industry donors","the procedural safeguards in the administrative process are fundamentally inadequate","regulatory agencies are staffed by former industry employees"], answer: 1, type: "Detail" },
+        { stem: "The passage suggests that Croley would most likely respond to Stigler's theory by arguing that", choices: ["industries do not actually attempt to influence regulatory outcomes","the public has more resources to influence regulation than Stigler acknowledges","institutional mechanisms within the regulatory process provide meaningful constraints on industry influence","regulatory capture occurs only in agencies that lack judicial oversight","Stigler's theory was accurate when first proposed but is no longer applicable"], answer: 2, type: "Inference" },
+        { stem: "The author's reference to Barkow's proposal primarily serves to", choices: ["illustrate specific structural features that could make regulatory agencies more resistant to capture","demonstrate that Barkow's approach is superior to both Stigler's and Croley's","provide evidence that existing regulatory agencies are poorly designed","suggest that financial dependence on regulated industries is the sole cause of capture","argue that commissioners with fixed terms are inherently more independent"], answer: 0, type: "Function" },
+        { stem: "Based on the passage, which one of the following would Barkow most likely agree with?", choices: ["Regulatory capture cannot be meaningfully reduced through institutional changes","The procedural safeguards Croley emphasizes are entirely ineffective","Regulatory capture results from identifiable institutional weaknesses that can be remedied through better agency design","Industries should be prohibited from providing any information to regulatory agencies","Stigler's theory is fundamentally correct in its pessimism"], answer: 2, type: "Inference" },
+        { stem: "The passage's final paragraph primarily serves to", choices: ["argue in favor of Barkow's structural approach","demonstrate that the three perspectives are irreconcilable","explain the different policy implications that follow from each perspective","suggest that further research is needed","introduce a new consideration not addressed by any of the three scholars"], answer: 2, type: "Function" },
+        { stem: "The author's tone toward the three perspectives can best be described as", choices: ["strongly favoring Barkow's approach while dismissing Stigler's pessimism","neutral and analytical, presenting each perspective without explicitly endorsing any","skeptical of all three perspectives","sympathetic to Croley's defense of existing safeguards","dismissive of the theoretical debate"], answer: 1, type: "Tone" },
+      ].map((q, i) => ({
+        ...q,
+        stim: i === 0 ? "PASSAGE 1 — Regulatory Capture\n\nThe concept of 'regulatory capture' — the process by which regulatory agencies come to be dominated by the very industries they were established to oversee — has been a subject of vigorous academic debate since economist George Stigler formalized the theory in 1971. Stigler argued that regulation is typically acquired by the industry being regulated and is designed and operated primarily for its benefit.\n\nMore recent scholars have complicated this picture considerably. Political scientist Steven Croley has argued that the capture thesis overstates the influence of industry by neglecting the significant institutional safeguards built into the administrative process — public notice and comment, judicial review, and oversight by elected officials.\n\nA third perspective, advanced by legal scholar Rachel Barkow, acknowledges the reality of capture while proposing structural reforms. Barkow argues that agencies with diverse funding sources, fixed terms for commissioners, and mandated multi-stakeholder representation are more resistant to capture. Her analysis suggests that capture is a design failure that can be addressed through institutional architecture.\n\nIf Stigler's view is correct, strengthening regulation may paradoxically benefit industries. If Croley is right, reinforcing existing safeguards may suffice. And if Barkow's approach is sound, the focus should shift to how to design regulatory institutions that resist capture." : "[See Passage 1 above]",
+        explanation: ["The passage presents three competing views on regulatory capture and their policy implications.","Stigler's theory is grounded in the asymmetry of concentrated industry interests vs. diffuse public interests.","Croley argues procedural safeguards create meaningful constraints on industry influence.","These specifics illustrate structural features Barkow says make agencies more capture-resistant.","Barkow sees capture as a 'design failure' fixable through better institutional architecture.","The final paragraph maps out what each perspective implies for policy.","The author presents each view's logic without endorsing any — analytical and balanced."][i],
+      })),
+      ...[
+        { stem: "The primary purpose of the passage is to", choices: ["advocate for the unrestricted use of CRISPR-Cas9","present the scientific capabilities of CRISPR-Cas9 and outline the central ethical debate surrounding germline editing","argue that germline editing should be prohibited","compare CRISPR-Cas9 to earlier gene-editing technologies","demonstrate that ethical concerns have been adequately addressed"], answer: 1, type: "Main Point" },
+        { stem: "According to the passage, most bioethicists view somatic cell editing as", choices: ["ethically unproblematic because it has no long-term effects","comparable to conventional medical treatments and governed by established ethical frameworks","less promising than germline editing","a stepping stone that will lead to germline editing","acceptable only for life-threatening conditions"], answer: 1, type: "Detail" },
+        { stem: "Habermas's objection to germline editing is primarily based on the concern that it", choices: ["poses unacceptable physical risks","will lead to genetic homogeneity","imposes permanent biological changes on future persons who cannot consent","diverts resources from other priorities","will be used for cosmetic enhancements"], answer: 2, type: "Inference" },
+        { stem: "Proponents would most likely respond to the inequality concern by arguing that", choices: ["genetic diseases affect all families equally","the appropriate response is to ensure broad access rather than ban the technology","inequality in medical access is unavoidable","germline editing won't be more expensive than existing treatments","governments should subsidize germline editing for all citizens"], answer: 1, type: "Inference" },
+        { stem: "The relationship between the third and fourth paragraphs is best described as", choices: ["theory and supporting evidence","objections to germline editing followed by counterarguments from proponents","current research followed by future applications","one ethical framework followed by an unrelated framework","compromise position followed by rejection"], answer: 1, type: "Structure" },
+        { stem: "The proponents' argument about parental decisions is introduced to", choices: ["suggest genetic modification is no different from parenting","challenge the claim that germline editing uniquely violates autonomy by showing parents routinely make consequential decisions","demonstrate children's autonomy is not important","argue genetic decisions should be left to parents without regulation","provide evidence that better nutrition leads to better health"], answer: 1, type: "Function" },
+        { stem: "The passage most strongly suggests that the author considers the ethical debate to be", choices: ["settled in favor of proponents","fundamentally misguided","a genuine dilemma involving legitimate concerns on both sides","primarily a matter of religious disagreement","irrelevant because the technology is not yet developed"], answer: 2, type: "Tone" },
+      ].map((q, i) => ({
+        ...q,
+        stim: i === 0 ? "PASSAGE 2 — CRISPR Gene Editing Ethics\n\nCRISPR-Cas9 gene editing technology allows scientists to modify DNA with unprecedented precision, raising the possibility of correcting genetic mutations that cause inherited diseases. Clinical trials for sickle cell disease have already shown promising results.\n\nThe ethical concerns center on the distinction between somatic cell editing (modifying genes in a living patient — not inherited) and germline editing (altering DNA of embryos — inherited by all future generations). Most bioethicists view somatic editing as analogous to conventional medicine. Germline editing raises qualitatively different concerns.\n\nCritics argue germline editing violates the autonomy of future persons (Habermas), could exacerbate inequality if only the wealthy can afford enhancements, and may have unpredictable ecological consequences.\n\nProponents counter that allowing preventable genetic diseases when technology exists raises its own ethical questions. They argue parents already make consequential decisions for children, inequality should be addressed through access not prohibition, and a moratorium itself condemns future generations to preventable diseases." : "[See Passage 2 above]",
+        explanation: ["The passage introduces CRISPR's capabilities then focuses on the ethical debate over germline editing.","The passage states most bioethicists view somatic editing as analogous to conventional medical treatments.","Habermas argues germline editing violates autonomy by imposing irreversible changes without consent.","Proponents argue the solution is equitable access, not prohibition.","Paragraph 3 = critics' objections; Paragraph 4 = proponents' counterarguments.","The analogy challenges the uniqueness of the autonomy objection.","Both sides are presented with substantial arguments, suggesting genuine complexity."][i],
+      })),
+      ...[
+        { stem: "Both passages are primarily concerned with", choices: ["evaluating the use of algorithmic tools in criminal sentencing","proposing specific reforms to criminal justice","analyzing the technical design of risk assessment algorithms","discussing the history of racial bias","comparing sentencing across jurisdictions"], answer: 0, type: "Main Point" },
+        { stem: "The author of Passage B would most likely respond to Passage A's claim that algorithms 'launder' bias by arguing that", choices: ["algorithms don't use factors correlated with race","historical policing data is more reliable than Passage A suggests","while algorithmic bias exists, it is more identifiable and correctable than biases in human decision-making","the term 'launder' is inappropriately inflammatory","defendants would prefer algorithmic assessment"], answer: 2, type: "Inference" },
+        { stem: "Unlike the author of Passage B, the author of Passage A", choices: ["considers racial bias relevant","evaluates algorithms against an ideal standard rather than against the current alternative of human judgment","acknowledges that human judges may be biased","proposes specific technical improvements","discusses the legal framework governing algorithm use"], answer: 1, type: "Comparison" },
+        { stem: "Which concern raised in Passage A is directly addressed by Passage B?", choices: ["Algorithms may reduce the role of defense attorneys","Risk assessment algorithms appear objective but reflect embedded biases","Algorithm use violates constitutional rights","Judges may become overly dependent on algorithms","Companies developing algorithms have financial conflicts"], answer: 1, type: "Detail" },
+        { stem: "The two authors would most likely agree that", choices: ["the current system produces equitable outcomes","algorithmic tools are entirely free from bias","bias in the criminal justice system is a genuine problem that needs to be addressed","human judges should have no sentencing role","risk assessment algorithms should be banned"], answer: 2, type: "Common Ground" },
+        { stem: "Passage B's reference to 'time of day' and sports team influences on judges serves primarily to", choices: ["suggest judges are incompetent","illustrate the arbitrary variability in human decisions, strengthening the case for algorithmic alternatives","demonstrate algorithms are influenced by similar factors","provide evidence defendants are aware of these influences","argue judicial training is insufficient"], answer: 1, type: "Function" },
+      ].map((q, i) => ({
+        ...q,
+        stim: i === 0 ? "PASSAGE 3 — Comparative: Algorithmic Sentencing\n\nPassage A: Risk assessment algorithms used in courtrooms are trained on historical data reflecting decades of racially disparate policing. When an algorithm identifies a defendant as 'high risk' based on factors correlated with race, it doesn't eliminate bias — it launders it through a veneer of mathematical objectivity.\n\nPassage B: The relevant comparison is not between algorithms and some ideal, bias-free alternative. It's between algorithms and human judges whose decisions vary by time of day, which judge you get, and even local sports results. Algorithms at least apply the same criteria consistently and, unlike human reasoning, can be audited, tested for disparate impact, and revised." : "[See Passage 3 above]",
+        explanation: ["Both passages evaluate algorithmic tools in criminal sentencing decisions.","Passage B's central argument is that algorithmic bias is more identifiable and correctable than human bias.","Passage A compares algorithms to an implicit ideal; Passage B compares to imperfect human judges.","Passage A argues algorithms reflect embedded biases; Passage B addresses this by noting they're auditable.","Both authors acknowledge bias exists — they disagree about the solution.","These examples illustrate arbitrary variability of human decisions, favoring algorithmic consistency."][i],
+      })),
+      ...[
+        { stem: "Which one of the following most accurately states the main point of the passage?", choices: ["BCS theory fully explains all superconductivity","Room-temperature superconductivity has been definitively achieved","While significant progress has been made in pursuing practical superconductors, key theoretical and engineering challenges remain unresolved","The LK-99 episode shows all room-temperature claims should be dismissed","Cuprate superconductors are the most promising pathway"], answer: 2, type: "Main Point" },
+        { stem: "The passage's discussion of LK-99 primarily serves to", choices: ["illustrate the unreliability of outside research","demonstrate both the intensity of interest in room-temperature superconductivity and the necessity of reproducible results","argue public attention to science is counterproductive","provide evidence lead-apatite compounds cannot superconduct","suggest the pursuit is misguided"], answer: 1, type: "Function" },
+        { stem: "A key difference between conventional and cuprate superconductors is that", choices: ["conventional are metallic while cuprates are ceramic","conventional are explained by BCS theory through phonon-mediated pairing, while cuprates appear to involve magnetic interactions","conventional have no practical applications","cuprates were discovered first","conventional require lower temperatures"], answer: 1, type: "Detail" },
+        { stem: "The author mentions 'lossless power grids, levitating transportation' primarily to", choices: ["argue for increased research investment","illustrate the transformative potential of achieving practical room-temperature superconductivity","list applications currently being developed","suggest these are achievable within a decade","demonstrate commercial motivation"], answer: 1, type: "Function" },
+        { stem: "Hydrogen-rich materials are currently impractical because", choices: ["they decompose rapidly at room temperature","they require pressures of millions of atmospheres to exhibit superconductivity","their properties haven't been independently verified","they are too expensive to produce","they only work at extremely low temperatures"], answer: 1, type: "Detail" },
+        { stem: "What can most reasonably be inferred about the current state of superconductor research?", choices: ["Scientists have abandoned the search after LK-99","Theoretical understanding is complete but practical challenges remain","Both theoretical gaps and practical challenges in achieving ambient-condition superconductivity persist","BCS theory has been extended to explain cuprates","Commercial applications are already widespread"], answer: 2, type: "Inference" },
+        { stem: "The author's attitude toward achieving practical room-temperature superconductivity is best characterized as", choices: ["dismissive, viewing it as unattainable","cautiously optimistic, acknowledging progress and significant challenges","unreservedly enthusiastic about imminent breakthroughs","indifferent to practical applications","critical of resources devoted to the pursuit"], answer: 1, type: "Tone" },
+      ].map((q, i) => ({
+        ...q,
+        stim: i === 0 ? "PASSAGE 4 — Superconductors\n\nHigh-temperature superconductors (cuprates) discovered in the 1980s exhibit superconductivity at up to 135 Kelvin — far above what was thought possible, but still far below room temperature. The theoretical mechanism remains incompletely understood; BCS theory explains conventional superconductors through phonon-mediated Cooper pairs, but cuprates appear to involve magnetic interactions.\n\nIn 2023, researchers claimed room-temperature superconductivity in LK-99. Multiple labs failed to reproduce the results, revealing the effects were likely from impurities. The episode highlighted both the desire for a room-temperature superconductor and the importance of reproducibility.\n\nHydrogen-rich materials under extreme pressures have shown superconductivity near 15°C, but at millions of atmospheres — equally impractical. The challenge is achieving both room temperature AND ambient pressure. Success would enable lossless power grids, levitating transportation, and cryogen-free quantum computers." : "[See Passage 4 above]",
+        explanation: ["The passage discusses progress but emphasizes unresolved theoretical and practical challenges.","LK-99 shows both intense interest and the critical importance of reproducibility.","BCS theory uses phonon-mediated pairs for conventional; cuprates involve magnetic interactions.","These examples illustrate the transformative potential of practical room-temperature superconductivity.","Hydrogen-rich materials require millions of atmospheres of pressure.","Both theoretical gaps (cuprate mechanism) and practical challenges (ambient pressure) persist.","The author acknowledges progress while noting major unsolved problems — cautiously optimistic."][i],
+      })),
+    ]
+  },
+  {
+    id: 3, title: "Logical Reasoning", time: 35 * 60,
+    questions: [
+      { stim: "Editorial: The governor claims that the new highway will reduce commute times for thousands of residents. But the governor received substantial campaign contributions from the construction company that was awarded the contract. Clearly, the highway project is not about reducing commute times at all.", stem: "The reasoning in the editorial is most vulnerable to criticism on the grounds that it", choices: ["presumes that a claim is false because the person making it has a potential conflict of interest","fails to consider whether the highway might reduce commute times regardless of the governor's motives","ignores the possibility that construction companies routinely contribute to political campaigns","assumes that the governor personally benefits from the highway construction","overlooks the fact that campaign contributions are a matter of public record"], answer: 0, type: "Flaw", explanation: "Classic ad hominem / genetic fallacy — dismissing the claim because of the claimant's potential bias." },
+      { stim: "A health organization recommends that adults drink at least eight glasses of water per day to maintain proper hydration. They argue that most people are chronically dehydrated without realizing it, and that increasing water intake would improve energy levels and cognitive function.", stem: "Which one of the following, if true, most weakens the argument?", choices: ["Some adults already drink more than eight glasses of water per day","Clinical studies have found that most healthy adults who drink when thirsty maintain adequate hydration without monitoring intake","Water is the most commonly consumed beverage in many countries","The eight-glasses recommendation has been widely promoted for decades","Drinking excessive water can in rare cases lead to hyponatremia"], answer: 1, type: "Weaken", explanation: "If drinking when thirsty maintains adequate hydration, the premise of chronic dehydration is undermined." },
+      { stim: "No one convicted of fraud is eligible for the city's ethics board. Everyone eligible must have resided in the city for at least ten years. Thompson has resided in the city for twelve years.", stem: "Which one of the following, if assumed, allows the conclusion that Thompson is eligible to serve on the ethics board?", choices: ["Thompson has never been convicted of any crime","Residing for ten years is sufficient if one has no fraud conviction","Thompson has expressed interest in serving","No other requirements exist beyond residency and absence of fraud conviction, and Thompson has not been convicted of fraud","Everyone who has resided for more than ten years is eligible"], answer: 3, type: "Sufficient Assumption", explanation: "We need that these are the ONLY requirements and Thompson meets them all." },
+      { stim: "Biologists observed that coral reefs near marine protected areas have greater biodiversity than reefs in unprotected waters. They hypothesize that fishing bans allow fish populations to recover, supporting a more diverse reef ecosystem.", stem: "Which one of the following, if true, most strengthens the hypothesis?", choices: ["Protected areas are often established where reef health was already above average","Reefs near protected areas that were previously in decline showed measurable biodiversity increases within five years of the fishing ban","Some fish near protected reefs are also found in unprotected waters","Tropical reefs generally support more biodiversity than temperate reefs","The total area of marine protected areas has increased globally"], answer: 1, type: "Strengthen", explanation: "This shows temporal sequence: reefs improved AFTER the ban, not just that already-healthy reefs were selected." },
+      { stim: "The museum's board decided any new exhibition must either be funded entirely by private donations or receive at least 60% funding from the endowment. The upcoming photography exhibition has secured 40% from private donations. The endowment is frozen this fiscal year.", stem: "If the statements above are true, which one of the following must be true?", choices: ["The photography exhibition will not open this fiscal year unless additional private donations are secured","The board will make an exception","The exhibition will be cancelled permanently","Private donors are unwilling to fund the remaining 60%","The museum should unfreeze its endowment"], answer: 0, type: "Inference", explanation: "Can't use endowment (frozen) and hasn't secured full private funding (only 40%). Needs more private donations or it can't proceed." },
+      { stim: "Automobile manufacturers have significantly improved fuel efficiency — the average new car today travels 40% farther per gallon than in 1995. Yet total gasoline consumption has not decreased.", stem: "Which one of the following, if true, most helps to resolve the apparent discrepancy?", choices: ["Gas prices have fluctuated significantly","Some consumers switched to electric vehicles","The total number of registered vehicles and average miles driven per vehicle have both increased substantially","Manufacturers invested heavily in fuel-efficient engines","Public transportation ridership also increased"], answer: 2, type: "Resolve the Paradox", explanation: "More vehicles + more miles driven = more total fuel consumed even with better efficiency." },
+      { stim: "Art critic: Digital art created using AI cannot be considered genuine art because it lacks intentionality. True art requires deliberate choices about form, color, and composition in service of an expressive purpose. An AI system merely processes patterns and generates outputs according to mathematical functions.", stem: "The art critic's argument assumes that", choices: ["all non-AI art involves deliberate choices","the human who prompts and curates AI output does not exercise intentionality in the process","digital art is inherently less valuable than traditional art","mathematical functions cannot produce aesthetically pleasing outputs","AI systems will never replicate the full range of human artistic styles"], answer: 1, type: "Necessary Assumption", explanation: "If the human prompting/curating AI art IS exercising intentionality, the critic's conclusion fails." },
+      { stim: "A journalist discovered a public official conducting personal business during working hours. The journalist published the story even though the activities were legal. The official objected that reporting on legal activities violates journalistic ethics.", stem: "The journalist's decision is most justified by which one of the following principles?", choices: ["Journalists should report on any activity by a public official","Public officials have a reduced expectation of privacy regarding their official duties, and the public has a right to know how officials use taxpayer-funded time","Journalists should report only on activities that could lead to criminal charges","The public interest is served only by reporting on illegal activities","Journalists should publish only when they can demonstrate concrete harm"], answer: 1, type: "Principle (Identify)", explanation: "This principle justifies reporting on a public official's use of publicly-funded work time." },
+      { stim: "If the experiment succeeds, the department will receive additional funding. If the department receives additional funding, new researchers will be hired. The experiment succeeded. Therefore, new researchers will be hired.", stem: "The pattern of reasoning above is most closely paralleled by which one of the following?", choices: ["If it rains, the game will be postponed. If the game is postponed, tickets will be refunded. It rained. Therefore, tickets will be refunded.","If sales increase, the company will expand. Sales did not increase. Therefore, the company will not expand.","If the bridge is repaired, traffic will improve. Traffic improved. Therefore, the bridge was repaired.","If enrollment increases, tuition may decrease. Enrollment increased. Therefore, tuition decreased.","If the law passes, regulations will change. Regulations changed. Therefore, the law passed."], answer: 0, type: "Parallel Reasoning", explanation: "Both have the form: If P then Q. If Q then R. P. Therefore R." },
+      { stim: "A city council member proposes converting vacant lots into community gardens to reduce crime, citing a study showing neighborhoods with gardens have 30% lower crime rates.", stem: "Which one of the following questions would be most useful in evaluating the proposal?", choices: ["How many vacant lots are available?","Do neighborhoods that establish gardens tend to have lower crime rates before the gardens are created, or does crime decrease after?","What types of crimes are most common near vacant lots?","How much would each conversion cost?","Do residents near gardens report higher satisfaction?"], answer: 1, type: "Evaluate", explanation: "This determines causation vs. correlation — did gardens cause lower crime, or were they placed in safer neighborhoods?" },
+      { stim: "Senator: My opponent claims the proposed tax cut will increase the deficit. But she voted for three spending bills last year that collectively added $50 billion to the deficit. Given her record, her criticism lacks credibility.", stem: "The senator's argument is flawed because it", choices: ["attacks the opponent's consistency rather than addressing the substance of her claim about the tax cut","assumes that all tax cuts increase the deficit","fails to consider that the spending bills may have been justified","ignores the difference between revenue reduction and spending increases","presumes that the opponent's voting record is a matter of public concern"], answer: 0, type: "Flaw", explanation: "Tu quoque fallacy — attacking the opponent's consistency instead of addressing the tax cut claim." },
+      { stim: "Researchers found students in smaller classes scored higher on standardized tests. They concluded reducing class size is the most effective way to improve academic achievement.", stem: "Which one of the following, if true, most weakens the conclusion?", choices: ["The study was conducted in a single school district","Students in smaller classes also had more experienced teachers who volunteered for the program","Standardized tests are a valid measure of achievement","Some students in larger classes performed exceptionally well","Reducing class sizes requires hiring additional teachers"], answer: 1, type: "Weaken", explanation: "If smaller classes had better teachers, improved scores could be from teacher quality — a confounding variable." },
+      { stim: "Some analysts in the firm specialize in emerging markets. All emerging market analysts must speak at least two languages. No one who speaks fewer than two languages is assigned to international client teams.", stem: "If the statements above are true, which one of the following must also be true?", choices: ["All analysts speak at least two languages","Some analysts are on international client teams","All emerging market analysts could be assigned to international teams based on language qualifications","No emerging market analyst is excluded from international teams due to language requirements","Both C and D"], answer: 3, type: "Inference", explanation: "Emerging market analysts speak 2+ languages, meeting the international team language bar." },
+      { stim: "A study found elderly pet owners have lower blood pressure and less loneliness. Researchers concluded pet ownership directly improves cardiovascular health and emotional well-being in elderly populations.", stem: "Which one of the following, if true, most strengthens the conclusion?", choices: ["Pet ownership rates among the elderly have increased","In a controlled trial, elderly participants randomly assigned to receive a pet showed significant improvements vs. control group","Elderly pet owners tend to have more active social lives","The study included a large diverse sample","Some non-owners report excellent health"], answer: 1, type: "Strengthen", explanation: "A randomized controlled trial eliminates self-selection bias, directly supporting a causal relationship." },
+      { stim: "Nutritionist: People commonly believe eating late at night causes weight gain. But controlled studies show total daily caloric intake, not meal timing, determines weight change. Late-night eating is associated with weight gain because people who eat late tend to consume additional calories beyond their daily needs.", stem: "The nutritionist proceeds by", choices: ["rejecting a belief and replacing it with a competing hypothesis","accepting the observed correlation while providing an alternative explanation for the causal mechanism","citing scientific authority to dismiss an unsupported belief","demonstrating that late-night eating has no relationship to weight gain","arguing controlled studies are more reliable than observational evidence"], answer: 1, type: "Method of Reasoning", explanation: "The nutritionist accepts the correlation but explains it differently — excess calories, not timing." },
+      { stim: "City planner: Building a new sports stadium downtown will revitalize the surrounding neighborhood by attracting restaurants, shops, and visitors who will spend money at local businesses.", stem: "The city planner's argument depends on the assumption that", choices: ["the stadium will host events frequently enough to generate a consistent flow of visitors","no other project could revitalize the neighborhood","all residents support the stadium","construction won't displace existing businesses","similar projects in other cities have always succeeded"], answer: 0, type: "Necessary Assumption", explanation: "If events are too infrequent, visitors won't sustain surrounding businesses." },
+      { stim: "All safety committee members must have completed the emergency training program. The program is only offered in March and September. Fernando joined the company in April and has not yet attended a September training session.", stem: "If the statements above are true, which one of the following must be true?", choices: ["Fernando will complete the training in September","Fernando is not currently a member of the safety committee","Fernando has expressed interest in the committee","The committee doesn't accept new members between training sessions","Fernando won't be eligible until next year"], answer: 1, type: "Inference", explanation: "Fernando hasn't completed training. Without training, he can't be on the committee." },
+      { stim: "90% of people surveyed at the downtown farmers' market said they prefer organic produce. Therefore, the vast majority of people in this city prefer organic produce.", stem: "The reasoning is most vulnerable to criticism on the grounds that it", choices: ["relies on a sample that is likely unrepresentative of the city's population as a whole","fails to define 'organic produce'","ignores that organic produce is more expensive","assumes everyone knows the difference between organic and conventional","does not consider whether stated preferences match actual purchasing behavior"], answer: 0, type: "Flaw", explanation: "Farmers' market shoppers are self-selected and likely favor organic more than the general population." },
+      { stim: "Principle: An employer should not be held liable for an employee's actions performed outside the scope of employment that the employer could not reasonably have anticipated or prevented.", stem: "Which situation most clearly illustrates this principle?", choices: ["A delivery driver accidentally damages property during a scheduled delivery; employer is held liable","A security guard assaults a trespasser during assigned duty; employer is held liable","An accountant, on personal vacation, uses work skills to commit tax fraud for a friend; employer is not held liable","A sales representative makes false promises during a business meeting; employer is held liable","A factory worker following procedures produces a defective product; employer is held liable"], answer: 2, type: "Principle (Apply)", explanation: "The accountant's fraud is personal, outside employment scope, and unforeseeable — matching the principle." },
+      { stim: "A company introduced a four-day workweek (every Friday off, no pay reduction). Morale improved dramatically. Surprisingly, overall productivity increased by 12 percent during the trial.", stem: "Which one of the following, if true, most helps to explain how both results could occur?", choices: ["Employees worked slightly longer hours on the four days","The company hired additional staff","Employees who were more rested and motivated worked more efficiently during their four days, more than compensating for the lost day","Competitors did not adopt similar policies","Some employees worked voluntarily on Fridays"], answer: 2, type: "Resolve the Paradox", explanation: "Higher efficiency per working day from better rest/motivation explains both improved morale and increased productivity." },
+      { stim: "Linguist: Languages spoken by fewer than 10,000 people are at serious risk of extinction within two generations. Over 3,000 such languages exist worldwide. Without intervention, humanity will lose a significant portion of its linguistic diversity by century's end.", stem: "Which one of the following, if true, most strengthens the argument?", choices: ["Several languages with more than 10,000 speakers have also declined","Children in small-language communities increasingly learn only the dominant regional language, and once a generation doesn't learn a language, it rarely recovers","Some linguists have developed documentation programs","The total number of languages has been declining for centuries","Many small languages lack a written form"], answer: 1, type: "Strengthen", explanation: "This explains the mechanism of extinction — once children don't learn it, it's gone." },
+      { stim: "Theater director: By performing classic plays in modern settings with contemporary costumes and language, we make themes accessible to audiences who would find them remote. Therefore, modernized productions are the most effective way to keep classic theater alive.", stem: "The director's argument requires the assumption that", choices: ["audiences prefer contemporary costumes to period staging","classic plays staged in their original historical settings cannot effectively convey their themes to modern audiences","the themes of classic plays are relevant to contemporary audiences","modern settings don't distort the meaning of classic plays","all classic plays benefit equally from modernization"], answer: 1, type: "Necessary Assumption", explanation: "If traditional staging CAN convey themes effectively, modernized productions aren't the MOST effective way." },
+      { stim: "A school board notes that students in countries with longer school years outperform US students on international assessments, and proposes extending the school year by two weeks.", stem: "Which of the following would be most important to establish to evaluate the reasoning?", choices: ["Whether the extra weeks would cover new material or review","Whether superior performance in other countries is attributable to additional time or to other factors","How parents feel about extending the school year","Whether teachers would receive additional compensation","How the district's school year compares to other districts"], answer: 1, type: "Evaluate", explanation: "The key is whether longer school years CAUSE better performance or if other factors explain it." },
+      { stim: "Company executives argue their new wellness program (free gym memberships, healthy cafeteria) will reduce healthcare costs by 20 percent within three years.", stem: "Which one of the following, if true, most weakens the projection?", choices: ["Similar programs at other companies have consistently failed because participants tend to be employees who were already healthy","Healthcare costs have been rising steadily for five years","Some employees are enthusiastic about the program","Implementation costs are significant","Participation is voluntary"], answer: 0, type: "Weaken", explanation: "If wellness programs attract already-healthy employees, they won't generate health improvements or cost savings." },
+      { stim: "A local bookstore's revenue declined 20% over three years despite constant customer count. The store expanded non-book merchandise (gifts, stationery, coffee) and online sales grew substantially.", stem: "Which one of the following is most strongly supported by the information above?", choices: ["The bookstore's customers are spending less per visit on average","Non-book merchandise failed to attract new customers","Online sales are cannibalizing in-store revenue","The bookstore should discontinue non-book merchandise","Total revenue including online sales declined 20%"], answer: 0, type: "Inference", explanation: "Same customers + less revenue = lower spending per visit." },
+    ]
+  }
+];
+
+const MOCK_LETTERS = ['A','B','C','D','E'];
+
+// Mock Test State
+let mt = {
+  state: 'intro', // intro, exam, break, results, review
+  sectionIdx: 0,
+  qIdx: 0,
+  answers: {},
+  flagged: {},
+  timeLeft: 0,
+  timerInterval: null,
+  timerActive: false,
+  initialized: false
+};
+
+function initMockTest() {
+  if (!mt.initialized) {
+    mt.initialized = true;
+    renderMockIntro();
+  }
+}
+
+function mtFormatTime(s) {
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+
+function mtGetScaledScore(raw) {
+  if (raw >= 72) return '175-180';
+  if (raw >= 67) return '170-174';
+  if (raw >= 62) return '165-169';
+  if (raw >= 56) return '160-164';
+  if (raw >= 50) return '155-159';
+  if (raw >= 43) return '150-154';
+  return 'Below 150';
+}
+
+function mtGetScore() {
+  let correct = 0, total = 0;
+  const bySection = [];
+  MOCK_SECTIONS.forEach((sec, si) => {
+    let sc = 0;
+    sec.questions.forEach((q, qi) => {
+      total++;
+      if (mt.answers[si + '-' + qi] === q.answer) { correct++; sc++; }
+    });
+    bySection.push({ title: sec.title, correct: sc, total: sec.questions.length });
+  });
+  return { correct, total, bySection };
+}
+
+function mtStartTimer() {
+  clearInterval(mt.timerInterval);
+  mt.timerActive = true;
+  mt.timerInterval = setInterval(() => {
+    mt.timeLeft--;
+    const el = document.getElementById('mtTimer');
+    if (el) {
+      el.textContent = mtFormatTime(mt.timeLeft);
+      el.style.color = mt.timeLeft < 300 ? '#d44' : 'var(--text)';
+      el.style.animation = mt.timeLeft < 300 ? 'mtPulse 1s infinite' : 'none';
+    }
+    if (mt.timeLeft <= 0) {
+      clearInterval(mt.timerInterval);
+      mt.timerActive = false;
+      mtEndSection();
+    }
+  }, 1000);
+}
+
+function mtStopTimer() {
+  clearInterval(mt.timerInterval);
+  mt.timerActive = false;
+}
+
+function mtStartExam() {
+  mt.state = 'exam';
+  mt.sectionIdx = 0;
+  mt.qIdx = 0;
+  mt.answers = {};
+  mt.flagged = {};
+  mt.timeLeft = MOCK_SECTIONS[0].time;
+  renderMockExam();
+  mtStartTimer();
+}
+
+function mtEndSection() {
+  mtStopTimer();
+  if (mt.sectionIdx === 0) {
+    mt.state = 'break';
+    renderMockBreak();
+  } else if (mt.sectionIdx === 1) {
+    mt.sectionIdx = 2;
+    mt.qIdx = 0;
+    mt.timeLeft = MOCK_SECTIONS[2].time;
+    renderMockExam();
+    mtStartTimer();
+  } else {
+    mt.state = 'results';
+    renderMockResults();
+  }
+}
+
+function mtContinueAfterBreak() {
+  mt.state = 'exam';
+  mt.sectionIdx = 1;
+  mt.qIdx = 0;
+  mt.timeLeft = MOCK_SECTIONS[1].time;
+  renderMockExam();
+  mtStartTimer();
+}
+
+function mtSelectAnswer(ci) {
+  if (mt.state !== 'exam') return;
+  mt.answers[mt.sectionIdx + '-' + mt.qIdx] = ci;
+  renderMockExam();
+}
+
+function mtToggleFlag() {
+  const key = mt.sectionIdx + '-' + mt.qIdx;
+  mt.flagged[key] = !mt.flagged[key];
+  renderMockExam();
+}
+
+function mtGoQ(i) {
+  mt.qIdx = i;
+  if (mt.state === 'exam') renderMockExam();
+  else renderMockReview();
+}
+
+function mtNextQ() {
+  const sec = MOCK_SECTIONS[mt.sectionIdx];
+  if (mt.qIdx < sec.questions.length - 1) {
+    mt.qIdx++;
+    if (mt.state === 'exam') renderMockExam();
+    else renderMockReview();
+  }
+}
+
+function mtPrevQ() {
+  if (mt.qIdx > 0) {
+    mt.qIdx--;
+    if (mt.state === 'exam') renderMockExam();
+    else renderMockReview();
+  }
+}
+
+function mtReviewPrev() {
+  if (mt.qIdx > 0) { mt.qIdx--; }
+  else if (mt.sectionIdx > 0) { mt.sectionIdx--; mt.qIdx = MOCK_SECTIONS[mt.sectionIdx].questions.length - 1; }
+  renderMockReview();
+}
+
+function mtReviewNext() {
+  const sec = MOCK_SECTIONS[mt.sectionIdx];
+  if (mt.qIdx < sec.questions.length - 1) { mt.qIdx++; }
+  else if (mt.sectionIdx < 2) { mt.sectionIdx++; mt.qIdx = 0; }
+  renderMockReview();
+}
+
+function mtGoReview(si, qi) {
+  mt.state = 'review';
+  mt.sectionIdx = si;
+  mt.qIdx = qi;
+  renderMockReview();
+}
+
+function mtBackToResults() {
+  mt.state = 'results';
+  renderMockResults();
+}
+
+function mtRetake() {
+  mt.state = 'intro';
+  mt.sectionIdx = 0;
+  mt.qIdx = 0;
+  mt.answers = {};
+  mt.flagged = {};
+  renderMockIntro();
+}
+
+// ─── RENDER: INTRO ───
+function renderMockIntro() {
+  const app = document.getElementById('mockTestApp');
+  app.innerHTML = `
+    <style>
+      @keyframes mtPulse{0%,100%{opacity:1}50%{opacity:.5}}
+      .mt-wrap{max-width:700px;margin:0 auto;padding:1rem 0}
+      .mt-hero{background:linear-gradient(135deg,#0f0f0e,#1a1a18);border:1px solid #2a2a28;border-radius:var(--rl);padding:3rem 2rem;text-align:center;position:relative;overflow:hidden}
+      .mt-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 400px at 50% 50%,rgba(184,150,62,.08) 0%,transparent 70%)}
+      .mt-hero *{position:relative}
+      .mt-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(184,150,62,.15);border:1px solid rgba(184,150,62,.4);color:#b8963e;font-size:11px;font-weight:600;padding:5px 14px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.5rem}
+      .mt-hero h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:700;color:#f8f5ef;line-height:1.1;margin-bottom:.75rem}
+      .mt-hero h2 em{color:#b8963e;font-style:normal}
+      .mt-hero-sub{font-size:15px;color:#999;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+      .mt-info-box{background:rgba(255,255,255,.04);border:1px solid #2a2a28;border-radius:8px;padding:1.25rem 1.5rem;text-align:left;margin-bottom:1.5rem;max-width:520px;margin-left:auto;margin-right:auto}
+      .mt-info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #2a2a28;font-size:14px;color:#ccc}
+      .mt-info-row:last-child{border-bottom:none}
+      .mt-info-row span:first-child{font-weight:600;color:#f8f5ef}
+      .mt-info-row .mt-hl{color:#b8963e;font-weight:600}
+      .mt-info-row.mt-break{opacity:.5}
+      .mt-rules{background:rgba(184,150,62,.06);border-left:3px solid #b8963e;border-radius:0 8px 8px 0;padding:1rem 1.25rem;text-align:left;margin-bottom:2rem;max-width:520px;margin-left:auto;margin-right:auto}
+      .mt-rules-title{color:#b8963e;font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+      .mt-rules-body{color:#999;font-size:13px;line-height:1.65}
+      .mt-start-btn{background:linear-gradient(135deg,#b8963e,#a07c2a);color:#0f0f0e;border:none;border-radius:999px;padding:16px 48px;font-size:17px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.03em;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 24px rgba(184,150,62,.3)}
+      .mt-start-btn:hover{transform:scale(1.03);box-shadow:0 6px 32px rgba(184,150,62,.4)}
+    </style>
+    <div class="mt-wrap">
+      <div class="mt-hero">
+        <div class="mt-badge">📝 Full-Length LSAT Practice Exam</div>
+        <h2>Ready for the <em>real thing</em>?</h2>
+        <p class="mt-hero-sub">77 questions across 3 timed sections in the 2026 format — no Logic Games. Timer starts immediately.</p>
+        <div class="mt-info-box">
+          <div class="mt-info-row"><span>Section 1</span><span>Logical Reasoning — 25 Qs</span><span class="mt-hl">35 min</span></div>
+          <div class="mt-info-row mt-break"><span>☕ Break</span><span></span><span class="mt-hl">10 min</span></div>
+          <div class="mt-info-row"><span>Section 2</span><span>Reading Comprehension — 27 Qs</span><span class="mt-hl">35 min</span></div>
+          <div class="mt-info-row"><span>Section 3</span><span>Logical Reasoning — 25 Qs</span><span class="mt-hl">35 min</span></div>
+        </div>
+        <div class="mt-rules">
+          <div class="mt-rules-title">Exam Rules</div>
+          <div class="mt-rules-body">Timer starts immediately when you begin. You can flag uncertain questions for review. Navigate freely within a section. When time expires, the section auto-submits.</div>
+        </div>
+        <button class="mt-start-btn" onclick="mtStartExam()">Begin Exam</button>
+      </div>
+    </div>
+  `;
+}
+
+// ─── RENDER: BREAK ───
+function renderMockBreak() {
+  const app = document.getElementById('mockTestApp');
+  app.innerHTML = `
+    <div class="mt-wrap">
+      <div class="mt-hero" style="padding:4rem 2rem">
+        <div style="font-size:48px;margin-bottom:16px">☕</div>
+        <h2 style="font-size:32px;margin-bottom:.5rem">10-Minute Break</h2>
+        <p style="color:#999;font-size:15px;line-height:1.7;margin-bottom:.5rem">Section 1 is complete. Stretch, hydrate, take a breath.<br>Sections 2 (RC) and 3 (LR) are next — 52 questions, 70 minutes total.</p>
+        <p style="color:#666;font-size:13px;margin-bottom:2rem">Set a real 10-minute timer, then click below when ready.</p>
+        <button class="mt-start-btn" onclick="mtContinueAfterBreak()">Continue to Section 2</button>
+      </div>
+    </div>
+  `;
+}
+
+// ─── RENDER: EXAM ───
+function renderMockExam() {
+  const sec = MOCK_SECTIONS[mt.sectionIdx];
+  const q = sec.questions[mt.qIdx];
+  const ansKey = mt.sectionIdx + '-' + mt.qIdx;
+  const app = document.getElementById('mockTestApp');
+
+  let sidebarHtml = '';
+  sec.questions.forEach((_, i) => {
+    const k = mt.sectionIdx + '-' + i;
+    const answered = mt.answers[k] !== undefined;
+    const isCurrent = i === mt.qIdx;
+    const isFlagged = mt.flagged[k];
+    const bg = isCurrent ? 'rgba(184,150,62,.15)' : answered ? 'rgba(184,150,62,.06)' : 'transparent';
+    const bdr = isCurrent ? '2px solid var(--cyan)' : '1px solid var(--border)';
+    const color = isCurrent ? 'var(--cyan)' : answered ? 'var(--text2)' : 'var(--text3)';
+    const fw = isCurrent ? '700' : '500';
+    sidebarHtml += '<button onclick="mtGoQ(' + i + ')" style="width:48px;height:36px;border-radius:6px;margin-bottom:4px;border:' + bdr + ';background:' + bg + ';color:' + color + ';font-size:13px;font-weight:' + fw + ';cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;position:relative">' + (i + 1) + (isFlagged ? '<span style="position:absolute;top:2px;right:4px;font-size:8px">🚩</span>' : '') + '</button>';
+  });
+
+  let choicesHtml = '';
+  q.choices.forEach((c, ci) => {
+    const selected = mt.answers[ansKey] === ci;
+    const bg = selected ? 'rgba(184,150,62,.12)' : 'var(--card)';
+    const bdr = selected ? '1.5px solid var(--cyan)' : '1px solid var(--border)';
+    choicesHtml += '<button onclick="mtSelectAnswer(' + ci + ')" style="display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;background:' + bg + ';border:' + bdr + ';border-radius:10px;padding:14px 16px;margin-bottom:8px;cursor:pointer;font-family:inherit;transition:all .15s"><span style="font-weight:700;color:' + (selected ? 'var(--cyan)' : 'var(--text3)') + ';min-width:24px;font-size:14px">(' + MOCK_LETTERS[ci] + ')</span><span style="font-size:14px;line-height:1.6;color:var(--text)">' + c + '</span></button>';
+  });
+
+  const isLast = mt.qIdx === sec.questions.length - 1;
+  const flagKey = ansKey;
+  const isFlagged = mt.flagged[flagKey];
+
+  app.innerHTML = `
+    <style>@keyframes mtPulse{0%,100%{opacity:1}50%{opacity:.5}}</style>
+    <!-- Top bar -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+      <div>
+        <span style="font-weight:700;font-size:14px;color:var(--cyan)">Section ${sec.id}: ${sec.title}</span>
+        <span style="color:var(--text3);font-size:13px;margin-left:12px">Q ${mt.qIdx + 1} of ${sec.questions.length}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <span id="mtTimer" style="font-family:monospace;font-size:20px;font-weight:700;color:var(--text)">${mtFormatTime(mt.timeLeft)}</span>
+        <button onclick="mtEndSection()" style="background:transparent;color:var(--text3);border:1px solid var(--border);border-radius:6px;padding:6px 14px;font-size:12px;cursor:pointer;font-family:inherit">End Section</button>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:1rem;align-items:flex-start">
+      <!-- Question nav sidebar -->
+      <div style="width:64px;flex-shrink:0;background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:10px 8px;position:sticky;top:70px;max-height:calc(100vh - 140px);overflow-y:auto">
+        ${sidebarHtml}
+      </div>
+
+      <!-- Main question area -->
+      <div style="flex:1;min-width:0;max-width:740px">
+        <span style="background:var(--card);padding:4px 12px;border-radius:999px;font-size:12px;color:var(--cyan);border:1px solid var(--border)">${q.type}</span>
+
+        <div style="background:var(--card);border-radius:var(--rl);padding:20px 24px;margin-top:12px;margin-bottom:16px;border:1px solid var(--border);font-size:14.5px;line-height:1.75;color:var(--text);white-space:pre-wrap;max-height:300px;overflow-y:auto">${q.stim}</div>
+
+        <p style="font-weight:700;font-size:15px;margin-bottom:16px;color:var(--text)">${q.stem}</p>
+
+        ${choicesHtml}
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-bottom:2rem">
+          <button onclick="mtPrevQ()" ${mt.qIdx === 0 ? 'disabled' : ''} style="background:var(--card);color:var(--text2);border:1px solid var(--border);border-radius:8px;padding:10px 24px;font-size:14px;cursor:pointer;font-family:inherit;opacity:${mt.qIdx === 0 ? '.3' : '1'}">← Prev</button>
+          <button onclick="mtToggleFlag()" style="background:${isFlagged ? 'rgba(184,150,62,.12)' : 'var(--card)'};color:${isFlagged ? 'var(--cyan)' : 'var(--text3)'};border:1px solid ${isFlagged ? 'var(--cyan)' : 'var(--border)'};border-radius:8px;padding:10px 20px;font-size:13px;cursor:pointer;font-family:inherit">${isFlagged ? '🚩 Flagged' : '🏳 Flag for Review'}</button>
+          ${isLast ? '<button onclick="mtEndSection()" style="background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#0f0f0e;border:none;border-radius:8px;padding:10px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit">Finish Section →</button>' : '<button onclick="mtNextQ()" style="background:var(--card);color:var(--text2);border:1px solid var(--border);border-radius:8px;padding:10px 24px;font-size:14px;cursor:pointer;font-family:inherit">Next →</button>'}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ─── RENDER: RESULTS ───
+function renderMockResults() {
+  const score = mtGetScore();
+  const scaled = mtGetScaledScore(score.correct);
+  const app = document.getElementById('mockTestApp');
+
+  let sectionCards = '';
+  score.bySection.forEach((s, i) => {
+    const pct = s.correct / s.total;
+    const barColor = pct > 0.9 ? 'var(--green)' : pct > 0.75 ? 'var(--cyan)' : 'var(--amber)';
+    sectionCards += '<div style="background:var(--card);border-radius:var(--rl);padding:20px;text-align:center;border:1px solid var(--border)"><p style="color:var(--text3);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Section ' + (i + 1) + '</p><p style="font-family:Playfair Display,serif;font-size:28px;font-weight:700;color:var(--text)">' + s.correct + '/' + s.total + '</p><p style="color:var(--text2);font-size:13px">' + s.title + '</p><div style="margin-top:8px;height:4px;border-radius:2px;background:var(--border)"><div style="height:4px;border-radius:2px;background:' + barColor + ';width:' + (pct * 100) + '%;transition:width 1s"></div></div></div>';
+  });
+
+  let qGridHtml = '';
+  MOCK_SECTIONS.forEach((sec, si) => {
+    qGridHtml += '<div style="margin-bottom:1.5rem"><p style="color:var(--text3);font-size:12px;font-weight:600;letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Section ' + (si + 1) + ': ' + sec.title + '</p><div style="display:flex;flex-wrap:wrap;gap:6px">';
+    sec.questions.forEach((q, qi) => {
+      const userAns = mt.answers[si + '-' + qi];
+      const isCorrect = userAns === q.answer;
+      const bg = userAns === undefined ? 'var(--border)' : isCorrect ? 'var(--green)' : 'var(--red)';
+      qGridHtml += '<button onclick="mtGoReview(' + si + ',' + qi + ')" style="width:32px;height:32px;border-radius:6px;background:' + bg + ';border:none;color:#fff;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;opacity:.9">' + (qi + 1) + '</button>';
+    });
+    qGridHtml += '</div></div>';
+  });
+
+  app.innerHTML = `
+    <div style="max-width:720px;margin:0 auto;padding:1rem 0">
+      <div style="text-align:center;margin-bottom:2.5rem">
+        <div style="font-size:13px;letter-spacing:4px;color:var(--cyan);font-weight:600;margin-bottom:8px;text-transform:uppercase">Exam Complete</div>
+        <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:var(--text);margin-bottom:4px">${score.correct} / ${score.total}</div>
+        <p style="font-size:22px;color:var(--cyan);font-weight:600">Estimated: ${scaled}</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:2rem">
+        ${sectionCards}
+      </div>
+
+      <div style="text-align:center;margin-bottom:2rem">
+        <button onclick="mt.state='review';mt.sectionIdx=0;mt.qIdx=0;renderMockReview()" style="background:var(--card);color:var(--cyan);border:1px solid var(--cyan);border-radius:999px;padding:14px 40px;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;margin-right:12px">Review All Questions</button>
+        <button onclick="mtRetake()" style="background:var(--card);color:var(--text2);border:1px solid var(--border);border-radius:999px;padding:14px 40px;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit">Retake Exam</button>
+      </div>
+
+      ${qGridHtml}
+    </div>
+  `;
+}
+
+// ─── RENDER: REVIEW ───
+function renderMockReview() {
+  const sec = MOCK_SECTIONS[mt.sectionIdx];
+  const q = sec.questions[mt.qIdx];
+  const ansKey = mt.sectionIdx + '-' + mt.qIdx;
+  const userAns = mt.answers[ansKey];
+  const app = document.getElementById('mockTestApp');
+
+  let choicesHtml = '';
+  q.choices.forEach((c, ci) => {
+    const isUser = userAns === ci;
+    const isCorrectChoice = q.answer === ci;
+    let bg = 'var(--card)';
+    let bdr = '1px solid var(--border)';
+    let rightLabel = '';
+    if (isCorrectChoice) { bg = 'rgba(42,107,60,.1)'; bdr = '1px solid var(--green)'; rightLabel = '<span style="margin-left:auto;color:var(--green);font-size:13px;font-weight:600;white-space:nowrap">✓ Correct</span>'; }
+    else if (isUser && !isCorrectChoice) { bg = 'rgba(155,61,43,.1)'; bdr = '1px solid var(--red)'; rightLabel = '<span style="margin-left:auto;color:var(--red);font-size:13px;font-weight:600;white-space:nowrap">Your answer</span>'; }
+    choicesHtml += '<div style="background:' + bg + ';border:' + bdr + ';border-radius:10px;padding:12px 16px;margin-bottom:8px;display:flex;align-items:flex-start;gap:12px"><span style="font-weight:700;color:' + (isCorrectChoice ? 'var(--green)' : isUser ? 'var(--red)' : 'var(--text3)') + ';min-width:20px">(' + MOCK_LETTERS[ci] + ')</span><span style="font-size:14px;line-height:1.6;color:var(--text)">' + c + '</span>' + rightLabel + '</div>';
+  });
+
+  const resultBadge = userAns === q.answer
+    ? '<span style="background:rgba(42,107,60,.1);padding:4px 12px;border-radius:999px;font-size:12px;color:var(--green);border:1px solid var(--green)">✓ Correct</span>'
+    : userAns === undefined
+    ? '<span style="background:rgba(155,61,43,.1);padding:4px 12px;border-radius:999px;font-size:12px;color:var(--text3);border:1px solid var(--border)">— Unanswered</span>'
+    : '<span style="background:rgba(155,61,43,.1);padding:4px 12px;border-radius:999px;font-size:12px;color:var(--red);border:1px solid var(--red)">✗ Incorrect</span>';
+
+  const flagBadge = mt.flagged[ansKey] ? '<span style="background:rgba(184,150,62,.12);padding:4px 12px;border-radius:999px;font-size:12px;color:var(--cyan)">🚩 Flagged</span>' : '';
+
+  const atStart = mt.sectionIdx === 0 && mt.qIdx === 0;
+  const atEnd = mt.sectionIdx === 2 && mt.qIdx === sec.questions.length - 1;
+
+  app.innerHTML = `
+    <div style="max-width:740px;margin:0 auto;padding:1rem 0">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <div>
+          <span style="color:var(--text3);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase">Review — Section ${mt.sectionIdx + 1}: ${sec.title}</span>
+          <span style="color:var(--text3);font-size:12px;margin-left:12px">Q${mt.qIdx + 1}/${sec.questions.length}</span>
+        </div>
+        <button onclick="mtBackToResults()" style="background:var(--card);color:var(--text2);border:1px solid var(--border);border-radius:8px;padding:8px 20px;font-size:13px;cursor:pointer;font-family:inherit">Back to Results</button>
+      </div>
+
+      <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+        <span style="background:var(--card);padding:4px 12px;border-radius:999px;font-size:12px;color:var(--cyan);border:1px solid var(--border)">${q.type}</span>
+        ${resultBadge}
+        ${flagBadge}
+      </div>
+
+      <div style="background:var(--card);border-radius:var(--rl);padding:20px 24px;margin-bottom:16px;border:1px solid var(--border);font-size:14.5px;line-height:1.75;color:var(--text);white-space:pre-wrap">${q.stim}</div>
+
+      <p style="font-weight:700;font-size:15px;margin-bottom:16px;color:var(--text)">${q.stem}</p>
+
+      ${choicesHtml}
+
+      <div style="background:var(--card2);border-radius:10px;padding:16px 20px;margin-top:16px;border-left:3px solid var(--cyan)">
+        <p style="color:var(--cyan);font-weight:600;font-size:13px;margin-bottom:4px">Explanation</p>
+        <p style="color:var(--text2);font-size:14px;line-height:1.65">${q.explanation}</p>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;margin-top:24px">
+        <button onclick="mtReviewPrev()" ${atStart ? 'disabled' : ''} style="background:var(--card);color:var(--text2);border:1px solid var(--border);border-radius:8px;padding:10px 24px;font-size:14px;cursor:pointer;font-family:inherit;opacity:${atStart ? '.3' : '1'}">← Previous</button>
+        <button onclick="mtReviewNext()" ${atEnd ? 'disabled' : ''} style="background:var(--card);color:var(--text2);border:1px solid var(--border);border-radius:8px;padding:10px 24px;font-size:14px;cursor:pointer;font-family:inherit;opacity:${atEnd ? '.3' : '1'}">Next →</button>
+      </div>
+    </div>
+  `;
 }
 
 // INIT
