@@ -1,1187 +1,1223 @@
-Index · HTML
-Copy
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LegalPath USA — Your Complete Guide to a Legal Career</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>LegalPath — The Complete US Law School Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --navy: #0B1D3A;
-  --navy-light: #132B50;
-  --gold: #C8A864;
-  --gold-light: #E8D5A0;
-  --teal: #1A7A6D;
-  --teal-light: #22A08F;
-  --cream: #FAF7F2;
-  --cream-dark: #F0EBE3;
-  --white: #FFFFFF;
-  --text: #2D2D2D;
-  --text-light: #6B6B6B;
-  --red-accent: #C0392B;
-  --green-accent: #27AE60;
-  --blue-accent: #2980B9;
-  --shadow: 0 4px 24px rgba(11,29,58,0.08);
-  --shadow-lg: 0 12px 48px rgba(11,29,58,0.12);
-  --radius: 12px;
-  --radius-lg: 20px;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f8f5ef;
+  --bg2:#ede9e0;
+  --bg3:#e2ddd2;
+  --card:#ffffff;
+  --card2:#f4f0e8;
+  --border:#ddd8cc;
+  --border2:#c8c2b4;
+  --blue:#2a3a7a;
+  --blue2:#1e2d60;
+  --cyan:#b8963e;
+  --cyan2:#a07c2a;
+  --text:#0f0f0e;
+  --text2:#3a3935;
+  --text3:#6b6960;
+  --white:#0f0f0e;
+  --green:#2a6b3c;
+  --amber:#b8963e;
+  --red:#9b3d2b;
+  --purple:#2a3a7a;
+  --r:4px;--rl:8px;--rxl:16px
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'DM Sans', sans-serif;
-  color: var(--text);
-  background: var(--cream);
-  line-height: 1.7;
-  overflow-x: hidden;
-}
-h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.3; }
- 
-/* ===================== NAV ===================== */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  background: rgba(11,29,58,0.95); backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(200,168,100,0.15);
-  transition: all 0.3s;
-}
-.nav-inner {
-  max-width: 1280px; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 32px; height: 70px;
-}
-.nav-logo {
-  font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
-  color: var(--gold); text-decoration: none; letter-spacing: -0.5px;
-}
-.nav-logo span { color: var(--white); font-weight: 400; }
-.nav-links { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-.nav-links a {
-  color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.82rem;
-  padding: 6px 14px; border-radius: 8px; transition: all 0.2s; font-weight: 500;
-}
-.nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
-.nav-links a.active { color: var(--gold); background: rgba(200,168,100,0.12); }
-.mobile-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
- 
-/* Search (hidden for future) */
-.search-bar-container {
-  display: none; /* TOGGLE: change to flex to enable */
-  max-width: 1280px; margin: 0 auto; padding: 12px 32px;
-  background: var(--navy-light);
-}
-.search-bar {
-  width: 100%; padding: 14px 20px; border: 2px solid rgba(200,168,100,0.3);
-  border-radius: 10px; background: rgba(255,255,255,0.05); color: var(--white);
-  font-size: 1rem; font-family: 'DM Sans', sans-serif; outline: none;
-  transition: border-color 0.2s;
-}
-.search-bar::placeholder { color: rgba(255,255,255,0.4); }
-.search-bar:focus { border-color: var(--gold); }
- 
-/* ===================== HERO ===================== */
-.hero {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 50%, #1a3a5c 100%);
-  padding: 140px 32px 80px; text-align: center; position: relative; overflow: hidden;
-}
-.hero::before {
-  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-  background: radial-gradient(circle at 30% 50%, rgba(200,168,100,0.06) 0%, transparent 50%),
-              radial-gradient(circle at 70% 80%, rgba(26,122,109,0.05) 0%, transparent 40%);
-  animation: heroGlow 20s ease-in-out infinite alternate;
-}
-@keyframes heroGlow {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  100% { transform: translate(-3%, 2%) rotate(3deg); }
-}
-.hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(200,168,100,0.12); border: 1px solid rgba(200,168,100,0.25);
-  border-radius: 50px; padding: 8px 20px; margin-bottom: 28px;
-  font-size: 0.85rem; color: var(--gold-light); font-weight: 500;
-}
-.hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); color: var(--white); margin-bottom: 20px; }
-.hero h1 em { color: var(--gold); font-style: italic; }
-.hero p { font-size: 1.15rem; color: rgba(255,255,255,0.7); max-width: 680px; margin: 0 auto 36px; }
-.hero-stats {
-  display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 40px;
-}
-.hero-stat { text-align: center; }
-.hero-stat .num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); font-weight: 700; }
-.hero-stat .label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
- 
-/* ===================== SECTIONS ===================== */
-.section { padding: 80px 32px; max-width: 1280px; margin: 0 auto; }
-.section-dark { background: var(--navy); padding: 80px 32px; }
-.section-dark .section-inner { max-width: 1280px; margin: 0 auto; }
-.section-teal { background: linear-gradient(135deg, var(--teal) 0%, #145E54 100%); padding: 80px 32px; }
-.section-teal .section-inner { max-width: 1280px; margin: 0 auto; }
-.section-cream { background: var(--cream-dark); padding: 80px 32px; }
-.section-cream .section-inner { max-width: 1280px; margin: 0 auto; }
- 
-.section-header { text-align: center; margin-bottom: 56px; }
-.section-header .tag {
-  display: inline-block; font-size: 0.78rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 2px; color: var(--teal);
-  background: rgba(26,122,109,0.08); padding: 6px 16px; border-radius: 50px;
-  margin-bottom: 16px;
-}
-.section-dark .section-header .tag { color: var(--gold); background: rgba(200,168,100,0.12); }
-.section-teal .section-header .tag { color: var(--gold-light); background: rgba(255,255,255,0.1); }
-.section-header h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 12px; }
-.section-dark .section-header h2, .section-teal .section-header h2 { color: var(--white); }
-.section-header p { font-size: 1.05rem; color: var(--text-light); max-width: 700px; margin: 0 auto; }
-.section-dark .section-header p, .section-teal .section-header p { color: rgba(255,255,255,0.65); }
- 
-/* ===================== COST BREAKDOWN ===================== */
-.cost-timeline { position: relative; }
-.cost-timeline::before {
-  content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
-  width: 3px; background: linear-gradient(to bottom, var(--gold), var(--teal));
-  transform: translateX(-50%); border-radius: 2px;
-}
-.cost-item {
-  display: flex; align-items: flex-start; gap: 40px;
-  margin-bottom: 48px; position: relative;
-}
-.cost-item:nth-child(even) { flex-direction: row-reverse; }
-.cost-item-content {
-  flex: 1; background: var(--white); border-radius: var(--radius-lg);
-  padding: 32px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.04);
-  position: relative;
-}
-.cost-item-content h3 { font-size: 1.3rem; margin-bottom: 8px; color: var(--navy); }
-.cost-item-content .cost-range {
-  font-size: 1.6rem; font-weight: 700; color: var(--teal);
-  font-family: 'Playfair Display', serif; margin-bottom: 12px;
-}
-.cost-item-content p { color: var(--text-light); font-size: 0.95rem; }
-.cost-dot {
-  width: 20px; height: 20px; background: var(--gold); border-radius: 50%;
-  border: 4px solid var(--cream); position: absolute; left: 50%;
-  transform: translateX(-50%); top: 30px; z-index: 2;
-}
-.cost-spacer { flex: 1; }
-.cost-total {
-  text-align: center; background: linear-gradient(135deg, var(--navy), var(--navy-light));
-  color: var(--white); border-radius: var(--radius-lg); padding: 40px;
-  margin-top: 20px;
-}
-.cost-total h3 { font-size: 1.4rem; margin-bottom: 8px; color: var(--gold); }
-.cost-total .big-num { font-size: 2.8rem; font-family: 'Playfair Display', serif; font-weight: 700; }
-.cost-total p { color: rgba(255,255,255,0.6); margin-top: 8px; font-size: 0.9rem; }
- 
-/* ===================== CARDS GRID ===================== */
-.cards-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-}
-.card {
-  background: var(--white); border-radius: var(--radius-lg); padding: 32px;
-  box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.04);
-  transition: transform 0.3s, box-shadow 0.3s; position: relative; overflow: hidden;
-}
-.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-.card-icon {
-  width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center;
-  justify-content: center; font-size: 1.5rem; margin-bottom: 20px;
-}
-.card-icon.gold { background: rgba(200,168,100,0.12); }
-.card-icon.teal { background: rgba(26,122,109,0.1); }
-.card-icon.blue { background: rgba(41,128,185,0.1); }
-.card-icon.red { background: rgba(192,57,43,0.1); }
-.card h3 { font-size: 1.15rem; margin-bottom: 10px; color: var(--navy); }
-.card p { font-size: 0.9rem; color: var(--text-light); }
-.card .salary-badge {
-  display: inline-block; margin-top: 14px; padding: 6px 14px;
-  background: rgba(26,122,109,0.08); color: var(--teal); border-radius: 8px;
-  font-size: 0.85rem; font-weight: 600;
-}
- 
-/* ===================== SALARY TABLE ===================== */
-.salary-table-wrap { overflow-x: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow); }
-.salary-table {
-  width: 100%; border-collapse: collapse; background: var(--white);
-  font-size: 0.9rem; min-width: 700px;
-}
-.salary-table thead { background: var(--navy); }
-.salary-table th {
-  padding: 16px 20px; text-align: left; color: var(--gold-light);
-  font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px;
-}
-.salary-table td { padding: 14px 20px; border-bottom: 1px solid rgba(0,0,0,0.05); }
-.salary-table tr:hover td { background: rgba(26,122,109,0.03); }
-.salary-table .highlight { color: var(--teal); font-weight: 600; }
- 
-/* ===================== TIMELINE (HS GUIDE) ===================== */
-.hs-timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
-.hs-timeline::before {
-  content: ''; position: absolute; left: 28px; top: 0; bottom: 0;
-  width: 3px; background: linear-gradient(to bottom, var(--gold), var(--teal), var(--navy));
-}
-.hs-step {
-  display: flex; gap: 24px; align-items: flex-start; padding: 24px 0;
-  position: relative;
-}
-.hs-step-dot {
-  width: 56px; height: 56px; min-width: 56px; border-radius: 50%;
-  background: var(--navy); color: var(--gold); display: flex; align-items: center;
-  justify-content: center; font-family: 'Playfair Display', serif; font-weight: 700;
-  font-size: 1.1rem; z-index: 2; border: 4px solid var(--cream);
-}
-.hs-step-content { flex: 1; }
-.hs-step-content .grade {
-  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px;
-  color: var(--teal); font-weight: 600; margin-bottom: 4px;
-}
-.hs-step-content h3 { font-size: 1.15rem; color: var(--navy); margin-bottom: 6px; }
-.hs-step-content p { color: var(--text-light); font-size: 0.92rem; }
-.hs-step-content ul { margin-top: 8px; padding-left: 20px; }
-.hs-step-content ul li { color: var(--text-light); font-size: 0.88rem; margin-bottom: 4px; }
- 
-/* ===================== JOB BOARD LINKS ===================== */
-.job-boards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
-.job-board-card {
-  background: var(--white); border-radius: var(--radius); padding: 28px;
-  text-align: center; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.04);
-  transition: all 0.3s; text-decoration: none; color: var(--text);
-  display: flex; flex-direction: column; align-items: center; gap: 12px;
-}
-.job-board-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--teal); }
-.job-board-card .jb-icon { font-size: 2rem; }
-.job-board-card h4 { font-size: 1rem; color: var(--navy); }
-.job-board-card p { font-size: 0.82rem; color: var(--text-light); }
-.job-board-card .jb-btn {
-  margin-top: 8px; padding: 8px 20px; border-radius: 8px;
-  background: var(--teal); color: var(--white); font-size: 0.82rem;
-  font-weight: 600; display: inline-block;
-}
- 
-/* ===================== ACCORDION ===================== */
-.accordion { display: flex; flex-direction: column; gap: 12px; }
-.acc-item { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-.acc-header {
-  padding: 20px 24px; cursor: pointer; display: flex; align-items: center;
-  justify-content: space-between; font-weight: 600; font-size: 1rem;
-  color: var(--navy); transition: background 0.2s;
-}
-.acc-header:hover { background: rgba(26,122,109,0.03); }
-.acc-header .arrow { transition: transform 0.3s; font-size: 1.2rem; }
-.acc-item.open .acc-header .arrow { transform: rotate(180deg); }
-.acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-.acc-body-inner { padding: 0 24px 20px; color: var(--text-light); font-size: 0.92rem; line-height: 1.8; }
-.acc-body-inner ul { padding-left: 20px; margin-top: 8px; }
-.acc-body-inner ul li { margin-bottom: 6px; }
- 
-/* ===================== CTA BANNER ===================== */
-.cta-banner {
-  background: linear-gradient(135deg, var(--navy) 0%, #1A3A5C 100%);
-  border-radius: var(--radius-lg); padding: 56px 40px; text-align: center;
-  position: relative; overflow: hidden; margin: 40px 0;
-}
-.cta-banner::before {
-  content: ''; position: absolute; top: -100px; right: -100px;
-  width: 300px; height: 300px; background: rgba(200,168,100,0.06);
-  border-radius: 50%;
-}
-.cta-banner h2 { color: var(--white); font-size: 1.8rem; margin-bottom: 12px; position: relative; z-index: 2; }
-.cta-banner p { color: rgba(255,255,255,0.65); margin-bottom: 24px; position: relative; z-index: 2; }
-.btn {
-  display: inline-block; padding: 14px 32px; border-radius: 10px;
-  font-weight: 600; font-size: 0.95rem; text-decoration: none;
-  transition: all 0.2s; cursor: pointer; font-family: 'DM Sans', sans-serif;
-}
-.btn-gold { background: var(--gold); color: var(--navy); }
-.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
-.btn-teal { background: var(--teal); color: var(--white); }
-.btn-teal:hover { background: var(--teal-light); transform: translateY(-2px); }
-.btn-outline { border: 2px solid rgba(255,255,255,0.3); color: var(--white); background: transparent; }
-.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
- 
-/* ===================== TWO-COL ===================== */
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
- 
-/* ===================== TABS ===================== */
-.tabs-nav { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; justify-content: center; }
-.tab-btn {
-  padding: 10px 22px; border-radius: 50px; border: 2px solid rgba(200,168,100,0.3);
-  background: transparent; color: var(--gold-light); font-weight: 600;
-  font-size: 0.85rem; cursor: pointer; transition: all 0.2s;
-  font-family: 'DM Sans', sans-serif;
-}
-.tab-btn:hover { border-color: var(--gold); color: var(--gold); }
-.tab-btn.active { background: var(--gold); color: var(--navy); border-color: var(--gold); }
-.tab-panel { display: none; }
-.tab-panel.active { display: block; animation: fadeIn 0.4s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
- 
-/* Dark cards */
-.dark-card {
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-  border-radius: var(--radius); padding: 28px; color: rgba(255,255,255,0.8);
-}
-.dark-card h3 { color: var(--gold-light); font-size: 1.1rem; margin-bottom: 10px; }
-.dark-card p { font-size: 0.9rem; color: rgba(255,255,255,0.6); }
-.dark-card .num { font-size: 1.8rem; font-family: 'Playfair Display', serif; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
-.dark-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
- 
-/* ===================== FOOTER ===================== */
-.footer {
-  background: var(--navy); padding: 60px 32px 30px; border-top: 1px solid rgba(200,168,100,0.1);
-}
-.footer-inner { max-width: 1280px; margin: 0 auto; }
-.footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; margin-bottom: 40px; }
-.footer-col h4 { color: var(--gold); font-size: 1rem; margin-bottom: 16px; }
-.footer-col a { display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.88rem; margin-bottom: 8px; transition: color 0.2s; }
-.footer-col a:hover { color: var(--gold-light); }
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px;
-  text-align: center; color: rgba(255,255,255,0.3); font-size: 0.82rem;
-}
- 
-/* ===================== RESPONSIVE ===================== */
-@media (max-width: 900px) {
-  .two-col { grid-template-columns: 1fr; }
-  .cost-timeline::before { left: 24px; }
-  .cost-item, .cost-item:nth-child(even) { flex-direction: column; gap: 20px; }
-  .cost-dot { left: 24px; top: 0; }
-  .cost-spacer { display: none; }
-  .nav-links { display: none; }
-  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--navy); padding: 20px; gap: 4px; }
-  .mobile-toggle { display: block; }
-}
-@media (max-width: 600px) {
-  .hero { padding: 120px 20px 60px; }
-  .section { padding: 60px 20px; }
-  .section-dark, .section-teal, .section-cream { padding: 60px 20px; }
-  .hero-stats { gap: 24px; }
-  .cards-grid { grid-template-columns: 1fr; }
-}
- 
-/* Utility */
-.mt-32 { margin-top: 32px; }
-.mb-16 { margin-bottom: 16px; }
-.text-center { text-align: center; }
-.gold-text { color: var(--gold); }
-.teal-text { color: var(--teal); }
-.small { font-size: 0.82rem; color: var(--text-light); }
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;min-height:100vh}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:#0f0f0e;border-bottom:1px solid #2a2a28;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:58px}
+.nav-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--white);letter-spacing:-.02em}
+.nav-logo span{color:var(--cyan)}
+.nav-links{display:flex;gap:.25rem}
+.nav-links button{font-size:12px;font-weight:500;color:var(--text2);background:none;border:none;cursor:pointer;padding:6px 10px;border-radius:var(--r);transition:all .15s;font-family:'DM Sans',sans-serif}
+.nav-links button:hover,.nav-links button.active{color:#f8f5ef;background:#2a2a28}
+
+/* HERO */
+.hero{background:#0f0f0e;padding:5rem 2rem 4rem;position:relative;overflow:hidden;border-bottom:1px solid #2a2a28}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 800px 500px at 60% 50%,rgba(184,150,62,.06) 0%,transparent 70%)}
+.hero::after{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#2a3a7a,#b8963e,transparent)}
+.hero-inner{max-width:900px;margin:0 auto;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(184,150,62,.15);border:1px solid rgba(184,150,62,.4);color:#b8963e;font-size:11px;font-weight:600;padding:5px 14px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.5rem}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#b8963e;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,64px);font-weight:700;color:#f8f5ef;line-height:1.05;letter-spacing:-.03em;margin-bottom:1.25rem}
+.hero h1 em{color:#b8963e;font-style:normal}
+.hero-sub{font-size:17px;color:#999;max-width:560px;line-height:1.7;margin-bottom:2.5rem}
+.hero-stats{display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.hero-stat{display:flex;flex-direction:column}
+.hero-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#f8f5ef;line-height:1}
+.hero-stat-num span{color:#b8963e}
+.hero-stat-lbl{font-size:12px;color:#888;margin-top:2px}
+
+/* TABS */
+.tab-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;padding:14px 16px;border:none;background:none;cursor:pointer;color:var(--text3);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;white-space:nowrap;letter-spacing:.01em}
+.tab-btn:hover{color:var(--text2)}
+.tab-btn.active{color:var(--text);border-bottom-color:var(--text);font-weight:600}
+
+/* MAIN */
+.main{max-width:1240px;margin:0 auto;padding:2rem}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:1.25rem;transition:border-color .2s,transform .15s;position:relative;overflow:hidden}
+.card:hover{border-color:var(--border2);transform:translateY(-1px)}
+.card-accent{position:absolute;top:0;left:0;right:0;height:2px}
+.accent-blue{background:linear-gradient(90deg,var(--blue),var(--blue2))}
+.accent-green{background:linear-gradient(90deg,var(--green),#3a8f50)}
+.accent-amber{background:linear-gradient(90deg,var(--amber),#caa84a)}
+.accent-purple{background:linear-gradient(90deg,var(--purple),var(--blue2))}
+.accent-red{background:linear-gradient(90deg,var(--red),#b85533)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:10px}
+.lbl-blue{background:rgba(42,58,122,.1);color:var(--blue)}
+.lbl-green{background:rgba(42,107,60,.1);color:var(--green)}
+.lbl-amber{background:rgba(184,150,62,.12);color:#8a6a1a}
+.lbl-purple{background:rgba(42,58,122,.1);color:var(--blue)}
+.lbl-red{background:rgba(155,61,43,.1);color:var(--red)}
+.card-title{font-size:16px;font-weight:600;color:var(--white);margin-bottom:4px;line-height:1.3}
+.card-org{font-size:13px;color:var(--text3);margin-bottom:10px}
+.card-desc{font-size:13px;color:var(--text2);line-height:1.55;margin-bottom:12px;flex:1}
+.card-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.card-tag{font-size:11px;color:var(--text3);background:var(--bg3);border:1px solid var(--border);padding:2px 8px;border-radius:999px}
+.card-footer{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--border)}
+.card-loc{font-size:12px;color:var(--text3)}
+.card-link{font-size:12px;font-weight:600;color:var(--blue);text-decoration:none;transition:opacity .15s}
+.card-link:hover{opacity:.8}
+
+/* SECTION PANELS */
+.section-panel{display:none}
+.section-panel.active{display:block}
+.standard-content{display:block}
+.standard-content.hidden{display:none}
+
+/* GUIDE BLOCKS */
+.guide-block{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:1.25rem}
+.guide-block-head{padding:1.25rem 1.5rem;display:flex;align-items:center;gap:12px}
+.guide-block-head.blue{background:linear-gradient(135deg,rgba(42,58,122,.15),rgba(42,58,122,.04))}
+.guide-block-head.green{background:linear-gradient(135deg,rgba(42,107,60,.1),rgba(42,107,60,.03))}
+.guide-block-head.amber{background:linear-gradient(135deg,rgba(184,150,62,.12),rgba(184,150,62,.03))}
+.guide-block-head.purple{background:linear-gradient(135deg,rgba(42,58,122,.12),rgba(42,58,122,.03))}
+.guide-block-icon{font-size:24px;flex-shrink:0}
+.guide-block-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white)}
+.guide-block-sub{font-size:13px;color:var(--text2);margin-top:1px}
+.guide-body{padding:1.5rem}
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:1.25rem}
+.guide-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:1rem}
+.guide-card-title{font-weight:600;font-size:14px;margin-bottom:8px;color:var(--white);display:flex;align-items:center;gap:8px}
+.guide-card-icon{font-size:15px}
+.guide-card-body{font-size:13px;color:var(--text2);line-height:1.6}
+.guide-card-body ul{list-style:none;padding:0}
+.guide-card-body li{padding:3px 0;display:flex;align-items:flex-start;gap:7px;border-bottom:1px solid var(--border);padding:5px 0}
+.guide-card-body li:last-child{border-bottom:none}
+.guide-card-body li::before{content:"→";color:var(--blue);font-weight:700;flex-shrink:0;font-size:11px;margin-top:3px}
+
+/* COST TABLE */
+.cost-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:1rem}
+.cost-table th{background:var(--bg3);color:var(--text3);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.cost-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+.cost-table tr:last-child td{border-bottom:none}
+.cost-table tr:hover td{background:var(--card2)}
+.cost-num{font-weight:600;color:var(--white);font-family:'Playfair Display',serif;font-size:15px}
+.cost-total{background:rgba(37,99,255,.08)!important;border-top:2px solid var(--blue)!important}
+.cost-total td{color:var(--white)!important;font-weight:600}
+
+/* SALARY TABLE */
+.salary-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:.5rem}
+.salary-cell{background:var(--card);padding:12px 14px}
+.salary-cell.head{background:var(--bg3);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3)}
+.salary-amount{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--white)}
+.salary-label{font-size:11px;color:var(--text3);margin-top:1px}
+
+/* CAREER PATH */
+.career-path{display:flex;gap:0;margin-bottom:1.5rem;overflow-x:auto}
+.career-step{flex:1;min-width:140px;background:var(--card);border:1px solid var(--border);padding:1rem;position:relative;margin-right:-1px}
+.career-step:first-child{border-radius:var(--r) 0 0 var(--r)}
+.career-step:last-child{border-radius:0 var(--r) var(--r) 0;margin-right:0}
+.career-step.active-step{background:rgba(184,150,62,.08);border-color:var(--cyan);z-index:1}
+.career-step-year{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:4px}
+.career-step-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px;line-height:1.3}
+.career-step-sal{font-size:14px;font-weight:700;color:var(--cyan)}
+.career-arrow{position:absolute;right:-10px;top:50%;transform:translateY(-50%);z-index:2;color:var(--text3);font-size:14px}
+
+/* INFO BOX */
+.info-box{border-radius:var(--r);padding:1rem 1.25rem;margin-bottom:1rem;border:1px solid}
+.info-box.blue{background:rgba(42,58,122,.06);border-color:rgba(42,58,122,.2);color:var(--text2)}
+.info-box.green{background:rgba(42,107,60,.06);border-color:rgba(42,107,60,.2);color:var(--text2)}
+.info-box.amber{background:rgba(184,150,62,.08);border-color:rgba(184,150,62,.25);color:var(--text2)}
+.info-box-title{font-weight:700;font-size:13px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.info-box-body{font-size:13px;line-height:1.65}
+
+/* TIMELINE */
+.timeline-v{position:relative;padding-left:2rem}
+.timeline-v::before{content:'';position:absolute;left:8px;top:10px;bottom:10px;width:1px;background:var(--border2)}
+.tv-item{position:relative;margin-bottom:1.25rem}
+.tv-dot{position:absolute;left:-2rem;top:3px;width:18px;height:18px;border-radius:50%;border:2px solid var(--blue);background:var(--card);display:flex;align-items:center;justify-content:center}
+.tv-dot.filled{background:var(--blue)}
+.tv-dot-inner{width:6px;height:6px;border-radius:50%;background:var(--blue)}
+.tv-label{font-weight:600;font-size:13px;color:var(--white);margin-bottom:2px}
+.tv-desc{font-size:12px;color:var(--text2);line-height:1.5}
+
+/* HS GUIDE */
+.hs-grade{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:1rem}
+.hs-grade-head{display:flex;align-items:center;gap:12px;padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+.hs-grade-badge{font-size:11px;font-weight:700;letter-spacing:.06em;padding:4px 12px;border-radius:999px;text-transform:uppercase}
+.hs-grade-body{padding:1.25rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.hs-task{display:flex;gap:8px;align-items:flex-start}
+.hs-task-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+.hs-task-text{font-size:13px;color:var(--text2);line-height:1.5}
+.hs-task-text strong{color:var(--white);display:block;font-size:12px;margin-bottom:1px}
+
+/* LAW TYPES */
+.law-type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.law-type-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:1.25rem;transition:border-color .2s}
+.law-type-card:hover{border-color:var(--border2)}
+.law-type-icon{font-size:28px;margin-bottom:10px}
+.law-type-name{font-size:15px;font-weight:700;color:var(--white);margin-bottom:4px}
+.law-type-desc{font-size:12px;color:var(--text2);line-height:1.55;margin-bottom:10px}
+.law-type-sal{font-size:12px;font-weight:600}
+.law-type-bar{height:3px;border-radius:999px;background:var(--border);margin-top:10px}
+.law-type-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+
+/* FILTERS */
+.filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem;align-items:center}
+.filter-lbl{font-size:11px;color:var(--text3);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-right:4px}
+.chip{font-size:12px;font-weight:500;padding:5px 13px;border:1px solid var(--border);border-radius:999px;background:transparent;color:var(--text3);cursor:pointer;transition:all .12s;font-family:'DM Sans',sans-serif}
+.chip:hover{border-color:var(--border2);color:var(--text2)}
+.chip.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+
+/* SCHOOLS */
+.school-grid-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.school-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:1.25rem;position:relative;overflow:hidden;transition:border-color .2s}
+.school-card:hover{border-color:var(--border2)}
+.school-rank{font-family:'Playfair Display',serif;font-size:32px;font-weight:800;color:var(--border2);line-height:1;position:absolute;top:12px;right:14px}
+.school-name{font-size:15px;font-weight:700;color:var(--white);padding-right:50px;line-height:1.3;margin-bottom:3px}
+.school-loc{font-size:12px;color:var(--text3);margin-bottom:10px}
+.school-stats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.school-stat{font-size:11px;padding:3px 9px;border-radius:999px;background:var(--bg3);border:1px solid var(--border);color:var(--text2)}
+.school-stat.hl{background:rgba(42,58,122,.1);border-color:rgba(42,58,122,.2);color:var(--blue)}
+.school-detail{font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:4px}
+.school-schol{font-size:12px;color:var(--green);margin-top:6px}
+.school-link{font-size:12px;font-weight:600;color:var(--blue);text-decoration:none;margin-top:8px;display:inline-block}
+
+/* CITY BROWSE */
+.city-layout{display:flex;gap:1.5rem;align-items:flex-start}
+.city-sidebar{width:210px;flex-shrink:0;background:var(--card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;position:sticky;top:70px}
+.city-sidebar-head{background:var(--bg3);color:var(--text3);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:10px 14px;border-bottom:1px solid var(--border)}
+.city-list{list-style:none}
+.city-item{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;cursor:pointer;border-bottom:1px solid var(--border);transition:background .12s;font-size:13px;color:var(--text2)}
+.city-item:last-child{border-bottom:none}
+.city-item:hover{background:var(--card2)}
+.city-item.active{background:var(--bg2);color:var(--text);border-left:2px solid var(--cyan)}
+.city-count{font-size:11px;background:var(--bg3);color:var(--text3);padding:1px 7px;border-radius:999px}
+.city-item.active .city-count{background:var(--bg3);color:var(--text2)}
+.city-main{flex:1;min-width:0}
+.city-hero-bar{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:1.25rem 1.5rem;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between}
+.city-hero-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--white)}
+.city-hero-sub{font-size:12px;color:var(--text3);margin-top:2px}
+.city-hero-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--blue);line-height:1}
+.city-hero-numlbl{font-size:11px;color:var(--text3);text-align:right}
+.practice-chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1.25rem}
+.pchip{font-size:11px;font-weight:600;padding:4px 12px;border:1px solid var(--border);border-radius:999px;background:transparent;color:var(--text3);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .12s}
+.pchip:hover{border-color:var(--border2);color:var(--text2)}
+.pchip.active{background:var(--red);color:#fff;border-color:var(--red)}
+.city-browse-panel{display:none}
+.city-browse-panel.visible{display:block}
+
+/* RESULTS */
+.results-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.results-count{font-size:13px;color:var(--text3)}
+.results-count strong{color:var(--text)}
+.empty-state{text-align:center;padding:4rem 2rem;display:none}
+.empty-state.visible{display:block}
+.empty-icon{font-size:48px;margin-bottom:1rem;opacity:.3}
+.empty-title{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:.5rem;color:var(--white)}
+.empty-text{font-size:14px;color:var(--text3)}
+
+/* STUDY PLAN */
+.study-week{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:.75rem}
+.study-week-head{background:var(--bg3);padding:.9rem 1rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border-bottom:1px solid var(--border)}
+.study-week-title{font-weight:600;font-size:14px;color:var(--white)}
+.study-week-tag{font-size:10px;background:rgba(42,58,122,.1);color:var(--blue);padding:2px 8px;border-radius:999px;font-weight:600}
+.study-week-body{padding:1rem;display:none}
+.study-week-body.open{display:block}
+.study-day{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start}
+.study-day-lbl{font-size:10px;font-weight:700;color:var(--blue);background:rgba(42,58,122,.08);padding:3px 8px;border-radius:4px;min-width:42px;text-align:center;flex-shrink:0;margin-top:2px}
+.study-day-tasks{font-size:13px;color:var(--text2);line-height:1.5}
+
+/* SCORE BANDS */
+.score-band{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.25rem;margin-bottom:.75rem}
+.score-band-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.score-band-range{font-family:'Playfair Display',serif;font-size:18px;font-weight:800;color:var(--white)}
+.score-band-pct{font-size:11px;color:#fff;background:var(--blue);padding:2px 10px;border-radius:999px;font-weight:600}
+.score-band-bar{height:5px;background:var(--border);border-radius:999px;overflow:hidden;margin-bottom:8px}
+.score-band-fill{height:100%;border-radius:999px;background:var(--blue)}
+.score-band-desc{font-size:12px;color:var(--text2);line-height:1.5}
+
+/* INDEED INTEGRATION */
+.integration-card{background:var(--card2);border:1px solid var(--border);border-radius:var(--rl);padding:1.5rem;margin-bottom:1rem}
+.integration-title{font-size:16px;font-weight:700;color:var(--white);margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
+.integration-badge{font-size:10px;font-weight:700;letter-spacing:.08em;padding:2px 8px;border-radius:999px}
+.badge-free{background:rgba(0,214,143,.12);color:var(--green)}
+.badge-paid{background:rgba(255,179,0,.12);color:var(--amber)}
+.badge-complex{background:rgba(255,77,106,.12);color:var(--red)}
+.code-block{background:#0f1117;border:1px solid #2a2a40;border-radius:var(--r);padding:1rem;font-family:monospace;font-size:12px;color:#7dd3fc;overflow-x:auto;margin-top:.75rem;line-height:1.7}
+.code-comment{color:#666}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);color:var(--text3);text-align:center;padding:2.5rem 2rem;font-size:12px;margin-top:4rem}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;margin-bottom:1rem;flex-wrap:wrap}
+.footer-links a{color:var(--text3);text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:var(--amber)}
+.footer-logo{font-family:'Playfair Display',serif;font-size:16px;font-weight:800;color:var(--white);margin-bottom:.5rem}
+.footer-logo span{color:var(--amber)}
+
+@media(max-width:900px){.city-layout{flex-direction:column}.city-sidebar{width:100%;position:static}}
+@media(max-width:640px){nav{padding:0 1rem}.nav-links{display:none}.hero{padding:3rem 1rem 2.5rem}.main{padding:1.25rem 1rem}.hero-stats{gap:1.5rem}.career-path{flex-direction:column}.salary-row{grid-template-columns:1fr}.cost-table{font-size:12px}}
 </style>
 </head>
 <body>
- 
-<!-- ======================== NAVIGATION ======================== -->
-<nav class="nav" id="navbar">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">Legal<span>Path</span> <small style="font-size:0.65rem; opacity:0.5;">USA</small></a>
-    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
-    <div class="nav-links">
-      <a href="#costs" class="active">Cost Breakdown</a>
-      <a href="#practice-areas">Practice Areas</a>
-      <a href="#salaries">Salaries</a>
-      <a href="#careers">Career Growth</a>
-      <a href="#hs-guide">HS Guide</a>
-      <a href="#lsat">LSAT Prep</a>
-      <a href="#jobs">Jobs & Internships</a>
-      <a href="#schools">Law Schools</a>
-      <a href="#scholarships">Scholarships</a>
-    </div>
-  </div>
-  <!-- Search bar (hidden, toggle display:flex in CSS to enable) -->
-  <div class="search-bar-container" id="searchBar">
-    <input type="text" class="search-bar" placeholder="Search resources, schools, practice areas, jobs..." id="globalSearch">
+
+<nav>
+  <div class="nav-logo">Legal<span>Path</span></div>
+  <div class="nav-links" id="navLinks">
+    <button onclick="switchTab('lsat',0)">LSAT Prep</button>
+    <button onclick="switchTab('internship',1)">Internships</button>
+    <button onclick="switchTab('job',2)">Jobs</button>
+    <button onclick="switchTab('school',3)">Law Schools</button>
+    <button onclick="switchTab('lawtype',4)">Types of Law</button>
+    <button onclick="switchTab('cost',5)">Cost Guide</button>
+    <button onclick="switchTab('salary',6)">Salaries</button>
+    <button onclick="switchTab('scholarship',7)">Scholarships</button>
+    <button onclick="switchTab('lsat170',8)">170+ Guide</button>
+    <button onclick="switchTab('highschool',9)">HS Roadmap</button>
+    <button onclick="switchTab('integrate',10)">Job APIs</button>
   </div>
 </nav>
- 
-<!-- ======================== HERO ======================== -->
-<section class="hero" id="home">
-  <div class="hero-content">
-    <div class="hero-badge">🇺🇸 United States &middot; Updated March 2026</div>
-    <h1>Your <em>complete</em> guide to becoming a lawyer</h1>
-    <p>From high school planning through LSAT prep, law school costs, practice areas, salaries, career growth, and job placement — everything a future law student needs, in one place.</p>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🇺🇸 The Complete US Law School Resource</div>
+    <h1>From high school<br>to <em>law partner</em>.</h1>
+    <p class="hero-sub">Everything a future law student needs — LSAT prep, top 50 schools, real salary data, cost breakdowns, career paths, and a step-by-step roadmap from 9th grade to JD.</p>
     <div class="hero-stats">
-      <div class="hero-stat"><div class="num">$130K–$230K</div><div class="label">Total law school cost</div></div>
-      <div class="hero-stat"><div class="num">$100K–$225K</div><div class="label">Entry-level salary range</div></div>
-      <div class="hero-stat"><div class="num">93.4%</div><div class="label">2024 grad employment rate</div></div>
-      <div class="hero-stat"><div class="num">20+</div><div class="label">Practice area specializations</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">50<span>+</span></div><div class="hero-stat-lbl">Top law schools</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">25<span>+</span></div><div class="hero-stat-lbl">Types of law careers</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">$<span>0</span></div><div class="hero-stat-lbl">Cost to use this guide</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">1<span>k+</span></div><div class="hero-stat-lbl">Data points</div></div>
     </div>
   </div>
 </section>
- 
-<!-- ======================== COST BREAKDOWN ======================== -->
-<section class="section" id="costs">
-  <div class="section-header">
-    <div class="tag">Cost Breakdown</div>
-    <h2>From LSAT Prep to Passing the Bar</h2>
-    <p>A complete financial roadmap from your first practice test to your first day as a licensed attorney</p>
-  </div>
- 
-  <div class="cost-timeline">
-    <!-- LSAT Registration -->
-    <div class="cost-item">
-      <div class="cost-item-content">
-        <h3>📝 LSAT Registration & Fees</h3>
-        <div class="cost-range">$200 – $430</div>
-        <p>LSAT registration is $200. LawHub Advantage (required for prep) is $120/year. CAS registration is $195. Fee waivers are available through LSAC for eligible applicants, covering registration, CAS, and 6 law school application fee waivers.</p>
+
+<div class="tab-bar" id="tabBar">
+  <button class="tab-btn active" onclick="switchTab('all',-1)">All</button>
+  <button class="tab-btn" onclick="switchTab('lsat',0)">LSAT Prep</button>
+  <button class="tab-btn" onclick="switchTab('internship',1)">Internships</button>
+  <button class="tab-btn" onclick="switchTab('job',2)">Jobs by City</button>
+  <button class="tab-btn" onclick="switchTab('school',3)">Top 50 Schools</button>
+  <button class="tab-btn" onclick="switchTab('lawtype',4)">Types of Law</button>
+  <button class="tab-btn" onclick="switchTab('cost',5)">Cost Guide 💰</button>
+  <button class="tab-btn" onclick="switchTab('salary',6)">Salaries 📊</button>
+  <button class="tab-btn" onclick="switchTab('scholarship',7)">Scholarships</button>
+  <button class="tab-btn" onclick="switchTab('lsat170',8)">170+ LSAT</button>
+  <button class="tab-btn" onclick="switchTab('highschool',9)">HS Roadmap 🎓</button>
+  <button class="tab-btn" onclick="switchTab('integrate',10)">Job Board APIs</button>
+</div>
+
+<main class="main">
+  <!-- CITY BROWSE PANEL -->
+  <div class="city-browse-panel" id="cityBrowsePanel">
+    <div class="city-layout">
+      <div class="city-sidebar">
+        <div class="city-sidebar-head">Browse by city</div>
+        <ul class="city-list" id="citySidebarList"></ul>
       </div>
-      <div class="cost-dot"></div>
-      <div class="cost-spacer"></div>
-    </div>
- 
-    <!-- LSAT Prep -->
-    <div class="cost-item">
-      <div class="cost-spacer"></div>
-      <div class="cost-dot"></div>
-      <div class="cost-item-content">
-        <h3>📚 LSAT Preparation</h3>
-        <div class="cost-range">$0 – $4,000+</div>
-        <p><strong>Self-study:</strong> $0–$200 (books + free resources). <strong>Online courses:</strong> $200–$900 (Magoosh, 7Sage, Kaplan self-paced). <strong>Live courses:</strong> $1,300–$2,100 (Princeton Review, Blueprint). <strong>Private tutoring:</strong> $1,100–$4,000+ (7Sage, PowerScore). LSAC fee waiver holders get deep discounts from most providers.</p>
-      </div>
-    </div>
- 
-    <!-- Application Fees -->
-    <div class="cost-item">
-      <div class="cost-item-content">
-        <h3>📮 Law School Applications</h3>
-        <div class="cost-range">$500 – $2,000</div>
-        <p>Application fees range $45–$100 per school. Most students apply to 8–15 schools. LSAC report fees are $45/school. Additional costs include personal statement editing ($100–$500), LSAC fee waivers cover some of these. Budget for transcript and document fees too.</p>
-      </div>
-      <div class="cost-dot"></div>
-      <div class="cost-spacer"></div>
-    </div>
- 
-    <!-- Law School Tuition -->
-    <div class="cost-item">
-      <div class="cost-spacer"></div>
-      <div class="cost-dot"></div>
-      <div class="cost-item-content">
-        <h3>🎓 Law School Tuition (3 Years)</h3>
-        <div class="cost-range">$37K – $243K+</div>
-        <p><strong>Public (in-state):</strong> ~$30,540/year ($91,620 total). <strong>Public (out-of-state):</strong> ~$45,208/year ($135,624 total). <strong>Private:</strong> ~$53,034/year ($159,102 total). Top schools like Columbia reach $81K+/year. University of D.C. is the most affordable at ~$12,438/year.</p>
-      </div>
-    </div>
- 
-    <!-- Living Expenses -->
-    <div class="cost-item">
-      <div class="cost-item-content">
-        <h3>🏠 Living Expenses (3 Years)</h3>
-        <div class="cost-range">$45K – $90K+</div>
-        <p>Housing, food, books, transportation, health insurance, and personal expenses. Budget $15K–$30K+/year depending on city. NYC, DC, and SF are highest. Includes ~$1,800/year for books and supplies. Many schools estimate total annual living costs at $19K–$25K.</p>
-      </div>
-      <div class="cost-dot"></div>
-      <div class="cost-spacer"></div>
-    </div>
- 
-    <!-- Bar Exam -->
-    <div class="cost-item">
-      <div class="cost-spacer"></div>
-      <div class="cost-dot"></div>
-      <div class="cost-item-content">
-        <h3>⚖️ Bar Exam Preparation & Fees</h3>
-        <div class="cost-range">$2,500 – $6,000</div>
-        <p><strong>Bar prep courses:</strong> $1,500–$4,000 (Barbri, Themis, Kaplan). <strong>Bar exam registration:</strong> $250–$900 depending on state. <strong>Character & fitness evaluation:</strong> $100–$500. <strong>Living expenses during 2–3 month study period:</strong> $3K–$6K additional. Many schools include bar prep in 3L fees.</p>
+      <div class="city-main">
+        <div class="city-hero-bar">
+          <div><div class="city-hero-name" id="cityHeroName">All Cities</div><div class="city-hero-sub" id="cityHeroSub">Entry-level legal jobs across the USA</div></div>
+          <div style="text-align:right"><div class="city-hero-num" id="cityHeroCount">0</div><div class="city-hero-numlbl">jobs found</div></div>
+        </div>
+        <div class="practice-chips" id="practiceFilters">
+          <span class="filter-lbl" style="align-self:center">Area:</span>
+          <button class="pchip active" onclick="togglePractice('All',this)">All areas</button>
+          <button class="pchip" onclick="togglePractice('Corporate',this)">Corporate</button>
+          <button class="pchip" onclick="togglePractice('Government',this)">Government</button>
+          <button class="pchip" onclick="togglePractice('Compliance',this)">Compliance</button>
+          <button class="pchip" onclick="togglePractice('Legal Tech',this)">Legal Tech</button>
+          <button class="pchip" onclick="togglePractice('Public Interest',this)">Public Interest</button>
+          <button class="pchip" onclick="togglePractice('Litigation',this)">Litigation</button>
+        </div>
+        <div class="results-hdr"><div class="results-count" id="cityResultsCount"></div></div>
+        <div class="card-grid" id="cityCardsGrid"></div>
+        <div class="empty-state" id="cityEmptyState"><div class="empty-icon">🏙️</div><div class="empty-title">No jobs found</div><div class="empty-text">Try a different city or practice area.</div></div>
       </div>
     </div>
   </div>
- 
-  <!-- Total -->
-  <div class="cost-total">
-    <h3>Estimated Total Investment</h3>
-    <div class="big-num">$85,000 – $340,000+</div>
-    <p>Range reflects public in-state (low) to private T14 in major city (high). Average law graduate leaves with ~$130,000–$160,000 in student debt. Strategic LSAT scores and scholarships can dramatically reduce this — every 3-point LSAT increase can unlock $15K–$40K/year in merit aid.</p>
-  </div>
- 
-  <!-- 2026 Federal Aid Changes Alert -->
-  <div class="cta-banner" style="margin-top:40px; text-align:left;">
-    <h2 style="font-size:1.3rem;">⚠️ Important: Federal Financial Aid Changes — July 2026</h2>
-    <p style="max-width:none;">Under the "One Big Beautiful Bill Act," Grad PLUS Loans will be eliminated. Borrowing capped at $50,000/year with a $200,000 lifetime max for J.D. programs. Income-driven repayment options reduced to two plans. PSLF eligibility narrowed for some nonprofit roles. Students enrolling before July 2026 may be grandfathered under current rules.</p>
-  </div>
-</section>
- 
-<!-- ======================== PRACTICE AREAS ======================== -->
-<section class="section-dark" id="practice-areas">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="tag">Practice Areas</div>
-      <h2>Types of Law You Can Specialize In</h2>
-      <p>BigLaw divides into Corporate/Transactional, Litigation, and Regulatory — but the legal world offers many more paths</p>
+
+  <!-- SCHOOLS PANEL -->
+  <div class="section-panel" id="schoolPanel">
+    <div class="filter-row" id="schoolFilters">
+      <span class="filter-lbl">Region:</span>
+      <button class="chip active" onclick="filterSchools('all',this)">All</button>
+      <button class="chip" onclick="filterSchools('northeast',this)">Northeast</button>
+      <button class="chip" onclick="filterSchools('south',this)">South</button>
+      <button class="chip" onclick="filterSchools('midwest',this)">Midwest</button>
+      <button class="chip" onclick="filterSchools('west',this)">West</button>
+      <span class="filter-lbl" style="margin-left:1rem">Min LSAT:</span>
+      <button class="chip" onclick="filterSchoolsByLSAT(173,this)">173+</button>
+      <button class="chip" onclick="filterSchoolsByLSAT(170,this)">170+</button>
+      <button class="chip" onclick="filterSchoolsByLSAT(165,this)">165+</button>
+      <button class="chip" onclick="filterSchoolsByLSAT(0,this)">All scores</button>
     </div>
- 
-    <div class="tabs-nav">
-      <button class="tab-btn active" onclick="switchTab(event,'tab-corporate')">Corporate & Business</button>
-      <button class="tab-btn" onclick="switchTab(event,'tab-litigation')">Litigation & Trial</button>
-      <button class="tab-btn" onclick="switchTab(event,'tab-public')">Public Interest & Gov</button>
-      <button class="tab-btn" onclick="switchTab(event,'tab-specialty')">Specialty & Emerging</button>
-    </div>
- 
-    <div id="tab-corporate" class="tab-panel active">
-      <div class="dark-cards-grid">
-        <div class="dark-card"><h3>Corporate / M&A</h3><p>Mergers, acquisitions, corporate governance, SEC filings. Top BigLaw practice. Avg salary: $200K–$400K+</p></div>
-        <div class="dark-card"><h3>Banking & Finance</h3><p>Lending, capital markets, structured finance, regulatory compliance for financial institutions.</p></div>
-        <div class="dark-card"><h3>Securities Law</h3><p>IPOs, securities regulation, SEC compliance, investment fund formation. Highly technical and lucrative.</p></div>
-        <div class="dark-card"><h3>Tax Law</h3><p>Federal/state tax planning, corporate tax structures, estates & trusts. Requires LLM for top firms.</p></div>
-        <div class="dark-card"><h3>Real Estate</h3><p>Commercial & residential transactions, development, zoning, landlord-tenant. Broad market opportunities.</p></div>
-        <div class="dark-card"><h3>Intellectual Property</h3><p>Patents, trademarks, copyrights, trade secrets. STEM background valuable for patent law. Avg $194K.</p></div>
-        <div class="dark-card"><h3>Bankruptcy & Restructuring</h3><p>Chapter 7, 11, 13 proceedings. Corporate debt restructuring, creditor rights. Counter-cyclical demand.</p></div>
-        <div class="dark-card"><h3>Private Equity & Venture Capital</h3><p>Fund formation, portfolio company acquisitions, investor relations. Premium BigLaw specialty.</p></div>
-      </div>
-    </div>
- 
-    <div id="tab-litigation" class="tab-panel">
-      <div class="dark-cards-grid">
-        <div class="dark-card"><h3>General Commercial Litigation</h3><p>Breach of contract, business torts, shareholder disputes. Largest litigation category in most firms.</p></div>
-        <div class="dark-card"><h3>Criminal Defense</h3><p>Represent individuals accused of crimes. Range from misdemeanors to capital offenses. Public defenders serve indigent clients.</p></div>
-        <div class="dark-card"><h3>White-Collar Criminal Defense</h3><p>Securities fraud, money laundering, FCPA, tax evasion. High-profile, high-compensation area.</p></div>
-        <div class="dark-card"><h3>Personal Injury / Tort</h3><p>Medical malpractice, auto accidents, product liability. Often contingency-based fees. Highly variable income.</p></div>
-        <div class="dark-card"><h3>Antitrust</h3><p>Merger review, price-fixing, monopoly cases. Both plaintiff and defense sides. Growing enforcement area.</p></div>
-        <div class="dark-card"><h3>Family Law</h3><p>Divorce, child custody, adoption, prenuptial agreements. Community-based practice. High client interaction.</p></div>
-        <div class="dark-card"><h3>Employment & Labor</h3><p>Workplace discrimination, wage disputes, union negotiations, EEOC compliance. Both employee and employer side.</p></div>
-        <div class="dark-card"><h3>Immigration</h3><p>Visa applications, deportation defense, asylum cases, employer compliance. Growing need across the country.</p></div>
-      </div>
-    </div>
- 
-    <div id="tab-public" class="tab-panel">
-      <div class="dark-cards-grid">
-        <div class="dark-card"><h3>Civil Rights / Constitutional</h3><p>Equal protection, First Amendment, voting rights. ACLU, NAACP Legal Defense, public interest firms.</p></div>
-        <div class="dark-card"><h3>Environmental Law</h3><p>Clean Air/Water Act compliance, pollution litigation, conservation. EPA, state agencies, NGOs.</p></div>
-        <div class="dark-card"><h3>Government / Regulatory</h3><p>Federal agency work (DOJ, SEC, FTC, EPA). GS-11 to GS-15 scale. Strong benefits, loan forgiveness.</p></div>
-        <div class="dark-card"><h3>Public Defense</h3><p>Court-appointed counsel for those who cannot afford attorneys. High caseloads but meaningful impact.</p></div>
-        <div class="dark-card"><h3>Prosecution</h3><p>District attorneys and U.S. attorneys. Represent the state/federal government in criminal matters.</p></div>
-        <div class="dark-card"><h3>Education Law</h3><p>School district counsel, special education rights, student discipline, higher education compliance.</p></div>
-        <div class="dark-card"><h3>Health Law</h3><p>Healthcare regulation, HIPAA compliance, Medicare/Medicaid, hospital administration legal counsel.</p></div>
-        <div class="dark-card"><h3>Military / Veterans Law</h3><p>Court-martial defense, VA benefits claims, military justice. JAG Corps is a key employer.</p></div>
-      </div>
-    </div>
- 
-    <div id="tab-specialty" class="tab-panel">
-      <div class="dark-cards-grid">
-        <div class="dark-card"><h3>🔥 Legal Tech / AI Law</h3><p>Emerging: AI regulation, algorithmic accountability, legal automation. Tech companies need lawyers who understand both domains.</p></div>
-        <div class="dark-card"><h3>🔥 Cybersecurity & Privacy</h3><p>GDPR, CCPA compliance, data breach litigation, crypto regulation. One of the fastest-growing practice areas.</p></div>
-        <div class="dark-card"><h3>🔥 Cannabis Law</h3><p>State licensing, regulatory compliance, federal-state conflicts. Expanding as more states legalize.</p></div>
-        <div class="dark-card"><h3>🔥 Space Law</h3><p>Satellite regulations, launch licensing, orbital debris liability. Growing with commercial space industry.</p></div>
-        <div class="dark-card"><h3>Sports & Entertainment</h3><p>Athlete representation, media contracts, licensing deals, NIL compliance for college athletes.</p></div>
-        <div class="dark-card"><h3>International Law</h3><p>Trade treaties, cross-border transactions, human rights. Multilingual skills highly valued.</p></div>
-        <div class="dark-card"><h3>Animal Law</h3><p>Animal rights, wildlife protection, agricultural regulation. Growing niche with dedicated organizations.</p></div>
-        <div class="dark-card"><h3>Elder Law / Estate Planning</h3><p>Wills, trusts, Medicaid planning, guardianships. Predictable work, lower stress, aging population demand.</p></div>
-      </div>
-    </div>
+    <div class="results-hdr"><div class="results-count" id="schoolCount"></div></div>
+    <div class="school-grid-wrap" id="schoolGrid"></div>
   </div>
-</section>
- 
-<!-- ======================== SALARIES ======================== -->
-<section class="section" id="salaries">
-  <div class="section-header">
-    <div class="tag">Compensation</div>
-    <h2>Salary Guide: Law School to Senior Attorney</h2>
-    <p>What you can expect to earn at every stage — from part-time 1L jobs through partnership</p>
-  </div>
- 
-  <!-- During Law School -->
-  <h3 style="font-size:1.3rem; margin-bottom:16px;">💼 During Law School (Part-Time & Summer)</h3>
-  <div class="salary-table-wrap mb-16">
-    <table class="salary-table">
-      <thead>
-        <tr><th>Position</th><th>Typical Pay</th><th>Where</th><th>Notes</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1L Research Assistant</td><td class="highlight">$12–$22/hr</td><td>Law school faculty</td><td>Flexible hours, academic credit possible</td></tr>
-        <tr><td>1L Summer Internship (Public Interest)</td><td class="highlight">$0–$7,500 stipend</td><td>Nonprofits, gov agencies</td><td>Many unpaid; schools offer funding grants</td></tr>
-        <tr><td>1L Summer Associate (BigLaw — rare)</td><td class="highlight">$3,650–$4,100/week</td><td>Top 50 firms</td><td>Highly competitive; mostly T14 students</td></tr>
-        <tr><td>2L Summer Associate (BigLaw)</td><td class="highlight">$3,850–$4,100/week</td><td>Firms with 700+ lawyers</td><td>~$50K for 10-week program. High offer rates</td></tr>
-        <tr><td>2L/3L Law Clerk (mid-size firm)</td><td class="highlight">$20–$45/hr</td><td>Regional firms</td><td>Part-time during semester, FT in summer</td></tr>
-        <tr><td>DOJ SLIP Intern (paid track)</td><td class="highlight">GS-5 to GS-9</td><td>Federal government</td><td>$38K–$60K annualized; DC locality pay</td></tr>
-        <tr><td>Legal Aid / Pro Bono</td><td class="highlight">Unpaid</td><td>Clinics, nonprofits</td><td>Excellent experience; often required by school</td></tr>
-      </tbody>
-    </table>
-  </div>
- 
-  <!-- Entry Level -->
-  <h3 style="font-size:1.3rem; margin-bottom:16px; margin-top:40px;">🎯 Entry-Level Attorney Salaries (2025–2026)</h3>
-  <div class="salary-table-wrap mb-16">
-    <table class="salary-table">
-      <thead>
-        <tr><th>Setting</th><th>Median Salary</th><th>Range</th><th>Details</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>BigLaw (700+ lawyers)</td><td class="highlight">$215,000 – $225,000</td><td>$200K–$225K + bonus</td><td>Cravath scale; 6 major cities at $225K median</td></tr>
-        <tr><td>Mid-Size Firm (100–250)</td><td class="highlight">$155,000 – $200,000</td><td>$130K–$200K</td><td>Better work-life balance, faster client contact</td></tr>
-        <tr><td>Small Firm (2–50 lawyers)</td><td class="highlight">$70,000 – $120,000</td><td>$55K–$150K</td><td>Varies widely by market and practice area</td></tr>
-        <tr><td>Federal Government (DOJ)</td><td class="highlight">$74,000 – $98,000</td><td>GS-11 to GS-13</td><td>+ locality pay (15–33%). Benefits, PSLF eligible</td></tr>
-        <tr><td>State Government</td><td class="highlight">$55,000 – $85,000</td><td>$45K–$95K</td><td>DA, AG offices. Varies significantly by state</td></tr>
-        <tr><td>Public Interest / Legal Aid</td><td class="highlight">$52,000 – $68,000</td><td>$42K–$75K</td><td>LRAP and PSLF make this viable long-term</td></tr>
-        <tr><td>In-House Corporate Counsel</td><td class="highlight">$100,000 – $160,000</td><td>$80K–$180K</td><td>Usually requires 2–4 years of firm experience first</td></tr>
-        <tr><td>National Average (all attorneys)</td><td class="highlight">$100,626 – $109,902</td><td>$47K–$172K</td><td>Wide bimodal distribution: BigLaw peak and everyone else</td></tr>
-      </tbody>
-    </table>
-  </div>
- 
-  <!-- BigLaw Progression -->
-  <h3 style="font-size:1.3rem; margin-bottom:16px; margin-top:40px;">📈 BigLaw Salary Progression (Cravath Scale 2025)</h3>
-  <div class="salary-table-wrap">
-    <table class="salary-table">
-      <thead>
-        <tr><th>Year</th><th>Base Salary</th><th>Typical Bonus</th><th>Total Compensation</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Year 1</td><td class="highlight">$225,000</td><td>$22,500</td><td>~$247,500</td></tr>
-        <tr><td>Year 2</td><td class="highlight">$235,000</td><td>$37,500</td><td>~$272,500</td></tr>
-        <tr><td>Year 3</td><td class="highlight">$260,000</td><td>$52,500</td><td>~$312,500</td></tr>
-        <tr><td>Year 4</td><td class="highlight">$290,000</td><td>$67,500</td><td>~$357,500</td></tr>
-        <tr><td>Year 5</td><td class="highlight">$320,000</td><td>$82,500</td><td>~$402,500</td></tr>
-        <tr><td>Year 6</td><td class="highlight">$350,000</td><td>$100,000</td><td>~$450,000</td></tr>
-        <tr><td>Year 7</td><td class="highlight">$375,000</td><td>$115,000</td><td>~$490,000</td></tr>
-        <tr><td>Year 8 (Senior)</td><td class="highlight">$415,000</td><td>$127,500</td><td>~$542,500</td></tr>
-        <tr><td>Counsel/Of Counsel</td><td class="highlight">$300K–$500K</td><td>Variable</td><td>Non-partnership track</td></tr>
-        <tr><td>Partner (Income)</td><td class="highlight">$400K–$1M+</td><td>Profit share</td><td>Highly variable by firm</td></tr>
-        <tr><td>Partner (Equity)</td><td class="highlight">$800K–$5M+</td><td>Profit share</td><td>Top rainmakers earn $10M+</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="small mt-32" style="text-align:center;">Sources: NALP 2025 Associate Salary Survey, ZipRecruiter, Salary.com, BigLaw Investor, DOJ. Figures represent base salary before locality adjustments. Note: Only 32% of firms currently pay the $225K starting scale.</p>
-</section>
- 
-<!-- ======================== CAREER GROWTH ======================== -->
-<section class="section-teal" id="careers">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="tag">Career Paths</div>
-      <h2>Private Sector vs. Government Careers</h2>
-      <p>Two distinct career trajectories with very different tradeoffs</p>
+
+  <!-- LAW TYPES PANEL -->
+  <div class="section-panel" id="lawtypePanel">
+    <div class="info-box blue" style="margin-bottom:1.5rem">
+      <div class="info-box-title">⚖️ Which type of law is right for you?</div>
+      <div class="info-box-body">Salary ranges, demand outlook, and typical work environment for 24 major practice areas. Median figures are for associates at mid-size firms, 2025 data. Government salaries are typically 30–50% lower but include pensions and loan forgiveness eligibility.</div>
     </div>
- 
-    <div class="two-col">
-      <!-- Private -->
-      <div>
-        <div class="dark-card" style="margin-bottom:20px; border-left: 4px solid var(--gold);">
-          <h3 style="font-size:1.3rem;">🏢 Private Sector Path</h3>
-          <div style="margin-top:16px;">
-            <p><strong style="color:var(--gold);">Year 1–3: Junior Associate</strong><br>$225K–$260K (BigLaw). Heavy document review, research, due diligence. 1,800–2,200 billable hours/year expected.</p>
+    <div class="law-type-grid" id="lawTypeGrid"></div>
+  </div>
+
+  <!-- COST GUIDE PANEL -->
+  <div class="section-panel" id="costPanel">
+    <div class="guide-block">
+      <div class="guide-block-head amber"><div class="guide-block-icon">💰</div><div><div class="guide-block-title">Complete Cost Breakdown: LSAT to JD</div><div class="guide-block-sub">What it actually costs to become a lawyer in the United States</div></div></div>
+      <div class="guide-body">
+        <div class="info-box amber" style="margin-bottom:1.5rem">
+          <div class="info-box-title">📌 Important note</div>
+          <div class="info-box-body">These are realistic ranges for 2025–2026. Your actual cost depends heavily on where you go to school, whether you earn scholarships, and whether you work during law school. A public school + scholarship + LRAP can cost under $40K total. A T5 school with no aid can exceed $350K in total debt.</div>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;color:var(--white);margin-bottom:1rem;display:flex;align-items:center;gap:8px">📚 Phase 1 — LSAT Preparation</h3>
+        <table class="cost-table">
+          <thead><tr><th>Item</th><th>Budget Option</th><th>Mid-Range</th><th>Premium</th></tr></thead>
+          <tbody>
+            <tr><td>LSAT prep course</td><td class="cost-num">$0</td><td class="cost-num">$500–$1,500</td><td class="cost-num">$2,000–$5,000</td></tr>
+            <tr><td>Official practice tests (LawHub)</td><td class="cost-num">$0–$99</td><td class="cost-num">$99</td><td class="cost-num">$99</td></tr>
+            <tr><td>LSAT exam registration</td><td class="cost-num">$200</td><td class="cost-num">$200</td><td class="cost-num">$200</td></tr>
+            <tr><td>Retakes (avg. 1–2 retakes)</td><td class="cost-num">$200–$400</td><td class="cost-num">$200–$400</td><td class="cost-num">$200–$400</td></tr>
+            <tr><td>Score report sends (each school)</td><td class="cost-num">$45 each</td><td class="cost-num">$45 each</td><td class="cost-num">$45 each</td></tr>
+            <tr><td>Books, materials</td><td class="cost-num">$50–$150</td><td class="cost-num">$150–$400</td><td class="cost-num">$400+</td></tr>
+            <tr class="cost-total"><td><strong>Phase 1 Total (est.)</strong></td><td class="cost-num">$500–$900</td><td class="cost-num">$1,500–$2,800</td><td class="cost-num">$3,000–$6,200</td></tr>
+          </tbody>
+        </table>
+
+        <h3 style="font-size:15px;font-weight:700;color:var(--white);margin:1.5rem 0 1rem;display:flex;align-items:center;gap:8px">📝 Phase 2 — Law School Applications</h3>
+        <table class="cost-table">
+          <thead><tr><th>Item</th><th>Low</th><th>Typical</th><th>High (15+ schools)</th></tr></thead>
+          <tbody>
+            <tr><td>Application fees (avg $85/school)</td><td class="cost-num">$340 (4 schools)</td><td class="cost-num">$850 (10 schools)</td><td class="cost-num">$1,700+</td></tr>
+            <tr><td>LSAC CAS credential assembly</td><td class="cost-num">$200</td><td class="cost-num">$200</td><td class="cost-num">$200</td></tr>
+            <tr><td>Application consultant (optional)</td><td class="cost-num">$0</td><td class="cost-num">$1,500–$3,000</td><td class="cost-num">$5,000–$12,000</td></tr>
+            <tr><td>Transcript requests, misc.</td><td class="cost-num">$50</td><td class="cost-num">$100</td><td class="cost-num">$200</td></tr>
+            <tr class="cost-total"><td><strong>Phase 2 Total (est.)</strong></td><td class="cost-num">$600–$800</td><td class="cost-num">$2,000–$4,200</td><td class="cost-num">$7,000+</td></tr>
+          </tbody>
+        </table>
+
+        <h3 style="font-size:15px;font-weight:700;color:var(--white);margin:1.5rem 0 1rem;display:flex;align-items:center;gap:8px">🏛️ Phase 3 — Law School (3 Years)</h3>
+        <table class="cost-table">
+          <thead><tr><th>Cost Category</th><th>Public School (in-state)</th><th>Private T3–T50</th><th>T5–T14</th></tr></thead>
+          <tbody>
+            <tr><td>Tuition (per year)</td><td class="cost-num">$22,000–$35,000</td><td class="cost-num">$52,000–$62,000</td><td class="cost-num">$68,000–$77,000</td></tr>
+            <tr><td>Room & board (per year)</td><td class="cost-num">$16,000–$22,000</td><td class="cost-num">$22,000–$28,000</td><td class="cost-num">$28,000–$36,000</td></tr>
+            <tr><td>Books & supplies (per year)</td><td class="cost-num">$1,200–$2,000</td><td class="cost-num">$1,500–$2,500</td><td class="cost-num">$2,000–$3,000</td></tr>
+            <tr><td>Health insurance (per year)</td><td class="cost-num">$2,500–$4,000</td><td class="cost-num">$3,000–$5,000</td><td class="cost-num">$4,000–$6,000</td></tr>
+            <tr><td>Bar prep (after 3L, once)</td><td class="cost-num">$1,500–$3,500</td><td class="cost-num">$1,500–$3,500</td><td class="cost-num">$2,000–$4,500</td></tr>
+            <tr><td>Bar exam fees (state + MPRE)</td><td class="cost-num">$300–$800</td><td class="cost-num">$300–$800</td><td class="cost-num">$300–$800</td></tr>
+            <tr class="cost-total"><td><strong>3-Year Total (est.)</strong></td><td class="cost-num">$124K–$186K</td><td class="cost-num">$235K–$295K</td><td class="cost-num">$306K–$375K</td></tr>
+          </tbody>
+        </table>
+
+        <h3 style="font-size:15px;font-weight:700;color:var(--white);margin:1.5rem 0 1rem;display:flex;align-items:center;gap:8px">🔻 Ways to Reduce Your Cost</h3>
+        <div class="guide-grid">
+          <div class="guide-card">
+            <div class="guide-card-title"><span class="guide-card-icon">🎯</span>Earn a merit scholarship</div>
+            <div class="guide-card-body"><ul>
+              <li>A 170+ LSAT can unlock full-tuition at T25 schools — worth $150K+</li>
+              <li>Apply where your LSAT is above the 75th percentile median</li>
+              <li>Always negotiate after receiving an offer — 70%+ of schools will increase</li>
+              <li>Check whether scholarship has GPA retention requirement (usually 3.0+)</li>
+            </ul></div>
           </div>
-          <div style="margin-top:14px;">
-            <p><strong style="color:var(--gold);">Year 4–6: Mid-Level Associate</strong><br>$290K–$350K. Take on client-facing roles, manage junior associates, develop specialization.</p>
+          <div class="guide-card">
+            <div class="guide-card-title"><span class="guide-card-icon">💼</span>Work part-time during school</div>
+            <div class="guide-card-body"><ul>
+              <li>Most law schools allow up to 20 hrs/week work (ABA limit)</li>
+              <li>RA positions, law review, tutoring: $15–$25/hr</li>
+              <li>Summer associate programs pay $3,500–$4,500/week BigLaw</li>
+              <li>Clerking for a judge during school can pay stipends</li>
+            </ul></div>
           </div>
-          <div style="margin-top:14px;">
-            <p><strong style="color:var(--gold);">Year 7–9: Senior Associate</strong><br>$375K–$415K+. Partnership evaluation track begins. Business development expected.</p>
+          <div class="guide-card">
+            <div class="guide-card-title"><span class="guide-card-icon">🏛️</span>Public service path (LRAP/PSLF)</div>
+            <div class="guide-card-body"><ul>
+              <li>PSLF forgives ALL remaining federal loans after 10 years of public service</li>
+              <li>Most T14 schools have LRAP that covers loan payments for public interest jobs</li>
+              <li>IBR/SAVE plans cap monthly payments at 5–10% of discretionary income</li>
+              <li>Government/non-profit = PSLF eligible from day 1 after bar admission</li>
+            </ul></div>
           </div>
-          <div style="margin-top:14px;">
-            <p><strong style="color:var(--gold);">Year 8–12: Partnership Decision</strong><br>Income partner: $400K–$1M. Equity partner: $800K–$5M+. ~15–20% of associates make partner.</p>
-          </div>
-          <div style="margin-top:14px;">
-            <p><strong style="color:var(--gold);">Exit Options</strong><br>In-house counsel ($150K–$468K), boutique firm, solo practice, legal tech, teaching, consulting.</p>
+          <div class="guide-card">
+            <div class="guide-card-title"><span class="guide-card-icon">💡</span>Strategic school choice</div>
+            <div class="guide-card-body"><ul>
+              <li>A full ride at Emory (#18) vs $300K debt at Columbia (#4) — run the ROI math</li>
+              <li>In-state public schools: University of Texas, UNC, UGA — exceptional value</li>
+              <li>Regional firms often hire heavily from local schools at lower rates</li>
+              <li>Military JAG: law school debt paid + $80K+ salary on Day 1</li>
+            </ul></div>
           </div>
         </div>
-        <div class="dark-card">
-          <p style="color:var(--gold-light); font-weight:600;">Key Tradeoffs:</p>
-          <p>✅ Highest earning potential<br>✅ Prestige and network<br>❌ Long hours (60–80 hrs/week)<br>❌ High burnout rate (~50% leave within 5 years)<br>❌ Partnership highly competitive</p>
-        </div>
-      </div>
- 
-      <!-- Government -->
-      <div>
-        <div class="dark-card" style="margin-bottom:20px; border-left: 4px solid var(--teal-light);">
-          <h3 style="font-size:1.3rem;">🏛️ Government Path</h3>
-          <div style="margin-top:16px;">
-            <p><strong style="color:var(--teal-light);">Year 1: Entry (GS-11)</strong><br>~$74K base + locality (DC: ~$99K). DOJ, SEC, FTC, state AG offices. Honors Programs hire from law school.</p>
-          </div>
-          <div style="margin-top:14px;">
-            <p><strong style="color:var(--teal-light);">Year 1–2: Promotion to GS-12</strong><br>~$89K base + locality. Performance-based promotions. Rapid early advancement possible.</p>
-          </div>
-          <div style="margin-top:14px;">
-            <p><strong style="color:var(--teal-light);">Year 2–3: GS-13</strong><br>~$106K base + locality. Handling independent caseloads. Significant courtroom time possible.</p>
-          </div>
-          <div style="margin-top:14px;">
-            <p><strong style="color:var(--teal-light);">Year 3–5: GS-14 to GS-15</strong><br>$125K–$155K base + locality. Supervisory roles, complex cases. GS-15 cap: ~$191K with locality.</p>
-          </div>
-          <div style="margin-top:14px;">
-            <p><strong style="color:var(--teal-light);">Senior / SES Positions</strong><br>Senior Executive Service: $147K–$212K. Agency General Counsel, U.S. Attorney: $195K+. Judicial appointments.</p>
-          </div>
-        </div>
-        <div class="dark-card">
-          <p style="color:var(--teal-light); font-weight:600;">Key Tradeoffs:</p>
-          <p>✅ Work-life balance (40–50 hrs/week typical)<br>✅ Pension, health benefits, job security<br>✅ PSLF: Student loans forgiven after 10 years<br>✅ Earlier courtroom/deposition experience<br>❌ Lower ceiling on compensation<br>❌ Bureaucratic processes</p>
+
+        <div class="info-box green">
+          <div class="info-box-title">✅ The best-case scenario</div>
+          <div class="info-box-body">Score 170+ → get full ride at a T20 school ($0 tuition × 3 years) → work as a summer associate ($30–$40K in 2L summer) → graduate with under $60K in living-expense debt → BigLaw salary of $225K/yr pays that off in 6–8 months. This is achievable and many students do it every year.</div>
         </div>
       </div>
     </div>
- 
-    <!-- Salary by geography -->
-    <div style="margin-top:48px;">
-      <h3 style="color:var(--white); text-align:center; font-size:1.3rem; margin-bottom:20px;">💰 Top-Paying States for Attorneys (Mean Salary)</h3>
-      <div class="dark-cards-grid">
-        <div class="dark-card text-center"><div class="num">$239K</div><p>Washington, DC</p></div>
-        <div class="dark-card text-center"><div class="num">$214K</div><p>California</p></div>
-        <div class="dark-card text-center"><div class="num">$212K</div><p>Delaware</p></div>
-        <div class="dark-card text-center"><div class="num">$208K</div><p>New York</p></div>
-        <div class="dark-card text-center"><div class="num">$196K</div><p>Connecticut</p></div>
-      </div>
-    </div>
   </div>
-</section>
- 
-<!-- ======================== HIGH SCHOOL GUIDE ======================== -->
-<section class="section" id="hs-guide">
-  <div class="section-header">
-    <div class="tag">Early Planning</div>
-    <h2>High School to J.D. — Your Roadmap</h2>
-    <p>Strategic planning from 9th grade through law school admission</p>
-  </div>
- 
-  <div class="hs-timeline">
-    <div class="hs-step">
-      <div class="hs-step-dot">9</div>
-      <div class="hs-step-content">
-        <div class="grade">9th Grade — Foundation</div>
-        <h3>Build Strong Academic Habits</h3>
-        <p>Focus on GPA from day one — law schools look at cumulative undergraduate GPA, and strong habits start here.</p>
-        <ul>
-          <li>Take honors courses in English, History, and Social Studies</li>
-          <li>Join debate club, Model UN, or mock trial — these build argumentation skills</li>
-          <li>Start reading broadly: newspapers, nonfiction, opinion editorials</li>
-          <li>Develop strong writing habits — keep a journal, write for school paper</li>
-          <li>Volunteer with community organizations to build a service record</li>
-        </ul>
-      </div>
-    </div>
- 
-    <div class="hs-step">
-      <div class="hs-step-dot">10</div>
-      <div class="hs-step-content">
-        <div class="grade">10th Grade — Exploration</div>
-        <h3>Explore the Legal World</h3>
-        <ul>
-          <li>Take AP Government, AP U.S. History, or AP Language & Composition</li>
-          <li>Attend a local courtroom session — many courts allow public observers</li>
-          <li>Seek informational interviews with lawyers in your community</li>
-          <li>Consider summer programs: many law schools offer free HS law camps</li>
-          <li>Take leadership roles in clubs (president, captain, editor)</li>
-          <li>Start SAT/ACT prep planning — college admission matters for the JD path</li>
-        </ul>
-      </div>
-    </div>
- 
-    <div class="hs-step">
-      <div class="hs-step-dot">11</div>
-      <div class="hs-step-content">
-        <div class="grade">11th Grade — Strategic Positioning</div>
-        <h3>Prepare for College Applications</h3>
-        <ul>
-          <li>Take 3–4 AP courses (English Lit, Government, History, Economics)</li>
-          <li>Excel on SAT/ACT — top college = stronger law school application</li>
-          <li>Apply for summer legal internships or law-related volunteer work</li>
-          <li>Build a "spike" — deep commitment to one cause (justice, policy, advocacy)</li>
-          <li>Research pre-law programs vs. choosing any strong undergraduate major</li>
-          <li><strong>Key insight:</strong> Law schools don't require a specific major — Political Science, English, Philosophy, STEM, and even Art majors all succeed</li>
-        </ul>
-      </div>
-    </div>
- 
-    <div class="hs-step">
-      <div class="hs-step-dot">12</div>
-      <div class="hs-step-content">
-        <div class="grade">12th Grade — Launch</div>
-        <h3>Apply to College Strategically</h3>
-        <ul>
-          <li>Apply to colleges with strong pre-law advising, mock trial teams, and legal clinics</li>
-          <li>Prioritize schools where you can earn a high GPA — law school cares about the number</li>
-          <li>Consider cost: undergraduate debt + law school debt compounds. Scholarships matter</li>
-          <li>Start a "law school fund" — even $50/month adds up over 5 years</li>
-          <li>Read "Getting to Maybe" (law school exams) and "1L" by Scott Turow for a preview</li>
-        </ul>
-      </div>
-    </div>
- 
-    <div class="hs-step">
-      <div class="hs-step-dot" style="background:var(--teal);">UG</div>
-      <div class="hs-step-content">
-        <div class="grade">Undergraduate — The GPA & LSAT Years</div>
-        <h3>Maximize Your Law School Profile</h3>
-        <ul>
-          <li><strong>GPA is king:</strong> Law schools use LSAC GPA, which is your cumulative GPA including transfers. Aim for 3.7+</li>
-          <li>Choose a major you love and will excel in — no "right" major for law</li>
-          <li>Take writing-intensive courses, logic/philosophy, economics, and public speaking</li>
-          <li>Build 2–3 strong professor relationships for recommendation letters</li>
-          <li>Intern at a law firm, DA's office, legal aid clinic, or government agency</li>
-          <li>Join pre-law society, moot court, or student government</li>
-          <li><strong>Junior year:</strong> Begin LSAT prep. Plan 3–6 months of dedicated study</li>
-          <li><strong>Senior year:</strong> Take the LSAT (aim for June–October). Apply to law schools by November for best scholarship consideration</li>
-          <li>Consider a gap year: work experience strengthens applications and gives LSAT retake time</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
- 
-<!-- ======================== LSAT PREP SECTION ======================== -->
-<section class="section-cream" id="lsat">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="tag">LSAT Prep</div>
-      <h2>LSAT Preparation Resources & Pricing</h2>
-      <p>Compare top prep options — from free resources to premium tutoring</p>
-    </div>
- 
-    <div class="cards-grid">
-      <div class="card">
-        <div class="card-icon teal">📖</div>
-        <h3>Self-Study (Budget)</h3>
-        <div class="salary-badge">$0 – $200</div>
-        <p style="margin-top:12px;"><strong>Best for:</strong> Self-motivated learners with prior test prep experience.</p>
-        <p style="margin-top:8px;">Khan Academy (free), LSAC LawHub ($120/yr), PowerScore Bibles (~$50 each), Magoosh ($199/year), Reddit r/LSAT community.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon gold">💻</div>
-        <h3>Online Courses (Mid-Range)</h3>
-        <div class="salary-badge">$200 – $900</div>
-        <p style="margin-top:12px;"><strong>Best for:</strong> Students who want structure with flexibility.</p>
-        <p style="margin-top:8px;">7Sage ($69–$99/mo), LSAT Demon ($95–$295/mo), Kaplan self-paced ($799), Blueprint self-paced, Princeton Review self-paced ($800).</p>
-      </div>
-      <div class="card">
-        <div class="card-icon blue">🎓</div>
-        <h3>Live Courses</h3>
-        <div class="salary-badge">$1,300 – $2,100</div>
-        <p style="margin-top:12px;"><strong>Best for:</strong> Students who need accountability and real-time instruction.</p>
-        <p style="margin-top:8px;">Princeton Review Fundamentals ($1,250), Kaplan Live ($1,599), Blueprint Live, Princeton Review 170+ ($1,799). Most include score guarantees.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon red">🧑‍🏫</div>
-        <h3>Private Tutoring (Premium)</h3>
-        <div class="salary-badge">$1,100 – $4,000+</div>
-        <p style="margin-top:12px;"><strong>Best for:</strong> Plateau breakers and 170+ chasers.</p>
-        <p style="margin-top:8px;">7Sage ($1,099/5hrs), Princeton Review ($1,800+), PowerScore ($295/mo + tutoring), Kaplan ($3,300+). All use 170+ scoring tutors.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon teal">🆓</div>
-        <h3>Fee Waiver Programs</h3>
-        <div class="salary-badge">Free – $1/month</div>
-        <p style="margin-top:12px;"><strong>Eligibility:</strong> Based on income. Apply through LSAC.</p>
-        <p style="margin-top:8px;">LSAC fee waivers cover LSAT registration, CAS, and 6 school application fees. 7Sage offers $1/mo access. Most providers offer 30–50% discounts.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon gold">🎯</div>
-        <h3>170+ Immersion</h3>
-        <div class="salary-badge">$1,799 – $3,999</div>
-        <p style="margin-top:12px;"><strong>Best for:</strong> T14 or bust applicants.</p>
-        <p style="margin-top:8px;">Princeton Review 170+ Immersion (130 hrs live, $3,999), Princeton Review 170+ ($1,799 with score guarantee), Kaplan Bootcamp ($3,999).</p>
-      </div>
-    </div>
- 
-    <div class="cta-banner" style="margin-top:48px;">
-      <h2>📊 The LSAT Leverage</h2>
-      <p>Every 3-point LSAT increase = $15,000–$40,000/year more in merit scholarships. A 170+ can turn $200K in debt into a full ride. The ROI on LSAT prep is the highest of any investment in your legal career.</p>
-      <a href="https://www.lsac.org/lsat" target="_blank" class="btn btn-gold">Visit LSAC Official →</a>
-    </div>
-  </div>
-</section>
- 
-<!-- ======================== JOBS & INTERNSHIPS ======================== -->
-<section class="section-dark" id="jobs">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="tag">Jobs & Internships</div>
-      <h2>Find Legal Jobs & Internships</h2>
-      <p>Direct links to pre-filtered legal job searches across major platforms</p>
-    </div>
- 
-    <div class="job-boards">
-      <a href="https://www.indeed.com/jobs?q=entry+level+attorney&l=United+States" target="_blank" class="job-board-card">
-        <div class="jb-icon">🔍</div>
-        <h4>Indeed</h4>
-        <p>Entry-level attorney positions across the US</p>
-        <div class="jb-btn">Search Jobs →</div>
-      </a>
-      <a href="https://www.linkedin.com/jobs/search/?keywords=junior%20attorney%20entry%20level&location=United%20States" target="_blank" class="job-board-card">
-        <div class="jb-icon">💼</div>
-        <h4>LinkedIn Jobs</h4>
-        <p>Junior attorney & associate roles with networking</p>
-        <div class="jb-btn">Search Jobs →</div>
-      </a>
-      <a href="https://www.usajobs.gov/Search/Results?k=attorney&p=1" target="_blank" class="job-board-card">
-        <div class="jb-icon">🏛️</div>
-        <h4>USAJobs</h4>
-        <p>Federal government attorney positions (DOJ, SEC, FTC)</p>
-        <div class="jb-btn">Search Jobs →</div>
-      </a>
-      <a href="https://www.indeed.com/jobs?q=legal+intern&l=United+States" target="_blank" class="job-board-card">
-        <div class="jb-icon">📋</div>
-        <h4>Indeed — Internships</h4>
-        <p>Legal internships for law students nationwide</p>
-        <div class="jb-btn">Search Internships →</div>
-      </a>
-      <a href="https://www.glassdoor.com/Job/united-states-entry-level-lawyer-jobs-SRCH_IL.0,13_IN1_KO14,31.htm" target="_blank" class="job-board-card">
-        <div class="jb-icon">⭐</div>
-        <h4>Glassdoor</h4>
-        <p>Attorney jobs with salary info & company reviews</p>
-        <div class="jb-btn">Search Jobs →</div>
-      </a>
-      <a href="https://www.ziprecruiter.com/Jobs/Entry-Level-Attorney" target="_blank" class="job-board-card">
-        <div class="jb-icon">⚡</div>
-        <h4>ZipRecruiter</h4>
-        <p>Entry-level attorney roles with salary estimates</p>
-        <div class="jb-btn">Search Jobs →</div>
-      </a>
-      <a href="https://www.psjd.org/" target="_blank" class="job-board-card">
-        <div class="jb-icon">⚖️</div>
-        <h4>PSJD (Public Interest)</h4>
-        <p>Public service legal jobs, fellowships, internships</p>
-        <div class="jb-btn">Search Jobs →</div>
-      </a>
-      <a href="https://www.nalp.org/" target="_blank" class="job-board-card">
-        <div class="jb-icon">📊</div>
-        <h4>NALP Directory</h4>
-        <p>Law firm salaries, employer data, and hiring stats</p>
-        <div class="jb-btn">View Data →</div>
-      </a>
-      <a href="https://www.justice.gov/legal-careers" target="_blank" class="job-board-card">
-        <div class="jb-icon">🇺🇸</div>
-        <h4>DOJ Careers</h4>
-        <p>Department of Justice Honors Program & experienced hiring</p>
-        <div class="jb-btn">View Careers →</div>
-      </a>
-      <a href="https://www.idealist.org/en/jobs?q=legal&searchMode=true" target="_blank" class="job-board-card">
-        <div class="jb-icon">🌍</div>
-        <h4>Idealist</h4>
-        <p>Nonprofit and social impact legal positions</p>
-        <div class="jb-btn">Search Jobs →</div>
-      </a>
-      <a href="https://lawschooli.com/best-law-firm-internships/" target="_blank" class="job-board-card">
-        <div class="jb-icon">🎓</div>
-        <h4>Law School Internship Guide</h4>
-        <p>Curated list of top firm summer associate programs</p>
-        <div class="jb-btn">View Guide →</div>
-      </a>
-      <a href="https://www.simplyhired.com/search?q=law+clerk+intern&l=United+States" target="_blank" class="job-board-card">
-        <div class="jb-icon">📝</div>
-        <h4>SimplyHired</h4>
-        <p>Law clerk and legal intern positions</p>
-        <div class="jb-btn">Search Jobs →</div>
-      </a>
-    </div>
- 
-    <!-- Integration Info Box -->
-    <div class="dark-card" style="margin-top:40px; border-left:4px solid var(--gold);">
-      <h3>🔗 About Job Data Integration</h3>
-      <p style="margin-top:8px;">The links above connect you directly to pre-filtered searches on each platform. For live embedded job feeds in the future, here are your options:</p>
-      <p style="margin-top:12px;"><strong style="color:var(--gold);">Indeed Publisher Program:</strong> Apply at indeed.com/publisher to receive an affiliate XML/API feed. Embed job listings directly on your site and earn per-click referral revenue. Requires application approval (typically 2–4 weeks).</p>
-      <p style="margin-top:8px;"><strong style="color:var(--gold);">LinkedIn Jobs Plugin:</strong> Use LinkedIn's "Jobs You Might Be Interested In" widget or their marketing API for employer-branded job cards.</p>
-      <p style="margin-top:8px;"><strong style="color:var(--gold);">Google Jobs API:</strong> Use Google's Cloud Talent Solution or embed Google for Jobs search results via structured data on your pages.</p>
-      <p style="margin-top:8px;"><strong style="color:var(--gold);">Jooble / Adzuna / Remotive APIs:</strong> Free job search APIs that aggregate listings from multiple boards. Easier to integrate than Indeed for smaller sites.</p>
-      <p style="margin-top:8px;"><strong style="color:var(--gold);">USAJobs API:</strong> Free, open REST API at developer.usajobs.gov — no approval needed. Great for federal legal jobs.</p>
-    </div>
-  </div>
-</section>
- 
-<!-- ======================== LAW SCHOOLS (condensed) ======================== -->
-<section class="section" id="schools">
-  <div class="section-header">
-    <div class="tag">Law Schools</div>
-    <h2>Top-Value Law Schools to Consider</h2>
-    <p>Balancing ranking, cost, employment outcomes, and scholarship availability</p>
-  </div>
- 
-  <div class="salary-table-wrap">
-    <table class="salary-table">
-      <thead>
-        <tr><th>#</th><th>School</th><th>Type</th><th>Approx. Annual Tuition</th><th>Median LSAT</th><th>Employment Rate</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td>Yale Law School</td><td>Private</td><td>$71,425</td><td>175</td><td>~97%</td></tr>
-        <tr><td>2</td><td>Stanford Law School</td><td>Private</td><td>$70,632</td><td>174</td><td>~96%</td></tr>
-        <tr><td>3</td><td>Harvard Law School</td><td>Private</td><td>$72,000</td><td>174</td><td>~97%</td></tr>
-        <tr><td>6</td><td>U. of Virginia (in-state)</td><td>Public</td><td class="highlight">$64,000 / $71,200</td><td>172</td><td>~95%</td></tr>
-        <tr><td>10</td><td>UC Berkeley (in-state)</td><td>Public</td><td class="highlight">$55,000 / $62,000</td><td>171</td><td>~94%</td></tr>
-        <tr><td>15</td><td>UCLA (in-state)</td><td>Public</td><td class="highlight">$52,000 / $56,000</td><td>170</td><td>~90%</td></tr>
-        <tr><td>18</td><td>U. of Texas — Austin</td><td>Public</td><td class="highlight">$39,000 / $57,000</td><td>169</td><td>~91%</td></tr>
-        <tr><td>25</td><td>U. of Minnesota</td><td>Public</td><td class="highlight">$42,000 / $52,000</td><td>166</td><td>~87%</td></tr>
-        <tr><td>—</td><td>U. of District of Columbia</td><td>Public</td><td class="highlight">$12,438</td><td>148</td><td>~70%</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="small mt-32 text-center">In-state / out-of-state rates shown for public schools. Rankings approximate (US News 2025). Employment rates = JD-required or JD-advantage within 10 months.</p>
-</section>
- 
-<!-- ======================== SCHOLARSHIPS ======================== -->
-<section class="section-cream" id="scholarships">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="tag">Financial Aid</div>
-      <h2>Scholarships & Loan Forgiveness</h2>
-      <p>How to reduce your cost to near-zero with the right strategy</p>
-    </div>
- 
-    <div class="accordion">
-      <div class="acc-item open">
-        <div class="acc-header" onclick="toggleAcc(this)">
-          🎯 The LSAT Scholarship Strategy <span class="arrow">▼</span>
-        </div>
-        <div class="acc-body" style="max-height:400px;">
-          <div class="acc-body-inner">
-            <p>Your LSAT score is the single biggest lever for law school scholarships. Here's how to use it:</p>
-            <ul>
-              <li>Apply to schools where your LSAT is 5+ points above their median — you become a "scholarship splitter" they recruit with full-tuition offers</li>
-              <li>A 170+ regularly unlocks full rides at T14–T25 schools</li>
-              <li>Example: A 172 with a 3.4 GPA might get rejected from Yale but offered a full ride at Emory, Wake Forest, or Notre Dame</li>
-              <li>Use the 7Sage scholarship estimator before applying to model your expected package</li>
-              <li>Every 3-point increase = approximately $15,000–$40,000/year more in merit aid</li>
-            </ul>
+
+  <!-- SALARY PANEL -->
+  <div class="section-panel" id="salaryPanel">
+    <div class="guide-block">
+      <div class="guide-block-head green"><div class="guide-block-icon">📊</div><div><div class="guide-block-title">Salary Guide: Law School to Senior Partner</div><div class="guide-block-sub">Real compensation data for US lawyers, 2025. Includes part-time during school through senior career.</div></div></div>
+      <div class="guide-body">
+
+        <h3 style="font-size:15px;font-weight:700;color:var(--white);margin-bottom:1rem">⏱️ While in Law School (Part-Time)</h3>
+        <div class="salary-row"><div class="salary-cell head">Role</div><div class="salary-cell head">Pay</div><div class="salary-cell head">Notes</div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">Legal Research Assistant (RA)</div></div><div class="salary-cell"><div class="salary-amount">$15–$25/hr</div></div><div class="salary-cell"><div class="salary-label">Work for a professor. 8–12 hrs/week.</div></div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">Law School Tutor</div></div><div class="salary-cell"><div class="salary-amount">$20–$40/hr</div></div><div class="salary-cell"><div class="salary-label">Tutor 0Ls or undergrads in pre-law subjects.</div></div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">Law Clerk (Small firm, PT)</div></div><div class="salary-cell"><div class="salary-amount">$15–$22/hr</div></div><div class="salary-cell"><div class="salary-label">Research, drafting, client intake. Good experience.</div></div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">Summer Associate (BigLaw, 1L)</div></div><div class="salary-cell"><div class="salary-amount">$3,500–$4,500/wk</div></div><div class="salary-cell"><div class="salary-label">10 weeks = $35K–$45K. Top firms only.</div></div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">Summer Associate (BigLaw, 2L)</div></div><div class="salary-cell"><div class="salary-amount">$3,500–$4,500/wk</div></div><div class="salary-cell"><div class="salary-label">Often leads to full-time offer. $35K–$45K total.</div></div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">Public Interest Intern (stipend)</div></div><div class="salary-cell"><div class="salary-amount">$1,500–$7,000</div></div><div class="salary-cell"><div class="salary-label">Full summer. Many funded by school LRAP.</div></div></div>
+
+        <h3 style="font-size:15px;font-weight:700;color:var(--white);margin:2rem 0 1rem">🎓 Entry-Level (0–2 Years Post-Bar)</h3>
+        <div class="salary-row"><div class="salary-cell head">Role / Setting</div><div class="salary-cell head">Annual Salary</div><div class="salary-cell head">Bonus / Notes</div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">BigLaw Associate (NYC/LA/DC)</div></div><div class="salary-cell"><div class="salary-amount">$225,000</div></div><div class="salary-cell"><div class="salary-label">+ $20K–$65K bonus. Lockstep scale.</div></div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">BigLaw Associate (Chicago/Boston)</div></div><div class="salary-cell"><div class="salary-amount">$215,000–$225,000</div></div><div class="salary-cell"><div class="salary-label">Same Cravath scale, lower cost of living.</div></div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">Mid-size Firm Associate</div></div><div class="salary-cell"><div class="salary-amount">$100,000–$165,000</div></div><div class="salary-cell"><div class="salary-label">More client contact early. Smaller bonus.</div></div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">In-House Counsel (Tech company)</div></div><div class="salary-cell"><div class="salary-amount">$120,000–$180,000</div></div><div class="salary-cell"><div class="salary-label">+ equity. Often requires 2–4 yrs firm exp.</div></div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">Federal Government (GS-11/12)</div></div><div class="salary-cell"><div class="salary-amount">$69,000–$103,000</div></div><div class="salary-cell"><div class="salary-label">+ PSLF, pension, stability.</div></div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">State Government / DA / PD</div></div><div class="salary-cell"><div class="salary-amount">$52,000–$85,000</div></div><div class="salary-cell"><div class="salary-label">PSLF eligible. Great trial experience.</div></div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">Public Interest / Legal Aid</div></div><div class="salary-cell"><div class="salary-amount">$48,000–$70,000</div></div><div class="salary-cell"><div class="salary-label">LRAP + PSLF can offset significantly.</div></div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">Military JAG Officer</div></div><div class="salary-cell"><div class="salary-amount">$80,000–$105,000</div></div><div class="salary-cell"><div class="salary-label">+ housing, law school debt forgiveness.</div></div></div>
+        <div class="salary-row"><div class="salary-cell"><div class="salary-label">Judicial Clerkship (Federal)</div></div><div class="salary-cell"><div class="salary-amount">$80,000–$90,000</div></div><div class="salary-cell"><div class="salary-label">Prestige bonus: BigLaw signing bonus often $100K+</div></div></div>
+
+        <h3 style="font-size:15px;font-weight:700;color:var(--white);margin:2rem 0 1rem">📈 Career Growth: Private Sector</h3>
+        <div class="career-path" id="privatePath"></div>
+
+        <h3 style="font-size:15px;font-weight:700;color:var(--white);margin:2rem 0 1rem">🏛️ Career Growth: Government / Public Sector</h3>
+        <div class="career-path" id="govPath"></div>
+
+        <div class="guide-grid" style="margin-top:1.5rem">
+          <div class="guide-card">
+            <div class="guide-card-title"><span class="guide-card-icon">📊</span>The bimodal salary distribution</div>
+            <div class="guide-card-body"><ul>
+              <li>Law salaries are "bimodal" — big cluster at $55–$80K and another at $215K+</li>
+              <li>Only ~15% of new lawyers go to BigLaw and earn the top salary</li>
+              <li>The middle ($90–$160K) is growing thanks to in-house tech and mid-size firms</li>
+              <li>Regional markets (Dallas, Atlanta, Denver) have strong mid-market salaries with lower cost of living</li>
+            </ul></div>
           </div>
-        </div>
-      </div>
- 
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc(this)">
-          💰 Top External Scholarships <span class="arrow">▼</span>
-        </div>
-        <div class="acc-body">
-          <div class="acc-body-inner">
-            <ul>
-              <li><strong>LSAC Diversity Scholarship</strong> — up to $15,000 for underrepresented students</li>
-              <li><strong>Paul & Daisy Soros Fellowship</strong> — $90,000 for "New Americans" in any graduate program</li>
-              <li><strong>ABA Legal Opportunity Scholarship</strong> — $15,000 for diverse 1Ls</li>
-              <li><strong>Hispanic National Bar Foundation</strong> — multiple awards for Latinx students</li>
-              <li><strong>NBLSA</strong> — National Black Law Students Association regional and national awards</li>
-              <li><strong>Women's Bar Association</strong> — state chapters fund $1,000–$10,000</li>
-              <li><strong>NYU Root-Tilden-Kern</strong> — full ride for 20 students committed to public service</li>
-              <li><strong>State bar scholarships</strong> — most state bars fund 1–3 students per year</li>
-            </ul>
+          <div class="guide-card">
+            <div class="guide-card-title"><span class="guide-card-icon">💎</span>Top-earning specialties (10+ yrs)</div>
+            <div class="guide-card-body"><ul>
+              <li>M&A / Private Equity: $500K–$3M+ (partner)</li>
+              <li>IP Litigation: $400K–$1.5M+ (senior counsel)</li>
+              <li>Tax (top firms): $350K–$1M+</li>
+              <li>Derivatives / Finance: $400K–$1.5M+</li>
+              <li>In-House GC (Fortune 500): $400K–$2M+ total comp</li>
+            </ul></div>
           </div>
-        </div>
-      </div>
- 
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc(this)">
-          📝 Negotiating Your Offer <span class="arrow">▼</span>
-        </div>
-        <div class="acc-body">
-          <div class="acc-body-inner">
-            <ul>
-              <li>Always negotiate — 70%+ of schools will increase offers if asked professionally</li>
-              <li>Use competing offers as leverage — name the school and the amount</li>
-              <li>Write a 1-page letter: express genuine interest, state the competing offer, ask for a match</li>
-              <li>A 10-minute phone call with your admissions contact is more effective than email</li>
-              <li>Ask about "scholarship retention" GPA thresholds — some schools use section stacking to reduce 2L/3L aid</li>
-            </ul>
-          </div>
-        </div>
-      </div>
- 
-      <div class="acc-item">
-        <div class="acc-header" onclick="toggleAcc(this)">
-          ⚖️ Loan Repayment Assistance Programs (LRAP) <span class="arrow">▼</span>
-        </div>
-        <div class="acc-body">
-          <div class="acc-body-inner">
-            <ul>
-              <li>If you plan a public service career, LRAP can be worth more than a scholarship</li>
-              <li>Yale, Harvard, Stanford, Columbia all offer generous LRAP covering loans fully for public interest jobs</li>
-              <li>Federal PSLF forgives remaining balance after 10 years of qualifying payments</li>
-              <li>IBR/PAYE plans cap monthly payments at 10% of discretionary income</li>
-              <li><strong>⚠️ Note:</strong> 2026 changes may narrow PSLF eligibility. Lock in current terms by enrolling before July 2026</li>
-            </ul>
+          <div class="guide-card">
+            <div class="guide-card-title"><span class="guide-card-icon">⚖️</span>Public sector long-term</div>
+            <div class="guide-card-body"><ul>
+              <li>Federal Senior Executive Service (SES): $155K–$225K</li>
+              <li>US Attorney / State AG: $160K–$200K</li>
+              <li>Federal Appellate Judge: $246K</li>
+              <li>US District Court Judge: $232K</li>
+              <li>US Supreme Court Justice: $298K</li>
+              <li>Plus: pension at 65–70%, FEHB healthcare, prestige</li>
+            </ul></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
- 
-<!-- ======================== FOOTER ======================== -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-col">
-        <h4>LegalPath USA</h4>
-        <a href="#home">Home</a>
-        <a href="#costs">Cost Breakdown</a>
-        <a href="#practice-areas">Practice Areas</a>
-        <a href="#salaries">Salary Guide</a>
-        <a href="#careers">Career Growth</a>
+
+  <!-- SCHOLARSHIP PANEL -->
+  <div class="section-panel" id="scholarshipPanel">
+    <div class="guide-block">
+      <div class="guide-block-head purple"><div class="guide-block-icon">🎓</div><div><div class="guide-block-title">Law School Scholarship Guide</div><div class="guide-block-sub">How to fund your legal education and minimize debt</div></div></div>
+      <div class="guide-body">
+        <div class="guide-grid">
+          <div class="guide-card"><div class="guide-card-title"><span class="guide-card-icon">📋</span>Types of aid</div><div class="guide-card-body"><ul><li>Merit scholarships — LSAT + GPA. Most impactful lever you control.</li><li>Need-based grants — FAFSA-determined. Varies significantly by school.</li><li>Diversity scholarships — race, gender, first-gen, LGBTQ+, veterans.</li><li>Public interest fellowships — LRAP programs forgive loans for public roles.</li><li>External scholarships — private orgs, bar foundations, employers.</li><li>State bar scholarships — most state bars fund 1–3 students per year.</li></ul></div></div>
+          <div class="guide-card"><div class="guide-card-title"><span class="guide-card-icon">🎯</span>The LSAT leverage strategy</div><div class="guide-card-body"><ul><li>Every 3-point LSAT increase can unlock $15,000–$40,000/yr more in merit aid.</li><li>Apply to schools where your LSAT is above their 75th percentile.</li><li>A 170+ opens full-ride offers at T14–T25 schools regularly.</li><li>Retake if below your target school median — scholarship money follows the score.</li><li>Use 7Sage scholarship estimator to model your package before applying.</li></ul></div></div>
+          <div class="guide-card"><div class="guide-card-title"><span class="guide-card-icon">💰</span>Top external scholarships</div><div class="guide-card-body"><ul><li><strong>LSAC Diversity Scholarship</strong> — up to $15,000 for underrepresented students.</li><li><strong>Paul & Daisy Soros Fellowship</strong> — $90,000 for New Americans in any grad program.</li><li><strong>ABA Legal Opportunity Scholarship</strong> — $15,000 for diverse 1Ls.</li><li><strong>Hispanic National Bar Foundation</strong> — multiple awards for Latinx students.</li><li><strong>National Black Law Students Assoc.</strong> — regional and national awards.</li><li><strong>Women's Bar Association</strong> — state chapters fund $1,000–$10,000.</li></ul></div></div>
+          <div class="guide-card"><div class="guide-card-title"><span class="guide-card-icon">📬</span>Negotiating your offer</div><div class="guide-card-body"><ul><li>Always negotiate — 70%+ of schools will increase offers if asked professionally.</li><li>Use competing offers as leverage — name the school and the amount.</li><li>Write a 1-page letter: express genuine interest, state competing offer, ask for match.</li><li>Call your admissions contact — a 10-min call beats email every time.</li><li>Negotiate after deposit deadline — waitlisted spots free up scholarship funds.</li><li>Ask about scholarship retention GPA requirements (usually 3.0).</li></ul></div></div>
+          <div class="guide-card"><div class="guide-card-title"><span class="guide-card-icon">⚖️</span>LRAP & PSLF explained</div><div class="guide-card-body"><ul><li>If public service is your path, LRAP can be worth more than any scholarship.</li><li>Yale, Harvard, Stanford, Columbia all offer LRAP covering loans fully for public interest.</li><li>Federal PSLF forgives remaining balance after 10 years of qualifying payments.</li><li>IBR/SAVE plans cap monthly payments at 5–10% of discretionary income.</li><li>Apply for school LRAP in your 3L year — most programs require annual renewal.</li></ul></div></div>
+          <div class="guide-card"><div class="guide-card-title"><span class="guide-card-icon">📅</span>Application timeline</div><div class="guide-card-body">
+            <div class="timeline-v" style="margin-top:4px">
+              <div class="tv-item"><div class="tv-dot filled"></div><div class="tv-label">June–Aug: Take the LSAT</div><div class="tv-desc">Aim for your target score before October. Oct/Nov retakes are fine.</div></div>
+              <div class="tv-item"><div class="tv-dot filled"></div><div class="tv-label">Sep–Oct: Research schools</div><div class="tv-desc">Build your list: 3 reach, 4 target, 3 safety. Check median LSAT.</div></div>
+              <div class="tv-item"><div class="tv-dot"></div><div class="tv-label">Oct–Nov: Submit applications</div><div class="tv-desc">Apply early — rolling admissions = first-come, first-served for scholarships.</div></div>
+              <div class="tv-item"><div class="tv-dot"></div><div class="tv-label">Jan–Mar: Scholarship offers arrive</div><div class="tv-desc">Compare packages. Begin negotiation letters.</div></div>
+              <div class="tv-item"><div class="tv-dot"></div><div class="tv-label">Apr 15: Decision deadline</div><div class="tv-desc">Deposit deadline. Negotiate up until this date with competing offers.</div></div>
+            </div>
+          </div></div>
+        </div>
+        <div class="info-box amber">
+          <div class="info-box-title">💡 The "scholarship splitter" strategy</div>
+          <div class="info-box-body">Apply to schools where your LSAT is 5+ points above their median. Schools ranked #15–#50 regularly offer full-tuition scholarships to attract high-LSAT students, even with lower GPAs. A 172 with a 3.4 GPA might be rejected from Yale but offered a full ride at Emory, Wake Forest, or Notre Dame. Run the math — a full ride at a T25 often beats $50K/yr debt at a T5.</div>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Resources</h4>
-        <a href="#hs-guide">High School Guide</a>
-        <a href="#lsat">LSAT Prep</a>
-        <a href="#jobs">Jobs & Internships</a>
-        <a href="#schools">Law Schools</a>
-        <a href="#scholarships">Scholarships</a>
-      </div>
-      <div class="footer-col">
-        <h4>External Links</h4>
-        <a href="https://www.lsac.org" target="_blank">LSAC Official</a>
-        <a href="https://www.americanbar.org" target="_blank">American Bar Association</a>
-        <a href="https://www.nalp.org" target="_blank">NALP</a>
-        <a href="https://www.usajobs.gov" target="_blank">USAJobs</a>
-        <a href="https://www.justice.gov/legal-careers" target="_blank">DOJ Careers</a>
-      </div>
-      <div class="footer-col">
-        <h4>About</h4>
-        <a href="#">About LegalPath</a>
-        <a href="#">Submit a Resource</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p><strong>LegalPath USA</strong> — LSAT & Legal Careers Directory. Not affiliated with LSAC, ABA, or any law school. Data sourced from NALP, BLS, OPM, and public sources. Updated March 2026.</p>
-      <p style="margin-top:8px;">Built with ❤️ for future lawyers. All salary and cost data are estimates and may vary.</p>
     </div>
   </div>
+
+  <!-- 170+ PANEL -->
+  <div class="section-panel" id="lsat170Panel">
+    <div class="guide-block">
+      <div class="guide-block-head blue"><div class="guide-block-icon">🎯</div><div><div class="guide-block-title">Scoring 170+ on the LSAT</div><div class="guide-block-sub">What the 97th+ percentile actually takes — and a complete 16-week study plan</div></div></div>
+      <div class="guide-body">
+        <h3 style="font-size:15px;font-weight:700;color:var(--white);margin-bottom:1rem">Understanding the score scale</h3>
+        <div class="score-band"><div class="score-band-hdr"><span class="score-band-range">120–149</span><span class="score-band-pct">Below 40th pct.</span></div><div class="score-band-bar"><div class="score-band-fill" style="width:15%;background:var(--text3)"></div></div><div class="score-band-desc">Below most law school medians. Structured prep with a retake is strongly recommended.</div></div>
+        <div class="score-band"><div class="score-band-hdr"><span class="score-band-range">150–159</span><span class="score-band-pct">40th–70th pct.</span></div><div class="score-band-bar"><div class="score-band-fill" style="width:40%;background:var(--text2)"></div></div><div class="score-band-desc">Competitive for T3 and regional schools. Scholarships limited. Strong GPA can offset.</div></div>
+        <div class="score-band"><div class="score-band-hdr"><span class="score-band-range">160–164</span><span class="score-band-pct">~80th pct.</span></div><div class="score-band-bar"><div class="score-band-fill" style="width:60%;background:var(--purple)"></div></div><div class="score-band-desc">Strong. Competitive for T1 schools outside T14. Merit scholarships start here.</div></div>
+        <div class="score-band"><div class="score-band-hdr"><span class="score-band-range">165–169</span><span class="score-band-pct">~90th–96th pct.</span></div><div class="score-band-bar"><div class="score-band-fill" style="width:78%;background:var(--blue)"></div></div><div class="score-band-desc">Excellent. Competitive at T14. Strong merit scholarship territory at T15–T50.</div></div>
+        <div class="score-band" style="border-color:var(--cyan)"><div class="score-band-hdr"><span class="score-band-range">170–174</span><span class="score-band-pct" style="background:var(--cyan);color:var(--bg)">97th–99th pct.</span></div><div class="score-band-bar"><div class="score-band-fill" style="width:90%;background:linear-gradient(90deg,var(--blue),var(--cyan))"></div></div><div class="score-band-desc">Full scholarship territory at T14. Competitive at Yale/Harvard/Stanford. Life-changing for your options.</div></div>
+        <div class="score-band" style="border-color:var(--amber)"><div class="score-band-hdr"><span class="score-band-range">175–180</span><span class="score-band-pct" style="background:var(--amber);color:var(--bg)">99th+ pct.</span></div><div class="score-band-bar"><div class="score-band-fill" style="width:100%;background:linear-gradient(90deg,var(--amber),#ffdd00)"></div></div><div class="score-band-desc">~500 people per year. Virtually guarantees admission and full scholarship at any US law school.</div></div>
+
+        <h3 style="font-size:15px;font-weight:700;color:var(--white);margin:1.5rem 0 1rem">What separates 170+ scorers</h3>
+        <div class="guide-grid">
+          <div class="guide-card"><div class="guide-card-title"><span class="guide-card-icon">🧠</span>Mindset</div><div class="guide-card-body"><ul><li>Don't memorize tricks — understand the reasoning structure behind every question type.</li><li>Every wrong answer has a specific, identifiable flaw. Find it, don't skip it.</li><li>Drill weaknesses, not strengths. Comfort ≠ improvement.</li><li>Aim for -0 or -1 on Logic Games. LG is the most learnable section.</li><li>Read every answer choice — even when you "know" the answer.</li></ul></div></div>
+          <div class="guide-card"><div class="guide-card-title"><span class="guide-card-icon">📚</span>Best resources</div><div class="guide-card-body"><ul><li><strong>LSAT Demon</strong> — AI-adaptive, built specifically for 170+ chasers.</li><li><strong>7Sage + J.Y. Ping explanations</strong> — video explanations for every LSAC question.</li><li><strong>LSAC LawHub</strong> — 70+ released PrepTests. Do every one timed.</li><li><strong>PowerScore Logic Games Bible</strong> — master diagramming first.</li><li><strong>Blind Review method</strong> — timed then unlimited. Gap = your ceiling.</li></ul></div></div>
+          <div class="guide-card"><div class="guide-card-title"><span class="guide-card-icon">⏱️</span>Test day timing</div><div class="guide-card-body"><ul><li>LR: 1 min 25 sec per question average. Skip and return — never sink on one Q.</li><li>LG: 1–2 min diagramming each game before solving saves time overall.</li><li>RC: Read for structure, not details. Mark where author argues and concedes.</li><li>Flag and return: mark any question taking 90+ seconds.</li><li>Never leave blanks — no penalty for wrong answers.</li></ul></div></div>
+          <div class="guide-card"><div class="guide-card-title"><span class="guide-card-icon">📊</span>Tracking progress</div><div class="guide-card-body"><ul><li>Keep an error log for every wrong answer: question type, why wrong, correct reasoning.</li><li>After each PT: categorize errors by question type.</li><li>Track Blind Review score. If BR - timed score &gt; 5, issue is speed not understanding.</li><li>Max 1 PT per week early on, 2/week in final month.</li></ul></div></div>
+        </div>
+
+        <h3 style="font-size:15px;font-weight:700;color:var(--white);margin:1.5rem 0 .5rem">16-Week 170+ Study Plan</h3>
+        <p style="font-size:13px;color:var(--text3);margin-bottom:1rem">Click each phase to expand. Target: 15–20 hours/week. Starting score assumed: 155–162.</p>
+        <div class="study-week" onclick="toggleWeek('w1')"><div class="study-week-head"><span class="study-week-title">Phase 1 — Weeks 1–3: Foundations</span><span class="study-week-tag">Core concepts</span></div><div class="study-week-body" id="w1"><div class="study-day"><div class="study-day-lbl">Mon</div><div class="study-day-tasks">PowerScore Logic Games Bible Ch. 1–3. 2 introductory LG games with diagram practice. (2.5 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Tue</div><div class="study-day-tasks">LR: Study "Must Be True" and "Main Point" question types. Do 20 untimed LR questions. (2 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Wed</div><div class="study-day-tasks">RC: Read 2 passages, practice identifying structure: main point, author's tone, evidence vs. claim. (1.5 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Thu</div><div class="study-day-tasks">LG drill: 3 games from PrepTests 1–10 untimed. Focus on diagramming accuracy, not speed. Review every error. (2.5 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Fri</div><div class="study-day-tasks">LR: Study "Flaw" and "Weaken" questions. Do 25 questions. Build your error log. (2 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Sat</div><div class="study-day-tasks">First full untimed PrepTest. Blind Review afterward — mark every uncertain answer. (4 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Sun</div><div class="study-day-tasks">Error review: For every wrong answer, write out WHY the correct answer is correct. (1.5 hrs)</div></div></div></div>
+        <div class="study-week" onclick="toggleWeek('w2')"><div class="study-week-head"><span class="study-week-title">Phase 2 — Weeks 4–7: Section Mastery</span><span class="study-week-tag">Deep drilling</span></div><div class="study-week-body" id="w2"><div class="study-day"><div class="study-day-lbl">Mon</div><div class="study-day-tasks">LG: Complete all game types (sequencing, grouping, in/out, combo). 4 games untimed, then retimed. (2.5 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Tue</div><div class="study-day-tasks">LR: Deep dive on Strengthen/Assumption/Sufficient Assumption — 35%+ of LR. Do 30 questions. (2.5 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Wed</div><div class="study-day-tasks">RC: Comparative reading passages. Practice passage mapping. Time: 3.5 min per passage max. (2 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Thu</div><div class="study-day-tasks">LG timed drill: 2 games in 17 minutes each. Review diagrams. Memorize game-type templates. (2 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Fri</div><div class="study-day-tasks">LR: Parallel Reasoning + Parallel Flaw. These are time-sinks — practice skipping and returning. (2 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Sat</div><div class="study-day-tasks">Full timed PrepTest. Aim for -0 on LG. Review with Blind Review. Track section performance. (4 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Sun</div><div class="study-day-tasks">Error analysis + update weak-area list. Watch J.Y. Ping video explanations for all missed. (2 hrs)</div></div></div></div>
+        <div class="study-week" onclick="toggleWeek('w3')"><div class="study-week-head"><span class="study-week-title">Phase 3 — Weeks 8–12: Speed + Accuracy</span><span class="study-week-tag">Timed drilling</span></div><div class="study-week-body" id="w3"><div class="study-day"><div class="study-day-lbl">Mon</div><div class="study-day-tasks">LG: 4 games in 35 minutes. If you miss the time goal, drill that specific game type. (2.5 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Tue</div><div class="study-day-tasks">LR: Timed section from a released PT (35 min). Score it. Drill every wrong answer. (2 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Wed</div><div class="study-day-tasks">RC: Full timed RC section. Focus on the hardest passage type for you. Map before reading Qs. (2 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Thu</div><div class="study-day-tasks">Mixed weak-area drill: Pull 40 questions from your error log question types. Timed. (2.5 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Fri</div><div class="study-day-tasks">Review + mental prep: Read through error log summary. Light review only. Rest your brain. (1 hr)</div></div><div class="study-day"><div class="study-day-lbl">Sat</div><div class="study-day-tasks">Full timed PrepTest under real conditions (no breaks except official). Target: 168+. (3.5 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Sun</div><div class="study-day-tasks">Deep error review + Blind Review comparison. Speed vs understanding diagnosis. (2 hrs)</div></div></div></div>
+        <div class="study-week" onclick="toggleWeek('w4')"><div class="study-week-head"><span class="study-week-title">Phase 4 — Weeks 13–16: Peak Performance</span><span class="study-week-tag">Test simulation</span></div><div class="study-week-body" id="w4"><div class="study-day"><div class="study-day-lbl">Mon</div><div class="study-day-tasks">Full timed PT 80–90 (recent tests). These most closely resemble the current LSAT format. (3.5 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Tue</div><div class="study-day-tasks">Target your #1 weakest question type only. 30 targeted questions. (1.5 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Wed</div><div class="study-day-tasks">Full timed PT. Scoring 170+ consistently? Your prep is working. If not: identify what section. (3.5 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Thu</div><div class="study-day-tasks">LG warm-up: 4 games timed. LR: 20 questions from recent PTs. Light review only. (2 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Fri</div><div class="study-day-tasks">Final week: Do NOT take a full PT. Light review of your strongest question types for confidence. (1 hr)</div></div><div class="study-day"><div class="study-day-lbl">Sat</div><div class="study-day-tasks">Rest day. Lay out materials. Sleep 8+ hours. Eat a real breakfast. Trust the work. (0 hrs)</div></div><div class="study-day"><div class="study-day-lbl">Sun</div><div class="study-day-tasks">Test day. Arrive early. Breathe. Flag hard questions and return. Your prep is done. Execute. 🎯</div></div></div></div>
+        <div class="info-box blue" style="margin-top:1rem">
+          <div class="info-box-title">🎯 The single most important 170+ habit</div>
+          <div class="info-box-body">Blind Review every single practice test. After your timed run, go back through every question with unlimited time. If your BR score is 172 but your timed score is 165, the problem is pacing — not understanding. If your BR is only 168, you still have conceptual gaps. Know which problem you have before deciding how to fix it.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGH SCHOOL ROADMAP PANEL -->
+  <div class="section-panel" id="highschoolPanel">
+    <div class="guide-block">
+      <div class="guide-block-head green"><div class="guide-block-icon">🎓</div><div><div class="guide-block-title">High School Roadmap to Law School</div><div class="guide-block-sub">A grade-by-grade plan for students who want a JD</div></div></div>
+      <div class="guide-body">
+        <div class="info-box blue" style="margin-bottom:1.5rem">
+          <div class="info-box-title">📌 Start here</div>
+          <div class="info-box-body">You don't need to decide on law school in 9th grade. But there are specific habits, courses, and experiences that make the path significantly easier — and some doors that close if you wait. This guide gives you a grade-by-grade action plan that keeps all options open.</div>
+        </div>
+        <div id="hsGradeContainer"></div>
+        <h3 style="font-size:15px;font-weight:700;color:var(--white);margin:1.5rem 0 1rem">The pre-law skill stack you're building</h3>
+        <div class="guide-grid">
+          <div class="guide-card"><div class="guide-card-title"><span class="guide-card-icon">✍️</span>Writing — the #1 law skill</div><div class="guide-card-body"><ul><li>Lawyers write arguments for a living. Start now.</li><li>Take AP English Language (argument focus), not just Literature.</li><li>Write for your school newspaper or blog regularly.</li><li>Learn to write short, clear, direct sentences. Cut every word that doesn't earn its place.</li><li>Read legal briefs on CourtListener.com — see how lawyers actually argue.</li></ul></div></div>
+          <div class="guide-card"><div class="guide-card-title"><span class="guide-card-icon">🎤</span>Speaking & debate</div><div class="guide-card-body"><ul><li>Mock trial and moot court are the closest high school analogs to actual lawyering.</li><li>Lincoln-Douglas debate builds logical argument structure directly usable on the LSAT.</li><li>Model UN teaches international law concepts + diplomacy.</li><li>Join your school debate team — even one year dramatically improves LSAT scores.</li></ul></div></div>
+          <div class="guide-card"><div class="guide-card-title"><span class="guide-card-icon">📖</span>Reading critically</div><div class="guide-card-body"><ul><li>LSAT Reading Comprehension tests dense academic texts: science, law, humanities.</li><li>Read the New York Times editorial page, The Economist, academic journals.</li><li>Practice summarizing what you read in 2 sentences: main point + author's evidence.</li><li>Read Supreme Court opinions — start with Marbury v. Madison and Brown v. Board.</li></ul></div></div>
+          <div class="guide-card"><div class="guide-card-title"><span class="guide-card-icon">🔢</span>Logic & analytical thinking</div><div class="guide-card-body"><ul><li>LSAT Logical Reasoning = formal logic. AP Statistics, Calculus, and CS courses all help.</li><li>Logic puzzles, chess, programming — all build the pattern-recognition LG requires.</li><li>Philosophy and critical thinking courses are directly applicable.</li><li>Practice spotting flawed arguments in everyday media and political statements.</li></ul></div></div>
+        </div>
+        <div class="info-box green">
+          <div class="info-box-title">✅ The undergrad major question</div>
+          <div class="info-box-body">There is NO pre-law major. Law schools admit from every discipline. Political Science is most common (~18%) but not preferred. High GPA in a rigorous major matters more than the major itself. Philosophy, Economics, Math, and English are all excellent — they build the skills law school actually tests. STEM majors with high GPAs are increasingly attractive to law schools, especially for IP and tech law.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOB API INTEGRATION PANEL -->
+  <div class="section-panel" id="integratePanel">
+    <div class="guide-block">
+      <div class="guide-block-head blue"><div class="guide-block-icon">🔗</div><div><div class="guide-block-title">Integrating Live Job Data</div><div class="guide-block-sub">How to connect Indeed, LinkedIn, and other job boards for real-time listings</div></div></div>
+      <div class="guide-body">
+        <div class="info-box amber" style="margin-bottom:1.5rem">
+          <div class="info-box-title">⚠️ Reality check first</div>
+          <div class="info-box-body">Most major job sites (Indeed, LinkedIn) have restricted or discontinued free public API access as of 2024. Here are the realistic options ranked from free to enterprise, with working code examples for each.</div>
+        </div>
+        <div class="integration-card">
+          <div class="integration-title">1. Indeed Publisher API <span class="integration-badge badge-free">Limited Free Tier</span></div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:.75rem">Indeed offers a Publisher API for job search widgets. It's the easiest to add. You apply at <a href="https://ads.indeed.com/jobroll/xmlfeed" target="_blank" style="color:var(--cyan)">indeed.com/publisher</a> and embed a search widget or use their XML feed. Great for a quick "Search Indeed Jobs" button.</div>
+          <div class="code-block"><span class="code-comment">// Option A: Embedded Indeed search widget (no API key needed)</span>
+const indeedUrl = (query, location) =>
+  `https://www.indeed.com/jobs?q=${encodeURIComponent(query)}&l=${encodeURIComponent(location)}`;
+
+<span class="code-comment">// Add a "Search on Indeed" button to your job cards:</span>
+function addIndeedLink(jobTitle, city) {
+  return `&lt;a href="${indeedUrl(jobTitle, city)}" target="_blank"
+    class="card-link"&gt;Search on Indeed →&lt;/a&gt;`;
+}</div>
+        </div>
+        <div class="integration-card">
+          <div class="integration-title">2. The Muse API <span class="integration-badge badge-free">Free</span></div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:.75rem">The Muse has a free, no-key-required API with real legal job postings from companies. Best for entry-level and internship roles at companies with strong cultures. <a href="https://www.themuse.com/developers/api/v2" target="_blank" style="color:var(--cyan)">themuse.com/developers</a></div>
+          <div class="code-block"><span class="code-comment">// Fetch legal jobs from The Muse API (free, no key)</span>
+async function fetchMuseJobs(category = 'Legal') {
+  const url = `https://www.themuse.com/api/public/jobs?category=${category}&page=1&descending=true`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return data.results.map(job => ({
+    title: job.name,
+    company: job.company.name,
+    location: job.locations[0]?.name || 'Remote',
+    url: job.refs.landing_page,
+    level: job.levels[0]?.name || 'Entry Level'
+  }));
+}</div>
+        </div>
+        <div class="integration-card">
+          <div class="integration-title">3. Adzuna API <span class="integration-badge badge-free">Free (1000 calls/day)</span></div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:.75rem">Adzuna aggregates from hundreds of job boards including Indeed, Monster, LinkedIn, and government sites. <strong>Free tier: 1,000 API calls/day.</strong> Get your key at <a href="https://developer.adzuna.com/" target="_blank" style="color:var(--cyan)">developer.adzuna.com</a></div>
+          <div class="code-block"><span class="code-comment">// Adzuna API — replace with your app_id and app_key from developer.adzuna.com</span>
+const ADZUNA_ID  = 'YOUR_APP_ID';
+const ADZUNA_KEY = 'YOUR_APP_KEY';
+
+async function fetchAdzunaJobs(query = 'paralegal', location = 'new york') {
+  const url = `https://api.adzuna.com/v1/api/jobs/us/search/1` +
+    `?app_id=${ADZUNA_ID}&app_key=${ADZUNA_KEY}` +
+    `&results_per_page=10&what=${encodeURIComponent(query)}` +
+    `&where=${encodeURIComponent(location)}&content-type=application/json`;
+  const res  = await fetch(url);
+  const data = await res.json();
+  return data.results.map(j => ({
+    title:    j.title,
+    company:  j.company.display_name,
+    location: j.location.display_name,
+    salary:   j.salary_min ? `$${Math.round(j.salary_min/1000)}K–$${Math.round(j.salary_max/1000)}K` : 'Not listed',
+    url:      j.redirect_url,
+    posted:   j.created
+  }));
+}
+
+<span class="code-comment">// Render live results into your cards grid</span>
+async function loadLiveJobs(city, practice) {
+  const jobs = await fetchAdzunaJobs(`${practice} lawyer paralegal`, city);
+  const grid  = document.getElementById('cityCardsGrid');
+  jobs.forEach(j => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      &lt;div class="card-accent accent-blue"&gt;&lt;/div&gt;
+      &lt;div class="card-label lbl-blue"&gt;Live Listing&lt;/div&gt;
+      &lt;div class="card-title"&gt;${j.title}&lt;/div&gt;
+      &lt;div class="card-org"&gt;${j.company}&lt;/div&gt;
+      &lt;div class="card-footer"&gt;
+        &lt;span class="card-loc"&gt;📍 ${j.location} · ${j.salary}&lt;/span&gt;
+        &lt;a class="card-link" href="${j.url}" target="_blank"&gt;Apply →&lt;/a&gt;
+      &lt;/div&gt;`;
+    grid.appendChild(card);
+  });
+}</div>
+        </div>
+        <div class="integration-card">
+          <div class="integration-title">4. LinkedIn Jobs API <span class="integration-badge badge-complex">Partner Program Only</span></div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:.75rem">LinkedIn's job search API is no longer publicly available. To access it you need to apply to their <strong>LinkedIn Partner Program</strong> (requires a business entity, website, and review). Alternative: add a "Search on LinkedIn" link button instead — it's free and drives users directly to relevant results.</div>
+          <div class="code-block"><span class="code-comment">// LinkedIn search link (no API needed — just a deep link)</span>
+function linkedInJobURL(title, location) {
+  const q = encodeURIComponent(title);
+  const l = encodeURIComponent(location);
+  return `https://www.linkedin.com/jobs/search/?keywords=${q}&location=${l}&f_E=1,2&f_JT=F,P,I`;
+}
+
+<span class="code-comment">// Add to every job card as a secondary link:</span>
+// f_E=1,2 → Entry level + Associate  |  f_JT=F,P,I → Full-time, Part-time, Internship</div>
+        </div>
+        <div class="integration-card">
+          <div class="integration-title">5. USAJobs API <span class="integration-badge badge-free">Free (Government Jobs)</span></div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:.75rem">USAJOBS (federal government jobs) has a free, public API with real-time data on DOJ, EEOC, courts, and every federal agency. Perfect for your government jobs section. Get your key at <a href="https://developer.usajobs.gov/" target="_blank" style="color:var(--cyan)">developer.usajobs.gov</a></div>
+          <div class="code-block"><span class="code-comment">// USAJOBS API — free with API key from developer.usajobs.gov</span>
+const USAJOBS_KEY   = 'YOUR_API_KEY';
+const USAJOBS_EMAIL = '<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="443d2b3136042129252d286a272b29">[email&#160;protected]</a>'; <span class="code-comment">// required in header</span>
+
+async function fetchGovJobs(keyword = 'attorney paralegal') {
+  const res = await fetch(
+    `https://data.usajobs.gov/api/search?Keyword=${encodeURIComponent(keyword)}&ResultsPerPage=10`,
+    { headers: { 'Authorization-Key': USAJOBS_KEY, 'User-Agent': USAJOBS_EMAIL } }
+  );
+  const data = await res.json();
+  return data.SearchResult.SearchResultItems.map(item => {
+    const j = item.MatchedObjectDescriptor;
+    return {
+      title:    j.PositionTitle,
+      agency:   j.OrganizationName,
+      location: j.PositionLocationDisplay,
+      salary:   `$${Math.round(j.PositionRemuneration[0].MinimumRange/1000)}K–$${Math.round(j.PositionRemuneration[0].MaximumRange/1000)}K`,
+      url:      j.PositionURI,
+      grade:    j.JobGrade[0]?.Code || ''
+    };
+  });
+}</div>
+        </div>
+        <div class="info-box green">
+          <div class="info-box-title">✅ Recommended approach for LegalPath</div>
+          <div class="info-box-body">Use <strong>Adzuna</strong> as your primary live job feed (free, covers 500+ boards). Add <strong>USAJobs</strong> for the government tab. Add <strong>The Muse</strong> for internships. Then add "Search on Indeed" and "Search on LinkedIn" deep-link buttons to every card. This gives you real-time data from 600+ sources with zero ongoing cost. Total setup time: ~2 hours.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STANDARD CONTENT (all, lsat, internship) -->
+  <div class="standard-content" id="standardContent">
+    <div class="filter-row" id="locFilters">
+      <span class="filter-lbl">Location:</span>
+      <button class="chip active" onclick="toggleFilter('loc','All',this)">All</button>
+      <button class="chip" onclick="toggleFilter('loc','New York',this)">New York</button>
+      <button class="chip" onclick="toggleFilter('loc','Washington',this)">DC</button>
+      <button class="chip" onclick="toggleFilter('loc','Chicago',this)">Chicago</button>
+      <button class="chip" onclick="toggleFilter('loc','Los Angeles',this)">LA</button>
+      <button class="chip" onclick="toggleFilter('loc','Boston',this)">Boston</button>
+      <button class="chip" onclick="toggleFilter('loc','Online',this)">Online</button>
+    </div>
+    <div class="results-hdr"><div class="results-count" id="resultsCount">Showing <strong>0</strong> listings</div></div>
+    <div class="card-grid" id="cardsGrid"></div>
+    <div class="empty-state" id="emptyState"><div class="empty-icon">⚖️</div><div class="empty-title">No listings found</div><div class="empty-text">Try a different filter.</div></div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-logo">Legal<span>Path</span></div>
+  <div class="footer-links">
+    <a href="#">About</a><a href="#">Submit a Listing</a><a href="https://lsac.org" target="_blank">LSAC Official</a>
+    <a href="https://lawhub.com" target="_blank">LawHub</a><a href="#">Privacy</a>
+  </div>
+  <p>LegalPath — The Complete US Law School Resource. Not affiliated with LSAC. Data reflects 2025–2026 estimates.</p>
 </footer>
- 
-<script>
-// Tabs
-function switchTab(e, tabId) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  e.target.classList.add('active');
-  document.getElementById(tabId).classList.add('active');
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const CITIES=[
+  {id:'all',name:'All Cities',flag:'🌎',sub:'Entry-level legal jobs across the USA'},
+  {id:'new-york',name:'New York',flag:'🗽',sub:'Finance, BigLaw, Legal Tech'},
+  {id:'washington-dc',name:'Washington DC',flag:'🏛️',sub:'Federal, Policy, Public Interest'},
+  {id:'chicago',name:'Chicago',flag:'🌃',sub:'Corporate, Big 4, Government'},
+  {id:'los-angeles',name:'Los Angeles',flag:'🌴',sub:'Entertainment, Government, Tech'},
+  {id:'san-francisco',name:'San Francisco',flag:'🌉',sub:'Legal Tech, IP, Corporate'},
+  {id:'boston',name:'Boston',flag:'🦞',sub:'BigLaw, IP, Healthcare'},
+  {id:'dallas',name:'Dallas / DFW',flag:'⭐',sub:'Energy, Corporate, BigLaw'},
+  {id:'houston',name:'Houston',flag:'🛢️',sub:'Energy Law, Corporate, IP'},
+  {id:'miami',name:'Miami',flag:'🌊',sub:'International, Real Estate, Immigration'},
+  {id:'atlanta',name:'Atlanta',flag:'🍑',sub:'Corporate, Government, Civil Rights'},
+  {id:'seattle',name:'Seattle',flag:'☕',sub:'Tech IP, Corporate, Employment'},
+  {id:'denver',name:'Denver',flag:'🏔️',sub:'Energy, Government, Corporate'},
+  {id:'phoenix',name:'Phoenix',flag:'🌵',sub:'Corporate, Real Estate, Immigration'},
+];
+
+const LAW_TYPES=[
+  {icon:'🏢',name:'Corporate / M&A',desc:'Advise companies on mergers, acquisitions, securities, and business transactions. High pressure, high pay.',salLow:160,salHigh:400,demand:92,outlook:'Strong — tech, PE, and healthcare M&A driving growth'},
+  {icon:'⚖️',name:'Litigation',desc:'Represent clients in civil and criminal disputes. Courtroom work, depositions, discovery, trial.',salLow:80,salHigh:350,demand:88,outlook:'Steady — always demand for experienced trial lawyers'},
+  {icon:'📋',name:'Employment / Labor',desc:'Advise employers and employees on workplace disputes, discrimination, wage laws, union relations.',salLow:75,salHigh:200,demand:85,outlook:'Growing — increasing workplace regulation'},
+  {icon:'💊',name:'Healthcare Law',desc:'Navigate FDA regulations, hospital transactions, insurance reimbursement, HIPAA compliance.',salLow:90,salHigh:250,demand:90,outlook:'Very strong — aging population + healthcare complexity'},
+  {icon:'💡',name:'Intellectual Property',desc:'Patents, trademarks, copyrights, trade secrets. Technical background highly valued for patent work.',salLow:110,salHigh:350,demand:88,outlook:'Strong — tech, pharma, biotech driving growth'},
+  {icon:'🌍',name:'International Law',desc:'Cross-border transactions, treaties, trade disputes, human rights. Often requires foreign language.',salLow:80,salHigh:250,demand:75,outlook:'Moderate — growing with global supply chain complexity'},
+  {icon:'🏛️',name:'Constitutional / Civil Rights',desc:'Interpret and defend constitutional rights. Often public interest work with lower pay but high impact.',salLow:45,salHigh:130,demand:70,outlook:'Steady — driven by social justice movements'},
+  {icon:'🏠',name:'Real Estate',desc:'Commercial and residential property transactions, zoning, land use, leasing, and development.',salLow:70,salHigh:200,demand:80,outlook:'Cyclical — strong in low-rate environments'},
+  {icon:'💰',name:'Tax Law',desc:'Federal and state tax planning, compliance, controversy. Highly technical. Often combined with LLM.',salLow:100,salHigh:400,demand:85,outlook:'Strong — tax complexity always increasing'},
+  {icon:'💸',name:'Bankruptcy / Restructuring',desc:'Represent debtors or creditors in Chapter 11, Chapter 7, out-of-court restructurings.',salLow:90,salHigh:300,demand:78,outlook:'Counter-cyclical — spikes in economic downturns'},
+  {icon:'🌱',name:'Environmental Law',desc:'Compliance with EPA, Clean Air/Water Acts, climate policy, environmental litigation.',salLow:60,salHigh:200,demand:82,outlook:'Growing — climate legislation driving demand'},
+  {icon:'👨‍👩‍👧',name:'Family Law',desc:'Divorce, child custody, adoption, domestic violence. High emotional intensity, often solo practice.',salLow:55,salHigh:150,demand:75,outlook:'Steady — always needed, mainly in private practice'},
+  {icon:'🔒',name:'Criminal Law',desc:'Prosecution (DA) or defense (PD / private). Trial experience. Public roles have lower pay.',salLow:50,salHigh:200,demand:80,outlook:'Steady — DA/PD always hiring, private defense lucrative'},
+  {icon:'🚀',name:'Startup / Venture Capital',desc:'Represent startups and VCs in financing, equity, SAFEs, term sheets, exits.',salLow:100,salHigh:300,demand:85,outlook:'Strong — tied to startup ecosystem health'},
+  {icon:'🔐',name:'Privacy & Data Law',desc:'GDPR, CCPA, cybersecurity incident response, data breach litigation. One of the fastest-growing fields.',salLow:100,salHigh:280,demand:95,outlook:'Exploding — every company needs privacy counsel'},
+  {icon:'🤖',name:'AI & Technology Law',desc:'Emerging area: AI liability, algorithmic bias, autonomous vehicles, digital assets.',salLow:110,salHigh:350,demand:98,outlook:'Fastest-growing — essentially no lawyers yet with this expertise'},
+  {icon:'✈️',name:'Immigration Law',desc:'Employment visas, asylum, deportation defense, citizenship. High demand in current political climate.',salLow:55,salHigh:180,demand:88,outlook:'Very strong — driven by policy and globalization'},
+  {icon:'🏥',name:'Medical Malpractice',desc:'Represent patients or hospitals in negligence cases. Requires medical knowledge. Often contingency.',salLow:60,salHigh:300,demand:75,outlook:'Steady — follows healthcare trends'},
+  {icon:'⚡',name:'Energy Law',desc:'Oil & gas, utilities, renewables, FERC/FERC compliance. Especially strong in Texas.',salLow:90,salHigh:280,demand:85,outlook:'Strong — energy transition driving regulatory complexity'},
+  {icon:'🛡️',name:'Insurance Defense',desc:'Represent insurance companies in claims disputes. High volume, steady work, mid-range pay.',salLow:65,salHigh:160,demand:80,outlook:'Steady — insurance disputes always ongoing'},
+  {icon:'📡',name:'Telecom & Media Law',desc:'FCC regulatory compliance, media transactions, spectrum licensing, digital content.',salLow:85,salHigh:250,demand:75,outlook:'Moderate — consolidation in media driving transactions'},
+  {icon:'🌾',name:'Agricultural / Rural Law',desc:'Water rights, farm transactions, agricultural regulations, land use planning.',salLow:50,salHigh:130,demand:65,outlook:'Niche but stable — especially in Midwest and West'},
+  {icon:'🧬',name:'Life Sciences / Biotech',desc:'FDA regulatory, clinical trials, biotech transactions, gene therapy IP.',salLow:110,salHigh:350,demand:90,outlook:'Very strong — biotech boom driving demand'},
+  {icon:'🏗️',name:'Construction Law',desc:'Contract disputes, mechanic liens, delay claims, contractor liability.',salLow:70,salHigh:200,demand:78,outlook:'Steady — tied to construction market cycles'},
+];
+
+const TOP50_SCHOOLS=[
+  {rank:1,name:'Yale Law School',loc:'New Haven, CT',region:'northeast',lsat:174,gpa:3.94,tuition:72000,employment:97,link:'https://law.yale.edu',strength:'Public interest, constitutional law, small seminars',schol:'Very generous LRAP; need-based + merit aid'},
+  {rank:2,name:'Harvard Law School',loc:'Cambridge, MA',region:'northeast',lsat:174,gpa:3.93,tuition:74000,employment:98,link:'https://hls.harvard.edu',strength:'All areas; unmatched alumni network',schol:'Generous LRAP for public interest; some merit'},
+  {rank:3,name:'Stanford Law School',loc:'Stanford, CA',region:'west',lsat:174,gpa:3.9,tuition:73000,employment:97,link:'https://law.stanford.edu',strength:'Tech, public interest, entrepreneurship',schol:'Generous LRAP; some merit aid'},
+  {rank:4,name:'Columbia Law School',loc:'New York, NY',region:'northeast',lsat:174,gpa:3.91,tuition:77000,employment:98,link:'https://law.columbia.edu',strength:'Corporate, international, finance',schol:'Scholarship + LRAP; strong merit program'},
+  {rank:5,name:'University of Chicago Law',loc:'Chicago, IL',region:'midwest',lsat:174,gpa:3.92,tuition:73000,employment:97,link:'https://law.uchicago.edu',strength:'Law & economics, federal clerkships',schol:'Merit scholarships; LRAP available'},
+  {rank:6,name:'NYU School of Law',loc:'New York, NY',region:'northeast',lsat:173,gpa:3.87,tuition:76000,employment:97,link:'https://law.nyu.edu',strength:'International, public interest, tax',schol:'Root-Tilden-Kern full scholarship for public interest'},
+  {rank:7,name:'University of Pennsylvania Carey Law',loc:'Philadelphia, PA',region:'northeast',lsat:172,gpa:3.93,tuition:72000,employment:97,link:'https://law.upenn.edu',strength:'Corporate, finance, constitutional',schol:'Merit and need-based; LRAP'},
+  {rank:8,name:'University of Michigan Law',loc:'Ann Arbor, MI',region:'midwest',lsat:171,gpa:3.83,tuition:65000,employment:95,link:'https://law.umich.edu',strength:'Corporate, public interest, faculty scholarship',schol:'Strong merit aid; LRAP available'},
+  {rank:9,name:'Duke University School of Law',loc:'Durham, NC',region:'south',lsat:171,gpa:3.85,tuition:72000,employment:95,link:'https://law.duke.edu',strength:'Business law, international, litigation',schol:'Merit scholarships; Public Interest LRAP'},
+  {rank:10,name:'Northwestern Pritzker School of Law',loc:'Chicago, IL',region:'midwest',lsat:171,gpa:3.85,tuition:73000,employment:96,link:'https://law.northwestern.edu',strength:'Corporate, business, experiential',schol:'Merit aid; Public Interest LRAP'},
+  {rank:11,name:'Cornell Law School',loc:'Ithaca, NY',region:'northeast',lsat:170,gpa:3.87,tuition:72000,employment:95,link:'https://law.cornell.edu',strength:'All areas; strong NY placement',schol:'Merit and need-based scholarships'},
+  {rank:12,name:'Georgetown University Law Center',loc:'Washington, DC',region:'northeast',lsat:170,gpa:3.84,tuition:74000,employment:94,link:'https://law.georgetown.edu',strength:'Public interest, federal, policy',schol:'Richly funded LRAP; merit awards'},
+  {rank:13,name:'UCLA School of Law',loc:'Los Angeles, CA',region:'west',lsat:170,gpa:3.79,tuition:55000,employment:95,link:'https://law.ucla.edu',strength:'Entertainment, public interest, immigration',schol:'Epstein/Latham merit program; LRAP'},
+  {rank:14,name:'UC Berkeley School of Law',loc:'Berkeley, CA',region:'west',lsat:170,gpa:3.85,tuition:54000,employment:96,link:'https://law.berkeley.edu',strength:'IP, public interest, environmental',schol:'Good LRAP; Sax scholarships'},
+  {rank:15,name:'University of Texas School of Law',loc:'Austin, TX',region:'south',lsat:169,gpa:3.78,tuition:40000,employment:93,link:'https://law.utexas.edu',strength:'Energy, business, litigation',schol:'Strong merit; Texas Exes scholarships'},
+  {rank:16,name:'Vanderbilt University Law School',loc:'Nashville, TN',region:'south',lsat:168,gpa:3.83,tuition:68000,employment:93,link:'https://law.vanderbilt.edu',strength:'Corporate, healthcare, litigation',schol:'Merit scholarships; LRAP'},
+  {rank:17,name:'Washington University in St. Louis Law',loc:'St. Louis, MO',region:'midwest',lsat:168,gpa:3.74,tuition:68000,employment:92,link:'https://law.wustl.edu',strength:'Corporate, health, human rights',schol:'Very generous merit; Dean scholarships'},
+  {rank:18,name:'Emory University School of Law',loc:'Atlanta, GA',region:'south',lsat:167,gpa:3.74,tuition:65000,employment:91,link:'https://law.emory.edu',strength:'Litigation, health, international',schol:'Generous merit; Dean scholarships'},
+  {rank:19,name:'Boston University School of Law',loc:'Boston, MA',region:'northeast',lsat:167,gpa:3.74,tuition:65000,employment:91,link:'https://bu.edu/law',strength:'IP, tax, criminal law',schol:'Merit scholarships; LRAP'},
+  {rank:20,name:'University of Southern California Gould',loc:'Los Angeles, CA',region:'west',lsat:168,gpa:3.81,tuition:70000,employment:93,link:'https://gould.usc.edu',strength:'Entertainment, ADR, international',schol:'Merit aid; LRAP'},
+  {rank:21,name:'University of Notre Dame Law School',loc:'Notre Dame, IN',region:'midwest',lsat:165,gpa:3.73,tuition:66000,employment:90,link:'https://law.nd.edu',strength:'Constitutional, corporate, international',schol:'Full-tuition merit scholarships available'},
+  {rank:22,name:'University of Minnesota Law School',loc:'Minneapolis, MN',region:'midwest',lsat:165,gpa:3.7,tuition:50000,employment:90,link:'https://law.umn.edu',strength:'Business law, family, public interest',schol:'Merit aid; Dean scholarships'},
+  {rank:23,name:'Fordham University School of Law',loc:'New York, NY',region:'northeast',lsat:166,gpa:3.72,tuition:68000,employment:90,link:'https://law.fordham.edu',strength:'Corporate, litigation, public interest (NYC)',schol:'Merit scholarships; LRAP'},
+  {rank:24,name:'George Washington University Law',loc:'Washington, DC',region:'northeast',lsat:166,gpa:3.72,tuition:68000,employment:90,link:'https://law.gwu.edu',strength:'Government, IP, international',schol:'Merit and need-based; LRAP'},
+  {rank:25,name:'Wake Forest University School of Law',loc:'Winston-Salem, NC',region:'south',lsat:162,gpa:3.63,tuition:53000,employment:89,link:'https://law.wfu.edu',strength:'Litigation, corporate, advocacy',schol:'Generous merit; full-ride competition'},
+  {rank:26,name:'Boston College Law School',loc:'Newton, MA',region:'northeast',lsat:166,gpa:3.71,tuition:62000,employment:90,link:'https://bc.edu/law',strength:'Corporate, public interest, litigation',schol:'Merit and need; LRAP'},
+  {rank:27,name:'University of Iowa College of Law',loc:'Iowa City, IA',region:'midwest',lsat:162,gpa:3.64,tuition:35000,employment:87,link:'https://law.uiowa.edu',strength:'General practice, litigation, government',schol:'Strong merit; low tuition = high value'},
+  {rank:28,name:'Ohio State Moritz College of Law',loc:'Columbus, OH',region:'midwest',lsat:163,gpa:3.66,tuition:40000,employment:88,link:'https://moritzlaw.osu.edu',strength:'Business, criminal, disability law',schol:'Merit awards; LRAP'},
+  {rank:29,name:'Indiana University Maurer School of Law',loc:'Bloomington, IN',region:'midwest',lsat:163,gpa:3.6,tuition:42000,employment:88,link:'https://law.indiana.edu',strength:'Business, tax, environmental',schol:'Merit and need-based scholarships'},
+  {rank:30,name:'Arizona State University Sandra Day Law',loc:'Phoenix, AZ',region:'west',lsat:162,gpa:3.59,tuition:32000,employment:88,link:'https://law.asu.edu',strength:'Indian law, innovation, environmental',schol:'Strong merit; Dean fellowships'},
+  {rank:31,name:'University of Colorado Law School',loc:'Boulder, CO',region:'west',lsat:163,gpa:3.67,tuition:38000,employment:88,link:'https://colorado.edu/law',strength:'Environmental, natural resources, energy',schol:'Merit aid; Colorado Bar scholarships'},
+  {rank:32,name:'University of Alabama School of Law',loc:'Tuscaloosa, AL',region:'south',lsat:163,gpa:3.63,tuition:30000,employment:88,link:'https://law.ua.edu',strength:'Litigation, corporate, government',schol:'Exceptional value; strong merit aid'},
+  {rank:33,name:'University of Wisconsin Law School',loc:'Madison, WI',region:'midwest',lsat:161,gpa:3.57,tuition:28000,employment:86,link:'https://law.wisc.edu',strength:'Labor, environmental, human rights',schol:'Law Innovation Scholarship; low tuition'},
+  {rank:34,name:'University of Washington School of Law',loc:'Seattle, WA',region:'west',lsat:163,gpa:3.62,tuition:35000,employment:88,link:'https://law.uw.edu',strength:'Pacific Rim, tech, environmental',schol:'Merit aid; Gates-funded scholarships'},
+  {rank:35,name:'William & Mary Law School',loc:'Williamsburg, VA',region:'south',lsat:162,gpa:3.6,tuition:48000,employment:87,link:'https://law.wm.edu',strength:'Constitutional, litigation, public interest',schol:'Generous merit; W&M Scholars'},
+  {rank:36,name:'University of Florida Levin College of Law',loc:'Gainesville, FL',region:'south',lsat:161,gpa:3.66,tuition:23000,employment:87,link:'https://law.ufl.edu',strength:'Real estate, tax, criminal',schol:'Exceptional value; merit aid'},
+  {rank:37,name:'American University Washington College of Law',loc:'Washington, DC',region:'northeast',lsat:163,gpa:3.57,tuition:60000,employment:87,link:'https://wcl.american.edu',strength:'International, human rights, federal',schol:'Merit and international scholarships'},
+  {rank:38,name:'Tulane University Law School',loc:'New Orleans, LA',region:'south',lsat:163,gpa:3.58,tuition:56000,employment:87,link:'https://law.tulane.edu',strength:'Maritime, energy, international',schol:'Merit scholarships; diverse program'},
+  {rank:39,name:'University of North Carolina School of Law',loc:'Chapel Hill, NC',region:'south',lsat:162,gpa:3.61,tuition:25000,employment:87,link:'https://law.unc.edu',strength:'Business, public interest, government',schol:'Strong merit; very low resident tuition'},
+  {rank:40,name:'University of Georgia School of Law',loc:'Athens, GA',region:'south',lsat:161,gpa:3.62,tuition:22000,employment:87,link:'https://law.uga.edu',strength:'Litigation, corporate, government',schol:'Exceptional value; merit aid'},
+  {rank:41,name:'University of Utah S.J. Quinney Law',loc:'Salt Lake City, UT',region:'west',lsat:161,gpa:3.61,tuition:28000,employment:87,link:'https://law.utah.edu',strength:'Natural resources, business, criminal',schol:'Strong merit; very low resident tuition'},
+  {rank:42,name:'University of Houston Law Center',loc:'Houston, TX',region:'south',lsat:161,gpa:3.53,tuition:31000,employment:87,link:'https://law.uh.edu',strength:'Energy, IP, health law',schol:'Merit and diversity scholarships'},
+  {rank:43,name:'Loyola University Chicago School of Law',loc:'Chicago, IL',region:'midwest',lsat:157,gpa:3.47,tuition:54000,employment:84,link:'https://law.luc.edu',strength:'Health, public interest, corporate',schol:'Merit scholarships; LRAP'},
+  {rank:44,name:'University of Illinois Chicago Law',loc:'Chicago, IL',region:'midwest',lsat:160,gpa:3.54,tuition:35000,employment:86,link:'https://law.uic.edu',strength:'Business, advocacy, social justice',schol:'Merit and need-based aid'},
+  {rank:45,name:'University of Richmond School of Law',loc:'Richmond, VA',region:'south',lsat:162,gpa:3.56,tuition:48000,employment:86,link:'https://law.richmond.edu',strength:'Business, litigation, public interest',schol:'Strong merit program'},
+  {rank:46,name:'Penn State Dickinson Law',loc:'Carlisle, PA',region:'northeast',lsat:160,gpa:3.51,tuition:54000,employment:85,link:'https://dickinsonlaw.psu.edu',strength:'Business, government, international',schol:'Merit aid available'},
+  {rank:47,name:'Temple University Beasley School of Law',loc:'Philadelphia, PA',region:'northeast',lsat:158,gpa:3.51,tuition:35000,employment:85,link:'https://law.temple.edu',strength:'Litigation, advocacy, public interest',schol:'Merit aid; Moot Court scholarships'},
+  {rank:48,name:'Villanova University Charles Widger School of Law',loc:'Villanova, PA',region:'northeast',lsat:160,gpa:3.57,tuition:54000,employment:86,link:'https://law.villanova.edu',strength:'Corporate, tax, advocacy',schol:'Merit scholarships available'},
+  {rank:49,name:'Seton Hall University School of Law',loc:'Newark, NJ',region:'northeast',lsat:158,gpa:3.46,tuition:56000,employment:83,link:'https://law.shu.edu',strength:'Health, IP, corporate (NYC proximity)',schol:'Merit scholarships; LRAP'},
+  {rank:50,name:'University of Nebraska College of Law',loc:'Lincoln, NE',region:'midwest',lsat:155,gpa:3.55,tuition:24000,employment:83,link:'https://law.unl.edu',strength:'Agricultural, business, government',schol:'Exceptional value for regional practice'},
+];
+
+const ALL_LISTINGS=[
+  {id:1,type:'lsat',title:'Khan Academy LSAT',org:'Khan Academy x LSAC',desc:'Free official LSAT prep with over 8,000 real LSAC questions. Self-paced, adaptive, and fully free.',tags:['Free','Self-paced','Official questions','Online'],location:'Online',link:'https://khanacademy.org/prep/lsat',accent:'accent-amber',lbl:'lbl-amber',badgeText:'LSAT Prep'},
+  {id:2,type:'lsat',title:'7Sage LSAT Course',org:'7Sage Education',desc:'Comprehensive video curriculum covering every LSAT concept with J.Y. Ping video explanations for every LSAC question.',tags:['Paid','Video lessons','Full curriculum'],location:'Online',link:'https://7sage.com',accent:'accent-amber',lbl:'lbl-amber',badgeText:'LSAT Prep'},
+  {id:3,type:'lsat',title:'LSAC LawHub',org:'Law School Admission Council',desc:'Official LSAT practice platform with 70+ released full tests and PrepTest series direct from LSAC.',tags:['Free tier','Official','70+ Practice tests'],location:'Online',link:'https://lawhub.com',accent:'accent-amber',lbl:'lbl-amber',badgeText:'LSAT Prep'},
+  {id:4,type:'lsat',title:'PowerScore LSAT Bible Trilogy',org:'PowerScore Test Prep',desc:'Industry-standard LSAT prep books covering Logical Reasoning, Logic Games, and Reading Comprehension in depth.',tags:['Paid','Books','Self-study'],location:'Online/Print',link:'https://powerscore.com',accent:'accent-amber',lbl:'lbl-amber',badgeText:'LSAT Prep'},
+  {id:5,type:'lsat',title:'Manhattan Prep LSAT',org:'Manhattan Prep',desc:'Live and on-demand LSAT courses taught by 99th percentile instructors with adaptive learning technology.',tags:['Paid','Live classes','99th pct. instructors'],location:'Online',link:'https://manhattanprep.com/lsat',accent:'accent-amber',lbl:'lbl-amber',badgeText:'LSAT Prep'},
+  {id:6,type:'lsat',title:'LSAT Demon',org:'LSAT Demon / Nathan Fox',desc:'AI-driven adaptive LSAT platform. Focuses on deep conceptual mastery. Built specifically for 170+ scorers.',tags:['Paid','Adaptive AI','170+ focused'],location:'Online',link:'https://lsatdemon.com',accent:'accent-amber',lbl:'lbl-amber',badgeText:'LSAT Prep'},
+  {id:7,type:'internship',title:'Summer Legal Intern — Corporate',org:'Skadden, Arps, Slate, Meagher & Flom',desc:'10-week paid summer program at one of the most prestigious firms in the US. Rotate through M&A, securities, and litigation.',tags:['Paid','Summer 2026','1L/2L','New York'],location:'New York',link:'https://skadden.com',accent:'accent-green',lbl:'lbl-green',badgeText:'Internship'},
+  {id:8,type:'internship',title:'Public Interest Legal Intern',org:'ACLU — National Office',desc:'Work alongside staff attorneys on civil rights litigation, policy advocacy, and amicus briefs. Stipend available.',tags:['Stipend','Rolling','Public interest'],location:'New York',link:'https://aclu.org',accent:'accent-green',lbl:'lbl-green',badgeText:'Internship'},
+  {id:9,type:'internship',title:'Legal Research Intern',org:'U.S. Department of Justice',desc:'Federal internship for pre-law and first-year law students. Work on real federal cases across DOJ divisions.',tags:['Unpaid/Credit','Summer','Federal'],location:'Washington DC',link:'https://justice.gov',accent:'accent-green',lbl:'lbl-green',badgeText:'Internship'},
+  {id:10,type:'internship',title:'In-House Legal Intern',org:'Google LLC',desc:'10-week summer internship in the Google Legal department working on technology, privacy, and regulatory matters.',tags:['Paid','Summer','Big Tech'],location:'Los Angeles',link:'https://careers.google.com',accent:'accent-green',lbl:'lbl-green',badgeText:'Internship'},
+  {id:11,type:'internship',title:'Capitol Hill Legal Intern',org:'U.S. Senate Judiciary Committee',desc:'Work directly for Senate judiciary staff on legislation, hearings, and judicial nominations. Highly competitive.',tags:['Unpaid','Federal','DC'],location:'Washington DC',link:'https://judiciary.senate.gov',accent:'accent-green',lbl:'lbl-green',badgeText:'Internship'},
+  {id:12,type:'internship',title:'Federal Court Law Clerk Intern',org:'U.S. District Court (Various)',desc:'Assist federal judges with legal research, bench memos, and draft orders. Positions in multiple districts nationwide.',tags:['Unpaid/Credit','Judicial','Federal'],location:'Nationwide',link:'https://uscourts.gov',accent:'accent-green',lbl:'lbl-green',badgeText:'Internship'},
+  {id:13,type:'job',title:'Junior Paralegal — Corporate',org:'Skadden, Arps, Slate, Meagher & Flom',desc:'Support partners on M&A transactions, securities filings, and corporate governance. BA required, no JD needed.',tags:['Full-time','BA required','No JD'],location:'New York',practiceArea:'Corporate',link:'https://skadden.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:14,type:'job',title:'Legal Research Analyst',org:'LexisNexis',desc:'Analyze legal content, assist with database curation, and support the legal research platform.',tags:['Full-time','Legal tech','No JD required'],location:'New York',practiceArea:'Legal Tech',link:'https://lexisnexis.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:15,type:'job',title:'Paralegal — Litigation',org:'Cravath, Swaine & Moore LLP',desc:'Support litigation partners on complex civil disputes. Manage documents, coordinate depositions, conduct research.',tags:['Full-time','Litigation','BigLaw'],location:'New York',practiceArea:'Litigation',link:'https://cravath.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:16,type:'job',title:'Legal Tech Product Analyst',org:'Thomson Reuters',desc:'Work on AI-powered legal research tools. Collaborate with product and legal teams to enhance Westlaw Edge.',tags:['Full-time','Legal Tech','No JD required'],location:'New York',practiceArea:'Legal Tech',link:'https://thomsonreuters.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:17,type:'job',title:'Civil Rights Investigator',org:'U.S. Equal Employment Opportunity Commission',desc:'Investigate charges of employment discrimination, conduct interviews, gather evidence, and prepare legal reports.',tags:['Full-time','Federal','Public Interest'],location:'Washington DC',practiceArea:'Public Interest',link:'https://eeoc.gov',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:18,type:'job',title:'Policy Analyst — Legal Affairs',org:'Congressional Research Service',desc:'Non-partisan legal and policy research for Members of Congress. Strong writing skills required.',tags:['Full-time','Government','Policy'],location:'Washington DC',practiceArea:'Government',link:'https://loc.gov/crsinfo',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:19,type:'job',title:'Contracts Analyst',org:'Abbott Laboratories',desc:'Review, draft, and negotiate commercial contracts under attorney supervision at a major in-house legal team.',tags:['Full-time','In-house','Contracts'],location:'Chicago',practiceArea:'Corporate',link:'https://abbott.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:20,type:'job',title:'Privacy & Data Associate',org:'Salesforce Legal',desc:'Support the privacy legal team on GDPR, CCPA, and global data protection matters.',tags:['Full-time','Privacy','In-house'],location:'San Francisco',practiceArea:'Legal Tech',link:'https://salesforce.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:21,type:'job',title:'Life Sciences Paralegal',org:'Ropes & Gray LLP',desc:'Work with biotech and pharma clients on regulatory submissions, licensing agreements, and FDA compliance.',tags:['Full-time','Healthcare','IP'],location:'Boston',practiceArea:'Corporate',link:'https://ropesgray.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:22,type:'job',title:'Asylum Legal Assistant',org:'PAIR Project',desc:'Assist pro bono attorneys representing asylum seekers. Intake interviews, case files, interpretation support.',tags:['Full-time','Immigration','Non-profit'],location:'Boston',practiceArea:'Public Interest',link:'https://pairproject.org',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:23,type:'job',title:'Entertainment Legal Assistant',org:'WME Entertainment',desc:'Support talent agents and in-house counsel on contract review, rights clearances, and deal documentation.',tags:['Full-time','Entertainment','Contracts'],location:'Los Angeles',practiceArea:'Corporate',link:'https://wmeagency.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:24,type:'job',title:'IP Paralegal — Patents',org:'Fenwick & West LLP',desc:'Assist patent attorneys with patent prosecution, docketing, and file management for Silicon Valley tech clients.',tags:['Full-time','IP','Patents'],location:'San Francisco',practiceArea:'Corporate',link:'https://fenwick.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:25,type:'job',title:'Corporate Paralegal — M&A',org:'Haynes and Boone LLP',desc:"Support deal teams on M&A transactions, private equity, and securities filings for energy and tech clients.",tags:['Full-time','Corporate','M&A'],location:'Dallas, TX',practiceArea:'Corporate',link:'https://haynesboone.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:26,type:'job',title:'Compliance & Ethics Analyst',org:'AT&T Legal Department',desc:"Support AT&T's in-house compliance program, review policies, assist with regulatory filings and ethics reporting.",tags:['Full-time','Compliance','Telecom'],location:'Dallas, TX',practiceArea:'Compliance',link:'https://att.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:27,type:'job',title:'Court Case Coordinator',org:'Dallas County District Clerk',desc:'Manage civil and criminal case files, coordinate hearings, and support judges and attorneys in Dallas County courts.',tags:['Full-time','Government','Courts'],location:'Dallas, TX',practiceArea:'Government',link:'https://dallascounty.org',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:28,type:'job',title:'Energy Regulatory Analyst',org:'Cheniere Energy',desc:"Support the legal and regulatory affairs team on FERC filings, pipeline compliance, and LNG export authorizations.",tags:['Full-time','Energy','Regulatory'],location:'Houston, TX',practiceArea:'Corporate',link:'https://cheniere.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:29,type:'job',title:'IP Research Analyst',org:'Baker Botts LLP',desc:'Support IP attorneys on patent research, prior art searches, and prosecution files for energy and tech clients.',tags:['Full-time','IP','Patents'],location:'Houston, TX',practiceArea:'Corporate',link:'https://bakerbotts.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:30,type:'job',title:'International Law Paralegal',org:'Greenberg Traurig LLP',desc:'Support international business and cross-border M&A transactions, regulatory matters, and foreign investment deals.',tags:['Full-time','International','Corporate'],location:'Miami, FL',practiceArea:'Corporate',link:'https://gtlaw.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:31,type:'job',title:'Immigration Caseworker',org:'Americans for Immigrant Justice',desc:'Provide direct legal services to immigrants in removal proceedings, asylum seekers, and unaccompanied minors.',tags:['Full-time','Immigration','Non-profit'],location:'Miami, FL',practiceArea:'Public Interest',link:'https://aijustice.org',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:32,type:'job',title:'Corporate Associate Support',org:'Alston & Bird LLP',desc:'Support corporate attorneys on securities, M&A, and finance matters in the Atlanta office.',tags:['Full-time','Corporate','BigLaw'],location:'Atlanta, GA',practiceArea:'Corporate',link:'https://alston.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:33,type:'job',title:'Legal Tech Product Analyst',org:'Amazon Legal',desc:'Work with the Amazon Legal team on contract automation, legal ops technology, and AI-assisted compliance tools.',tags:['Full-time','Legal Tech','Big Tech'],location:'Seattle, WA',practiceArea:'Legal Tech',link:'https://amazon.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:34,type:'job',title:'Environmental Law Analyst',org:'Colorado Attorney General Office',desc:'Support state environmental enforcement actions, regulatory rulemaking, and natural resource litigation.',tags:['Full-time','Environmental','Government'],location:'Denver, CO',practiceArea:'Government',link:'https://coag.gov',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+  {id:35,type:'job',title:'Real Estate Paralegal',org:'Gammage & Burnham PLC',desc:'Support real estate and land use attorneys on transactions, zoning matters, and development projects.',tags:['Full-time','Real Estate','Corporate'],location:'Phoenix, AZ',practiceArea:'Corporate',link:'https://gblaw.com',accent:'accent-blue',lbl:'lbl-blue',badgeText:'Entry-Level Job'},
+];
+
+const HS_GRADES=[
+  {grade:'Grade 9',color:'#2563ff',bg:'rgba(37,99,255,.12)',tasks:[
+    {icon:'📚',title:'Build core skills',text:'Take the most rigorous courses available: honors English, history, a foreign language. Writing is the #1 legal skill — start developing it now.'},
+    {icon:'📰',title:'Join school newspaper or debate',text:'Writing and argumentation are directly trainable. Mock trial or debate team membership can raise LSAT scores by 5–10 points.'},
+    {icon:'📖',title:'Read widely',text:'Read the news daily. Start with the New York Times and The Economist. Practice summarizing what you read in 2 sentences.'},
+    {icon:'⚖️',title:'Learn what lawyers actually do',text:'Watch YouTube channels like LegalEagle, read Supreme Court opinions (start with Brown v. Board), visit your local courthouse.'},
+  ]},
+  {grade:'Grade 10',color:'#00c8ff',bg:'rgba(0,200,255,.1)',tasks:[
+    {icon:'🏆',title:'Push your GPA hard',text:'Law schools look at your entire college GPA. A pattern of improvement from high school sets the habit. Aim for 3.8+.'},
+    {icon:'🎤',title:'Join Mock Trial or Moot Court',text:'This is the closest high school activity to actual lawyering. Even one year builds oral argument skills law schools love to see.'},
+    {icon:'🔬',title:'Explore what type of law interests you',text:'Shadow a local attorney for a day (most will say yes if you ask politely). The diversity of legal practice is enormous.'},
+    {icon:'💼',title:'Start building your resume',text:'Volunteer at a legal aid clinic, community organization, or local government office. Any civic engagement counts.'},
+  ]},
+  {grade:'Grade 11',color:'#9b6dff',bg:'rgba(155,109,255,.1)',tasks:[
+    {icon:'📝',title:'Take the PSAT seriously',text:'Strong PSAT/SAT performance correlates with LSAT performance. Practice the same analytical reading and reasoning skills.'},
+    {icon:'🏛️',title:'Take AP Government, AP History, AP English Lang',text:'AP Government teaches constitutional law. AP English Language (not Literature) teaches argument analysis — directly LSAT-relevant.'},
+    {icon:'🔍',title:'Research college pre-law programs',text:'Some colleges have pre-law advisors, mock trial teams, and direct law school pipelines. Factor this into your college search.'},
+    {icon:'📋',title:'Build your application story',text:'Law schools care about your "Why law?" narrative. Start thinking now about experiences that shaped your interest in justice.'},
+  ]},
+  {grade:'Grade 12',color:'#00d68f',bg:'rgba(0,214,143,.1)',tasks:[
+    {icon:'🎓',title:'Apply to college with pre-law in mind',text:'No pre-law major exists — pick something rigorous you love. Philosophy, Econ, English, Poli Sci, and STEM are all excellent.'},
+    {icon:'💰',title:'Maximize college scholarship opportunities',text:'College debt + law school debt = very difficult. Minimize college debt. Consider honors programs with merit scholarships.'},
+    {icon:'📅',title:'Plan your undergraduate timeline',text:'Law school after 2–3 years of work experience is increasingly common and valued. You do NOT have to go straight through.'},
+    {icon:'⚖️',title:'Take a college-level logic course if offered',text:'Dual enrollment in philosophy/logic directly trains the formal reasoning skills the LSAT tests. Huge head start.'},
+  ]},
+  {grade:'Undergraduate (Years 1–2)',color:'#ffb300',bg:'rgba(255,179,0,.1)',tasks:[
+    {icon:'📊',title:'GPA is everything — protect it',text:'A 3.8+ GPA opens every door. A 3.4 GPA with a 175 LSAT is still competitive. A 3.2 GPA with a 175 LSAT faces headwinds.'},
+    {icon:'⚖️',title:'Get involved in law-related activities',text:'Pre-Law Society, Mock Trial team, Legal Aid volunteer, law journal for undergrads. Admissions officers love sustained commitment.'},
+    {icon:'🔬',title:'Research with a professor',text:'Writing a paper with a faculty member gives you a stronger recommendation letter and shows intellectual curiosity.'},
+    {icon:'💼',title:'Summer legal internship or clerkship',text:'Even unpaid work at a law firm, DA office, or public interest organization is extremely valuable resume experience.'},
+  ]},
+  {grade:'Undergraduate (Years 3–4)',color:'#ff4d6a',bg:'rgba(255,77,106,.1)',tasks:[
+    {icon:'🎯',title:'Begin LSAT prep (Year 3, spring)',text:'Give yourself 4–6 months of serious prep. Take a diagnostic first, then build a structured study plan. Aim for 170+.'},
+    {icon:'📝',title:'Request strong recommendation letters early',text:'Ask professors who know your work deeply. Give them plenty of time. Generic letters hurt applications.'},
+    {icon:'🏛️',title:'Visit law schools you are considering',text:'Attend admitted students days, information sessions, and talk to current students honestly. Culture fit matters.'},
+    {icon:'📋',title:'Draft your personal statement early',text:'Your "Why law?" essay is the most important non-numeric part of your application. Start 6+ months before deadlines.'},
+  ]},
+];
+
+const PRIVATE_CAREER=[
+  {year:'1L Summer',title:'Summer Associate Intern',sal:'$35K–$45K',active:false},
+  {year:'Year 1 (0–2 yrs)',title:'Junior Associate',sal:'$225K BigLaw\n$80–$140K other',active:false},
+  {year:'Year 3–5',title:'Mid-level Associate',sal:'$265K–$310K BigLaw',active:false},
+  {year:'Year 6–8',title:'Senior Associate',sal:'$340K–$420K BigLaw',active:false},
+  {year:'Year 8–10',title:'Counsel / Of Counsel',sal:'$350K–$500K',active:true},
+  {year:'Year 10+',title:'Partner (BigLaw)',sal:'$1M–$5M+',active:false},
+];
+
+const GOV_CAREER=[
+  {year:'Year 1–2',title:'Staff Attorney / Analyst',sal:'$65K–$95K',active:false},
+  {year:'Year 3–6',title:'Senior Attorney (GS-13/14)',sal:'$100K–$145K',active:false},
+  {year:'Year 7–10',title:'Supervisory Attorney (GS-15)',sal:'$148K–$195K',active:true},
+  {year:'Year 10+',title:'Senior Executive / SES',sal:'$165K–$225K',active:false},
+  {year:'15+ yrs',title:'US Attorney / AUSA / AG',sal:'$175K–$205K',active:false},
+  {year:'Appointment',title:'Federal Judge',sal:'$232K–$298K',active:false},
+];
+
+let currentTab='all';
+let currentLocFilter='All';
+let currentCity='all';
+let currentPractice='All';
+let currentSchoolRegion='all';
+let currentSchoolLSAT=0;
+
+function buildCareerPath(containerId, steps){
+  const c=document.getElementById(containerId);
+  if(!c)return;
+  steps.forEach((s,i)=>{
+    const div=document.createElement('div');
+    div.className='career-step'+(s.active?' active-step':'');
+    div.innerHTML=`<div class="career-step-year">${s.year}</div><div class="career-step-title">${s.title}</div><div class="career-step-sal">${s.sal}</div>${i<steps.length-1?'<div class="career-arrow">›</div>':''}`;
+    c.appendChild(div);
+  });
 }
- 
-// Accordion
-function toggleAcc(header) {
-  const item = header.parentElement;
-  const body = item.querySelector('.acc-body');
-  const isOpen = item.classList.contains('open');
-  // Close all
-  document.querySelectorAll('.acc-item').forEach(i => {
-    i.classList.remove('open');
-    i.querySelector('.acc-body').style.maxHeight = '0';
+
+function buildLawTypes(){
+  const g=document.getElementById('lawTypeGrid');
+  if(!g)return;
+  LAW_TYPES.forEach(lt=>{
+    const d=document.createElement('div');
+    d.className='law-type-card';
+    const fillPct=Math.round((lt.demand/100)*100);
+    d.innerHTML=`<div class="law-type-icon">${lt.icon}</div><div class="law-type-name">${lt.name}</div><div class="law-type-desc">${lt.desc}</div><div class="law-type-sal" style="color:var(--cyan)">$${lt.salLow}K – $${lt.salHigh}K+/yr associate range</div><div style="font-size:11px;color:var(--text3);margin-top:4px">${lt.outlook}</div><div class="law-type-bar"><div class="law-type-fill" style="width:${fillPct}%"></div></div><div style="font-size:10px;color:var(--text3);margin-top:4px">Demand: ${lt.demand}/100</div>`;
+    g.appendChild(d);
   });
-  // Open clicked
-  if (!isOpen) {
-    item.classList.add('open');
-    body.style.maxHeight = body.scrollHeight + 'px';
-  }
 }
- 
-// Smooth nav active state
-const navLinks = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  const sections = document.querySelectorAll('section[id]');
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+
+function buildHSGuide(){
+  const c=document.getElementById('hsGradeContainer');
+  if(!c)return;
+  HS_GRADES.forEach(g=>{
+    const div=document.createElement('div');
+    div.className='hs-grade';
+    const tasks=g.tasks.map(t=>`<div class="hs-task"><div class="hs-task-icon">${t.icon}</div><div class="hs-task-text"><strong>${t.title}</strong>${t.text}</div></div>`).join('');
+    div.innerHTML=`<div class="hs-grade-head"><span class="hs-grade-badge" style="background:${g.bg};color:${g.color}">${g.grade}</span></div><div class="hs-grade-body">${tasks}</div>`;
+    c.appendChild(div);
   });
-  navLinks.forEach(a => {
-    a.classList.remove('active');
-    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+}
+
+function renderSchools(){
+  const g=document.getElementById('schoolGrid');
+  const ce=document.getElementById('schoolCount');
+  if(!g)return;
+  const filtered=TOP50_SCHOOLS.filter(s=>{
+    const rm=currentSchoolRegion==='all'||s.region===currentSchoolRegion;
+    const lm=s.lsat>=currentSchoolLSAT;
+    return rm&&lm;
   });
-});
- 
-// Nav shrink on scroll
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
-  if (window.scrollY > 80) nav.style.background = 'rgba(11,29,58,0.98)';
-  else nav.style.background = 'rgba(11,29,58,0.95)';
-});
- 
-// Search placeholder (for future activation)
-// To enable search: change .search-bar-container display to 'flex' in CSS
-// Then implement filtering logic here:
-// document.getElementById('globalSearch').addEventListener('input', function(e) {
-//   const query = e.target.value.toLowerCase();
-//   // Filter sections, cards, table rows, etc.
-// });
+  ce.innerHTML=`Showing <strong>${filtered.length}</strong> of 50 schools`;
+  g.innerHTML='';
+  const rc={northeast:'var(--blue)',south:'var(--red)',midwest:'var(--green)',west:'var(--purple)'};
+  filtered.forEach(s=>{
+    const color=rc[s.region]||'var(--cyan)';
+    const div=document.createElement('div');
+    div.className='school-card';
+    div.style.borderTop=`2px solid ${color}`;
+    div.innerHTML=`<div class="school-rank" style="color:${color}20">#${s.rank}</div><div class="school-name">${s.name}</div><div class="school-loc">📍 ${s.loc}</div><div class="school-stats"><span class="school-stat hl">LSAT ${s.lsat}</span><span class="school-stat hl">GPA ${s.gpa}</span><span class="school-stat">$${Math.round(s.tuition/1000)}K/yr</span><span class="school-stat">${s.employment}% employed</span></div><div class="school-detail"><strong style="color:var(--text)">Strengths:</strong> ${s.strength}</div><div class="school-schol">💰 ${s.schol}</div><a class="school-link" href="${s.link}" target="_blank">Visit school →</a>`;
+    g.appendChild(div);
+  });
+}
+
+function filterSchools(r,btn){
+  currentSchoolRegion=r;
+  document.querySelectorAll('#schoolFilters .chip').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');renderSchools();
+}
+
+function filterSchoolsByLSAT(score,btn){
+  currentSchoolLSAT=score;
+  document.querySelectorAll('#schoolFilters .chip').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');renderSchools();
+}
+
+function getCityJobs(cityId,practice){
+  return ALL_LISTINGS.filter(l=>{
+    if(l.type!=='job')return false;
+    let cm=false;
+    if(cityId==='all')cm=true;
+    else{const nm=CITIES.find(c=>c.id===cityId)?.name.split(' ')[0].toLowerCase()||'';cm=l.location.toLowerCase().includes(nm)||(cityId==='dallas'&&l.location.toLowerCase().includes('dallas'));}
+    return cm&&(practice==='All'||l.practiceArea===practice);
+  });
+}
+
+function buildCitySidebar(){
+  const list=document.getElementById('citySidebarList');
+  if(!list)return;
+  list.innerHTML='';
+  CITIES.forEach(city=>{
+    const cnt=(city.id==='all')?ALL_LISTINGS.filter(l=>l.type==='job').length:getCityJobs(city.id,'All').length;
+    const li=document.createElement('li');
+    li.className='city-item'+(city.id===currentCity?' active':'');
+    li.innerHTML=`<span>${city.flag} ${city.name}</span><span class="city-count">${cnt}</span>`;
+    li.onclick=()=>selectCity(city.id);
+    list.appendChild(li);
+  });
+}
+
+function selectCity(cityId){
+  currentCity=cityId;currentPractice='All';
+  document.querySelectorAll('.pchip').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.pchip')?.classList.add('active');
+  buildCitySidebar();renderCityView();
+}
+
+function togglePractice(practice,btn){
+  currentPractice=practice;
+  document.querySelectorAll('.pchip').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');renderCityView();
+}
+
+function renderCityView(){
+  const city=CITIES.find(c=>c.id===currentCity)||CITIES[0];
+  const jobs=getCityJobs(currentCity,currentPractice);
+  document.getElementById('cityHeroName').textContent=city.name;
+  document.getElementById('cityHeroSub').textContent=city.sub;
+  document.getElementById('cityHeroCount').textContent=jobs.length;
+  const grid=document.getElementById('cityCardsGrid');
+  const empty=document.getElementById('cityEmptyState');
+  const count=document.getElementById('cityResultsCount');
+  grid.innerHTML='';
+  if(!jobs.length){empty.classList.add('visible');count.innerHTML='';return;}
+  empty.classList.remove('visible');
+  count.innerHTML=`Showing <strong>${jobs.length}</strong> job${jobs.length!==1?'s':''}`;
+  jobs.forEach(item=>grid.appendChild(buildCard(item)));
+}
+
+function buildCard(item){
+  const card=document.createElement('div');
+  card.className='card';
+  card.style.display='flex';card.style.flexDirection='column';
+  card.innerHTML=`<div class="card-accent ${item.accent}"></div><div class="card-label ${item.lbl}">${item.practiceArea||item.badgeText}</div><div class="card-title">${item.title}</div><div class="card-org">${item.org}</div><div class="card-desc">${item.desc}</div><div class="card-tags">${item.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div><div class="card-footer" style="margin-top:auto"><span class="card-loc">📍 ${item.location}</span><a class="card-link" href="${item.link}" target="_blank">View →</a></div>`;
+  return card;
+}
+
+function getFiltered(){
+  return ALL_LISTINGS.filter(item=>{
+    if(item.type==='job')return false;
+    const tabMatch=currentTab==='all'||item.type===currentTab;
+    const locMatch=currentLocFilter==='All'||item.location.includes(currentLocFilter);
+    return tabMatch&&locMatch;
+  });
+}
+
+function renderCards(listings){
+  const grid=document.getElementById('cardsGrid');
+  const empty=document.getElementById('emptyState');
+  const count=document.getElementById('resultsCount');
+  if(!grid)return;
+  grid.innerHTML='';
+  if(!listings.length){empty.classList.add('visible');count.innerHTML='Showing <strong>0</strong> listings';return;}
+  empty.classList.remove('visible');
+  count.innerHTML=`Showing <strong>${listings.length}</strong> listing${listings.length!==1?'s':''}`;
+  listings.forEach(item=>grid.appendChild(buildCard(item)));
+}
+
+function showPanel(name){
+  const panels=['schoolPanel','lawtypePanel','costPanel','salaryPanel','scholarshipPanel','lsat170Panel','highschoolPanel','integratePanel'];
+  panels.forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('active');});
+  document.getElementById('cityBrowsePanel').classList.remove('visible');
+  document.getElementById('standardContent').classList.remove('hidden');
+  if(name==='school'){document.getElementById('schoolPanel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
+  else if(name==='lawtype'){document.getElementById('lawtypePanel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
+  else if(name==='cost'){document.getElementById('costPanel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
+  else if(name==='salary'){document.getElementById('salaryPanel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
+  else if(name==='scholarship'){document.getElementById('scholarshipPanel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
+  else if(name==='lsat170'){document.getElementById('lsat170Panel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
+  else if(name==='highschool'){document.getElementById('highschoolPanel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
+  else if(name==='integrate'){document.getElementById('integratePanel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
+  else if(name==='job'){document.getElementById('cityBrowsePanel').classList.add('visible');document.getElementById('standardContent').classList.add('hidden');}
+}
+
+function switchTab(tab,idx){
+  currentTab=tab;
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  const btn=document.querySelectorAll('.tab-btn')[idx+1];
+  if(btn)btn.classList.add('active');
+  else document.querySelectorAll('.tab-btn')[0].classList.add('active');
+  if(tab==='job'){showPanel('job');buildCitySidebar();renderCityView();}
+  else if(tab==='school'){showPanel('school');renderSchools();}
+  else if(tab==='lawtype'){showPanel('lawtype');}
+  else if(tab==='cost'){showPanel('cost');}
+  else if(tab==='salary'){showPanel('salary');}
+  else if(tab==='scholarship'){showPanel('scholarship');}
+  else if(tab==='lsat170'){showPanel('lsat170');}
+  else if(tab==='highschool'){showPanel('highschool');}
+  else if(tab==='integrate'){showPanel('integrate');}
+  else{showPanel('other');renderCards(ALL_LISTINGS.filter(l=>l.type!=='job'));}
+}
+
+function switchTab(tab){
+  currentTab=tab;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    const tabs=['all','lsat','internship','job','school','lawtype','cost','salary','scholarship','lsat170','highschool','integrate'];
+    b.classList.toggle('active',tabs[i]===tab);
+  });
+  if(tab==='job'){showPanel('job');buildCitySidebar();renderCityView();}
+  else if(tab==='school'){showPanel('school');renderSchools();}
+  else if(tab==='lawtype'){showPanel('lawtype');}
+  else if(tab==='cost'){showPanel('cost');}
+  else if(tab==='salary'){showPanel('salary');}
+  else if(tab==='scholarship'){showPanel('scholarship');}
+  else if(tab==='lsat170'){showPanel('lsat170');}
+  else if(tab==='highschool'){showPanel('highschool');}
+  else if(tab==='integrate'){showPanel('integrate');}
+  else{showPanel('other');renderCards(tab==='all'?ALL_LISTINGS.filter(l=>l.type!=='job'):ALL_LISTINGS.filter(l=>l.type===tab));}
+}
+
+function toggleFilter(type,value,btn){
+  if(type==='loc'){currentLocFilter=value;document.querySelectorAll('#locFilters .chip').forEach(b=>b.classList.remove('active'));}
+  btn.classList.add('active');
+  renderCards(getFiltered());
+}
+
+function toggleWeek(id){document.getElementById(id)?.classList.toggle('open');}
+
+// INIT
+buildCareerPath('privatePath',PRIVATE_CAREER);
+buildCareerPath('govPath',GOV_CAREER);
+buildLawTypes();
+buildHSGuide();
+renderCards(ALL_LISTINGS.filter(l=>l.type!=='job'));
 </script>
 </body>
 </html>
