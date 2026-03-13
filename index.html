@@ -301,6 +301,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);color:var(--text
     <button onclick="switchTab('highschool',9)">HS Roadmap</button>
     <button onclick="switchTab('integrate',10)">Job APIs</button>
     <button onclick="switchTab('mocktest',11)">Mock Test</button>
+    <button onclick="switchTab('about',12)">About</button>
   </div>
 </nav>
 
@@ -332,6 +333,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);color:var(--text
   <button class="tab-btn" onclick="switchTab('highschool',9)">HS Roadmap 🎓</button>
   <button class="tab-btn" onclick="switchTab('integrate',10)">Job Board APIs</button>
   <button class="tab-btn" onclick="switchTab('mocktest',11)">Mock Test 📝</button>
+  <button class="tab-btn" onclick="switchTab('about',12)">About ❤️</button>
 </div>
 
 <main class="main">
@@ -725,6 +727,148 @@ footer{background:var(--bg2);border-top:1px solid var(--border);color:var(--text
     </div>
   </div>
 
+  <!-- ABOUT PANEL -->
+  <div class="section-panel" id="aboutPanel">
+    <style>
+      .about-wrap{max-width:800px;margin:0 auto}
+      .about-hero{background:linear-gradient(135deg,#0f0f0e,#1a1a18);border:1px solid #2a2a28;border-radius:var(--rl);padding:3rem 2.5rem;position:relative;overflow:hidden;margin-bottom:1.5rem}
+      .about-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 400px at 30% 60%,rgba(184,150,62,.08) 0%,transparent 70%)}
+      .about-hero *{position:relative}
+      .about-emoji{font-size:48px;margin-bottom:1rem}
+      .about-hero h2{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,36px);font-weight:700;color:#f8f5ef;line-height:1.15;margin-bottom:1rem}
+      .about-hero h2 em{color:#b8963e;font-style:normal}
+      .about-story{font-size:15px;color:#bbb;line-height:1.85;margin-bottom:0}
+      .about-story p{margin-bottom:1rem}
+      .about-story strong{color:#f8f5ef}
+      .about-story .hl{color:#b8963e;font-weight:600}
+      .about-quote{border-left:3px solid #b8963e;padding:1rem 1.5rem;margin:1.5rem 0;background:rgba(184,150,62,.06);border-radius:0 8px 8px 0}
+      .about-quote p{color:#d4b87a;font-style:italic;font-size:16px;margin-bottom:0;line-height:1.7}
+      .about-values{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
+      .about-value{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:1.25rem;text-align:center}
+      .about-value-icon{font-size:28px;margin-bottom:8px}
+      .about-value-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
+      .about-value-desc{font-size:12px;color:var(--text2);line-height:1.55}
+      .about-suggest{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:2rem;margin-bottom:1.5rem}
+      .about-suggest h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--white);margin-bottom:.25rem}
+      .about-suggest-sub{font-size:13px;color:var(--text3);margin-bottom:1.25rem}
+      .about-field{margin-bottom:1rem}
+      .about-field label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;letter-spacing:.03em}
+      .about-input{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:var(--r);background:var(--bg);color:var(--text);font-family:inherit;font-size:14px;transition:border-color .15s}
+      .about-input:focus{outline:none;border-color:var(--cyan)}
+      .about-textarea{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:var(--r);background:var(--bg);color:var(--text);font-family:inherit;font-size:14px;min-height:120px;resize:vertical;transition:border-color .15s}
+      .about-textarea:focus{outline:none;border-color:var(--cyan)}
+      .about-select{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:var(--r);background:var(--bg);color:var(--text);font-family:inherit;font-size:14px;cursor:pointer}
+      .about-submit-btn{background:linear-gradient(135deg,#b8963e,#a07c2a);color:#0f0f0e;border:none;border-radius:var(--r);padding:12px 32px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.02em;transition:transform .15s,box-shadow .15s;box-shadow:0 2px 12px rgba(184,150,62,.2)}
+      .about-submit-btn:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(184,150,62,.3)}
+      .about-success{display:none;background:rgba(42,107,60,.1);border:1px solid rgba(42,107,60,.3);border-radius:var(--r);padding:1rem 1.25rem;text-align:center;color:var(--green);font-size:14px;font-weight:600;margin-top:1rem}
+      .about-cta{background:linear-gradient(135deg,rgba(184,150,62,.08),rgba(42,58,122,.06));border:1px solid rgba(184,150,62,.25);border-radius:var(--rl);padding:2rem;text-align:center}
+      .about-cta h3{font-family:'Playfair Display',serif;font-size:20px;color:#f8f5ef;margin-bottom:.5rem}
+      .about-cta h3 em{color:#b8963e;font-style:normal}
+      .about-cta p{font-size:14px;color:var(--text3);line-height:1.7}
+    </style>
+
+    <div class="about-wrap">
+      <!-- Our Story -->
+      <div class="about-hero">
+        <div class="about-emoji">⚖️👨‍👧</div>
+        <h2>A Father's Journey.<br>A <em>Virtual Daughter's</em> Mission.</h2>
+        <div class="about-story">
+          <p>
+            As the father of a future Juris Doctor, I watched my daughter embark on the journey to law school entirely on her own. She researched tirelessly, navigated a confusing maze of requirements, test prep options, and school rankings — and faced far too many bumps along the way. <strong>There was no single, clear roadmap.</strong> No one told us what to focus on in high school, how to prepare strategically for the LSAT, or how to make smart financial decisions about this life-changing investment.
+          </p>
+          <p>
+            The guidance was scattered. The information was incomplete. The path was unnecessarily difficult.
+          </p>
+
+          <div class="about-quote">
+            <p>"If we do not learn from our past and pass those experiences to the next generation — then what are we doing?"</p>
+          </div>
+
+          <p>
+            That question became the spark. <strong>The past is the past</strong> — but the lessons we learned don't have to stay there. Every wrong turn, every missed opportunity, every moment of confusion we experienced became fuel for something bigger: a resource that could spare the next family from the same struggle.
+          </p>
+          <p>
+            And so, from that vision, our <span class="hl">virtual daughter</span> was born — and we named her <strong class="hl">LegalPath</strong>.
+          </p>
+          <p>
+            LegalPath exists for one reason: so that the next aspiring law student — whether they're in 9th grade just starting to dream, or a college senior preparing applications — has <strong>everything they need in one place</strong>. From LSAT prep strategies to law school rankings, from real salary data to scholarship guides, from career paths to a full mock exam.
+          </p>
+          <p>
+            This is still a <strong>baby step</strong>. LegalPath is young — she needs to grow, evolve, and connect with the community of future law students she was built to serve. That's where <strong>you</strong> come in.
+          </p>
+        </div>
+      </div>
+
+      <!-- Values -->
+      <div class="about-values">
+        <div class="about-value">
+          <div class="about-value-icon">🆓</div>
+          <div class="about-value-title">Always Free</div>
+          <div class="about-value-desc">Every resource, every data point, every guide — completely free. Education shouldn't have a paywall before you even start.</div>
+        </div>
+        <div class="about-value">
+          <div class="about-value-icon">🧭</div>
+          <div class="about-value-title">Built from Experience</div>
+          <div class="about-value-desc">Every section was inspired by real challenges our family faced. If we struggled with it, it's covered here.</div>
+        </div>
+        <div class="about-value">
+          <div class="about-value-icon">🌱</div>
+          <div class="about-value-title">Community-Driven</div>
+          <div class="about-value-desc">LegalPath grows with your feedback. Tell us what's missing, what's confusing, and what would help you most.</div>
+        </div>
+        <div class="about-value">
+          <div class="about-value-icon">📖</div>
+          <div class="about-value-title">Pass It Forward</div>
+          <div class="about-value-desc">Our mission is simple: learn from the past, build for the future, and make the next generation's journey easier.</div>
+        </div>
+      </div>
+
+      <!-- Suggestion Box -->
+      <div class="about-suggest">
+        <h3>📬 Help LegalPath Grow</h3>
+        <p class="about-suggest-sub">Have a suggestion? See something missing? Want to share your own law school journey? We'd love to hear from you. Every message helps LegalPath become a better resource for future law students.</p>
+
+        <div id="aboutFormWrap">
+          <div class="about-field">
+            <label>Your Name (optional)</label>
+            <input class="about-input" type="text" id="suggestName" placeholder="e.g. Sarah K.">
+          </div>
+          <div class="about-field">
+            <label>Your Email (optional — only if you'd like a reply)</label>
+            <input class="about-input" type="email" id="suggestEmail" placeholder="you@email.com">
+          </div>
+          <div class="about-field">
+            <label>What's your suggestion about?</label>
+            <select class="about-select" id="suggestTopic">
+              <option value="General">General feedback</option>
+              <option value="Missing Content">Something is missing</option>
+              <option value="Data Correction">Data correction / error</option>
+              <option value="New Feature">New feature idea</option>
+              <option value="LSAT Prep">LSAT prep resources</option>
+              <option value="School Info">Law school information</option>
+              <option value="Career/Salary">Career or salary data</option>
+              <option value="Mock Exam">Mock exam questions</option>
+              <option value="Personal Story">Share my journey</option>
+              <option value="Partnership">Partnership / collaboration</option>
+            </select>
+          </div>
+          <div class="about-field">
+            <label>Your Message</label>
+            <textarea class="about-textarea" id="suggestMessage" placeholder="Tell us what you think — what's working, what's missing, or what would make your law school journey easier..."></textarea>
+          </div>
+          <button class="about-submit-btn" onclick="submitSuggestion()">Send Suggestion →</button>
+          <div class="about-success" id="suggestSuccess">✅ Thank you! Your suggestion has been sent. We read every message and it helps LegalPath grow.</div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="about-cta">
+        <h3>LegalPath is just getting started.<br>Help her <em>grow up</em>.</h3>
+        <p style="max-width:560px;margin:0 auto">Share this resource with someone who dreams of law school. Every student who finds LegalPath is one fewer family navigating this journey alone.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- MOCK TEST PANEL -->
   <div class="section-panel" id="mockTestPanel">
     <div id="mockTestApp"></div>
@@ -767,7 +911,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);color:var(--text
 
   <div class="footer-logo">Legal<span>Path</span></div>
   <div class="footer-links">
-    <a href="#">About</a>
+    <a href="#" onclick="switchTab('about');window.scrollTo({top:0,behavior:'smooth'});return false;">About</a>
     <a href="#">Submit a Listing</a>
     <a href="https://lsac.org" target="_blank">LSAC Official</a>
     <a href="https://lawhub.com" target="_blank">LawHub</a>
@@ -1128,7 +1272,7 @@ function renderCards(listings){
 }
 
 function showPanel(name){
-  const panels=['schoolPanel','lawtypePanel','costPanel','salaryPanel','scholarshipPanel','lsat170Panel','highschoolPanel','integratePanel','mockTestPanel'];
+  const panels=['schoolPanel','lawtypePanel','costPanel','salaryPanel','scholarshipPanel','lsat170Panel','highschoolPanel','integratePanel','mockTestPanel','aboutPanel'];
   panels.forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('active');});
   document.getElementById('cityBrowsePanel').classList.remove('visible');
   document.getElementById('standardContent').classList.remove('hidden');
@@ -1141,6 +1285,7 @@ function showPanel(name){
   else if(name==='highschool'){document.getElementById('highschoolPanel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
   else if(name==='integrate'){document.getElementById('integratePanel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
   else if(name==='mocktest'){document.getElementById('mockTestPanel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
+  else if(name==='about'){document.getElementById('aboutPanel').classList.add('active');document.getElementById('standardContent').classList.add('hidden');}
   else if(name==='job'){document.getElementById('cityBrowsePanel').classList.add('visible');document.getElementById('standardContent').classList.add('hidden');}
 }
 
@@ -1160,13 +1305,14 @@ function switchTab(tab,idx){
   else if(tab==='highschool'){showPanel('highschool');}
   else if(tab==='integrate'){showPanel('integrate');}
   else if(tab==='mocktest'){showPanel('mocktest');initMockTest();}
+  else if(tab==='about'){showPanel('about');}
   else{showPanel('other');renderCards(ALL_LISTINGS.filter(l=>l.type!=='job'));}
 }
 
 function switchTab(tab){
   currentTab=tab;
   document.querySelectorAll('.tab-btn').forEach((b,i)=>{
-    const tabs=['all','lsat','internship','job','school','lawtype','cost','salary','scholarship','lsat170','highschool','integrate','mocktest'];
+    const tabs=['all','lsat','internship','job','school','lawtype','cost','salary','scholarship','lsat170','highschool','integrate','mocktest','about'];
     b.classList.toggle('active',tabs[i]===tab);
   });
   if(tab==='job'){showPanel('job');buildCitySidebar();renderCityView();}
@@ -1179,6 +1325,7 @@ function switchTab(tab){
   else if(tab==='highschool'){showPanel('highschool');}
   else if(tab==='integrate'){showPanel('integrate');}
   else if(tab==='mocktest'){showPanel('mocktest');initMockTest();}
+  else if(tab==='about'){showPanel('about');}
   else{showPanel('other');renderCards(tab==='all'?ALL_LISTINGS.filter(l=>l.type!=='job'):ALL_LISTINGS.filter(l=>l.type===tab));}
 }
 
@@ -1831,6 +1978,52 @@ function renderMockReview() {
       </div>
     </div>
   `;
+}
+
+// ═══════════════════════════════════════════════════
+// SUGGESTION BOX — Email is encoded to prevent scraping
+// To change email: update the character codes array in getLP() below
+// ═══════════════════════════════════════════════════
+function getLP(){
+  // Email encoded to prevent scraping — do not change unless updating address
+  const c=[118,105,107,115,112,97,116,101,108,64,103,109,97,105,108,46,99,111,109];
+  return c.map(x=>String.fromCharCode(x)).join('');
+}
+
+function submitSuggestion(){
+  const name = document.getElementById('suggestName')?.value.trim() || 'Anonymous';
+  const email = document.getElementById('suggestEmail')?.value.trim() || 'Not provided';
+  const topic = document.getElementById('suggestTopic')?.value || 'General';
+  const message = document.getElementById('suggestMessage')?.value.trim();
+
+  if(!message){
+    alert('Please enter your suggestion or message before sending.');
+    return;
+  }
+
+  const subject = encodeURIComponent('LegalPath Suggestion: ' + topic);
+  const body = encodeURIComponent(
+    '--- LegalPath Suggestion ---\n\n' +
+    'From: ' + name + '\n' +
+    'Reply Email: ' + email + '\n' +
+    'Topic: ' + topic + '\n\n' +
+    'Message:\n' + message + '\n\n' +
+    '---\nSent from LegalPath About page'https://github.com/baign2022-afk/law/blob/main/index.html
+  );
+
+  const mailLink = 'mail' + 'to:' + getLP() + '?subject=' + subject + '&body=' + body;
+  window.location.href = mailLink;
+
+  // Show success & reset
+  document.getElementById('suggestSuccess').style.display = 'block';
+  document.getElementById('suggestName').value = '';
+  document.getElementById('suggestEmail').value = '';
+  document.getElementById('suggestMessage').value = '';
+  document.getElementById('suggestTopic').selectedIndex = 0;
+
+  setTimeout(()=>{
+    document.getElementById('suggestSuccess').style.display = 'none';
+  }, 6000);
 }
 
 // INIT
