@@ -645,133 +645,81 @@ footer{background:var(--bg2);border-top:1px solid var(--border);color:var(--text
     </div>
   </div>
 
-  <!-- JOB API INTEGRATION PANEL -->
+  <!-- JOB BOARD LIVE SEARCH PANEL -->
   <div class="section-panel" id="integratePanel">
-    <div class="guide-block">
-      <div class="guide-block-head blue"><div class="guide-block-icon">🔗</div><div><div class="guide-block-title">Integrating Live Job Data</div><div class="guide-block-sub">How to connect Indeed, LinkedIn, and other job boards for real-time listings</div></div></div>
-      <div class="guide-body">
-        <div class="info-box amber" style="margin-bottom:1.5rem">
-          <div class="info-box-title">⚠️ Reality check first</div>
-          <div class="info-box-body">Most major job sites (Indeed, LinkedIn) have restricted or discontinued free public API access as of 2024. Here are the realistic options ranked from free to enterprise, with working code examples for each.</div>
-        </div>
-        <div class="integration-card">
-          <div class="integration-title">1. Indeed Publisher API <span class="integration-badge badge-free">Limited Free Tier</span></div>
-          <div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:.75rem">Indeed offers a Publisher API for job search widgets. It's the easiest to add. You apply at <a href="https://ads.indeed.com/jobroll/xmlfeed" target="_blank" style="color:var(--cyan)">indeed.com/publisher</a> and embed a search widget or use their XML feed. Great for a quick "Search Indeed Jobs" button.</div>
-          <div class="code-block"><span class="code-comment">// Option A: Embedded Indeed search widget (no API key needed)</span>
-const indeedUrl = (query, location) =>
-  `https://www.indeed.com/jobs?q=${encodeURIComponent(query)}&l=${encodeURIComponent(location)}`;
+    <style>
+      .jb-hero{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:1.5rem;margin-bottom:1.5rem}
+      .jb-search-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1rem}
+      .jb-input{flex:1;min-width:200px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--r);background:var(--bg);color:var(--text);font-family:inherit;font-size:14px}
+      .jb-input:focus{outline:none;border-color:var(--border2)}
+      .jb-select{padding:10px 14px;border:1px solid var(--border);border-radius:var(--r);background:var(--bg);color:var(--text);font-family:inherit;font-size:14px;cursor:pointer}
+      .jb-btn{padding:10px 20px;border:none;border-radius:var(--r);background:var(--text);color:var(--bg);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s;white-space:nowrap}
+      .jb-btn:hover{opacity:.85}
+      .jb-boards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:1.5rem}
+      .jb-board-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:1.25rem;display:flex;flex-direction:column;gap:10px;transition:border-color .15s}
+      .jb-board-card:hover{border-color:var(--border2)}
+      .jb-board-top{display:flex;align-items:center;justify-content:space-between}
+      .jb-board-name{font-size:15px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px}
+      .jb-board-icon{font-size:20px}
+      .jb-board-badge{font-size:10px;font-weight:700;letter-spacing:.06em;padding:2px 9px;border-radius:999px;text-transform:uppercase}
+      .badge-free{background:rgba(42,107,60,.1);color:var(--green)}
+      .badge-gov{background:rgba(42,58,122,.1);color:var(--blue)}
+      .badge-partner{background:rgba(184,150,62,.12);color:#8a6a1a}
+      .jb-board-desc{font-size:13px;color:var(--text2);line-height:1.55;flex:1}
+      .jb-board-link{display:inline-flex;align-items:center;gap:6px;background:var(--text);color:var(--bg);border:none;padding:8px 16px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;font-family:inherit;transition:opacity .15s;width:100%;justify-content:center}
+      .jb-board-link:hover{opacity:.85}
+      .jb-board-link.secondary{background:var(--bg2);color:var(--text);border:1px solid var(--border)}
+      .jb-board-link.secondary:hover{border-color:var(--border2)}
+      .jb-results-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+      .jb-results-title{font-size:14px;font-weight:600;color:var(--text)}
+      .jb-results-sub{font-size:12px;color:var(--text3)}
+      .jb-quicklinks{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem}
+      .jb-ql{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid var(--border);border-radius:999px;font-size:12px;font-weight:500;color:var(--text2);text-decoration:none;background:var(--card);transition:all .15s;cursor:pointer;font-family:inherit}
+      .jb-ql:hover{border-color:var(--border2);color:var(--text);background:var(--card2)}
+      .jb-divider{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin:1.5rem 0 .75rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+    </style>
 
-<span class="code-comment">// Add a "Search on Indeed" button to your job cards:</span>
-function addIndeedLink(jobTitle, city) {
-  return `&lt;a href="${indeedUrl(jobTitle, city)}" target="_blank"
-    class="card-link"&gt;Search on Indeed →&lt;/a&gt;`;
-}</div>
-        </div>
-        <div class="integration-card">
-          <div class="integration-title">2. The Muse API <span class="integration-badge badge-free">Free</span></div>
-          <div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:.75rem">The Muse has a free, no-key-required API with real legal job postings from companies. Best for entry-level and internship roles at companies with strong cultures. <a href="https://www.themuse.com/developers/api/v2" target="_blank" style="color:var(--cyan)">themuse.com/developers</a></div>
-          <div class="code-block"><span class="code-comment">// Fetch legal jobs from The Muse API (free, no key)</span>
-async function fetchMuseJobs(category = 'Legal') {
-  const url = `https://www.themuse.com/api/public/jobs?category=${category}&page=1&descending=true`;
-  const res = await fetch(url);
-  const data = await res.json();
-  return data.results.map(job => ({
-    title: job.name,
-    company: job.company.name,
-    location: job.locations[0]?.name || 'Remote',
-    url: job.refs.landing_page,
-    level: job.levels[0]?.name || 'Entry Level'
-  }));
-}</div>
-        </div>
-        <div class="integration-card">
-          <div class="integration-title">3. Adzuna API <span class="integration-badge badge-free">Free (1000 calls/day)</span></div>
-          <div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:.75rem">Adzuna aggregates from hundreds of job boards including Indeed, Monster, LinkedIn, and government sites. <strong>Free tier: 1,000 API calls/day.</strong> Get your key at <a href="https://developer.adzuna.com/" target="_blank" style="color:var(--cyan)">developer.adzuna.com</a></div>
-          <div class="code-block"><span class="code-comment">// Adzuna API — replace with your app_id and app_key from developer.adzuna.com</span>
-const ADZUNA_ID  = 'YOUR_APP_ID';
-const ADZUNA_KEY = 'YOUR_APP_KEY';
-
-async function fetchAdzunaJobs(query = 'paralegal', location = 'new york') {
-  const url = `https://api.adzuna.com/v1/api/jobs/us/search/1` +
-    `?app_id=${ADZUNA_ID}&app_key=${ADZUNA_KEY}` +
-    `&results_per_page=10&what=${encodeURIComponent(query)}` +
-    `&where=${encodeURIComponent(location)}&content-type=application/json`;
-  const res  = await fetch(url);
-  const data = await res.json();
-  return data.results.map(j => ({
-    title:    j.title,
-    company:  j.company.display_name,
-    location: j.location.display_name,
-    salary:   j.salary_min ? `$${Math.round(j.salary_min/1000)}K–$${Math.round(j.salary_max/1000)}K` : 'Not listed',
-    url:      j.redirect_url,
-    posted:   j.created
-  }));
-}
-
-<span class="code-comment">// Render live results into your cards grid</span>
-async function loadLiveJobs(city, practice) {
-  const jobs = await fetchAdzunaJobs(`${practice} lawyer paralegal`, city);
-  const grid  = document.getElementById('cityCardsGrid');
-  jobs.forEach(j => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      &lt;div class="card-accent accent-blue"&gt;&lt;/div&gt;
-      &lt;div class="card-label lbl-blue"&gt;Live Listing&lt;/div&gt;
-      &lt;div class="card-title"&gt;${j.title}&lt;/div&gt;
-      &lt;div class="card-org"&gt;${j.company}&lt;/div&gt;
-      &lt;div class="card-footer"&gt;
-        &lt;span class="card-loc"&gt;📍 ${j.location} · ${j.salary}&lt;/span&gt;
-        &lt;a class="card-link" href="${j.url}" target="_blank"&gt;Apply →&lt;/a&gt;
-      &lt;/div&gt;`;
-    grid.appendChild(card);
-  });
-}</div>
-        </div>
-        <div class="integration-card">
-          <div class="integration-title">4. LinkedIn Jobs API <span class="integration-badge badge-complex">Partner Program Only</span></div>
-          <div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:.75rem">LinkedIn's job search API is no longer publicly available. To access it you need to apply to their <strong>LinkedIn Partner Program</strong> (requires a business entity, website, and review). Alternative: add a "Search on LinkedIn" link button instead — it's free and drives users directly to relevant results.</div>
-          <div class="code-block"><span class="code-comment">// LinkedIn search link (no API needed — just a deep link)</span>
-function linkedInJobURL(title, location) {
-  const q = encodeURIComponent(title);
-  const l = encodeURIComponent(location);
-  return `https://www.linkedin.com/jobs/search/?keywords=${q}&location=${l}&f_E=1,2&f_JT=F,P,I`;
-}
-
-<span class="code-comment">// Add to every job card as a secondary link:</span>
-// f_E=1,2 → Entry level + Associate  |  f_JT=F,P,I → Full-time, Part-time, Internship</div>
-        </div>
-        <div class="integration-card">
-          <div class="integration-title">5. USAJobs API <span class="integration-badge badge-free">Free (Government Jobs)</span></div>
-          <div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:.75rem">USAJOBS (federal government jobs) has a free, public API with real-time data on DOJ, EEOC, courts, and every federal agency. Perfect for your government jobs section. Get your key at <a href="https://developer.usajobs.gov/" target="_blank" style="color:var(--cyan)">developer.usajobs.gov</a></div>
-          <div class="code-block"><span class="code-comment">// USAJOBS API — free with API key from developer.usajobs.gov</span>
-const USAJOBS_KEY   = 'YOUR_API_KEY';
-const USAJOBS_EMAIL = '<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="443d2b3136042129252d286a272b29">[email&#160;protected]</a>'; <span class="code-comment">// required in header</span>
-
-async function fetchGovJobs(keyword = 'attorney paralegal') {
-  const res = await fetch(
-    `https://data.usajobs.gov/api/search?Keyword=${encodeURIComponent(keyword)}&ResultsPerPage=10`,
-    { headers: { 'Authorization-Key': USAJOBS_KEY, 'User-Agent': USAJOBS_EMAIL } }
-  );
-  const data = await res.json();
-  return data.SearchResult.SearchResultItems.map(item => {
-    const j = item.MatchedObjectDescriptor;
-    return {
-      title:    j.PositionTitle,
-      agency:   j.OrganizationName,
-      location: j.PositionLocationDisplay,
-      salary:   `$${Math.round(j.PositionRemuneration[0].MinimumRange/1000)}K–$${Math.round(j.PositionRemuneration[0].MaximumRange/1000)}K`,
-      url:      j.PositionURI,
-      grade:    j.JobGrade[0]?.Code || ''
-    };
-  });
-}</div>
-        </div>
-        <div class="info-box green">
-          <div class="info-box-title">✅ Recommended approach for LegalPath</div>
-          <div class="info-box-body">Use <strong>Adzuna</strong> as your primary live job feed (free, covers 500+ boards). Add <strong>USAJobs</strong> for the government tab. Add <strong>The Muse</strong> for internships. Then add "Search on Indeed" and "Search on LinkedIn" deep-link buttons to every card. This gives you real-time data from 600+ sources with zero ongoing cost. Total setup time: ~2 hours.</div>
-        </div>
+    <!-- Search bar -->
+    <div class="jb-hero">
+      <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:.4rem">🔍 Live Legal Job Search</h2>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:1rem">Search across Indeed, LinkedIn, USAJobs, Glassdoor, and more — all open directly on the job board with your keywords pre-filled.</p>
+      <div class="jb-search-row">
+        <input class="jb-input" id="jbKeyword" type="text" placeholder="Job title, keyword (e.g. paralegal, attorney, compliance)" value="paralegal attorney">
+        <input class="jb-input" id="jbLocation" type="text" placeholder="City or state (e.g. New York, NY)" value="New York, NY">
+        <select class="jb-select" id="jbLevel">
+          <option value="">Any level</option>
+          <option value="entry">Entry level</option>
+          <option value="internship">Internship</option>
+          <option value="mid">Mid level</option>
+        </select>
+        <button class="jb-btn" onclick="searchAllBoards()">Search All →</button>
       </div>
+      <div class="jb-quicklinks" id="jbQuickLinks">
+        <span style="font-size:11px;color:var(--text3);align-self:center">Quick searches:</span>
+        <button class="jb-ql" onclick="quickSearch('paralegal','New York, NY')">🗽 Paralegal NYC</button>
+        <button class="jb-ql" onclick="quickSearch('legal analyst','Washington DC')">🏛️ Legal Analyst DC</button>
+        <button class="jb-ql" onclick="quickSearch('compliance officer','Chicago, IL')">🌃 Compliance Chicago</button>
+        <button class="jb-ql" onclick="quickSearch('attorney internship','Los Angeles, CA')">🌴 Intern LA</button>
+        <button class="jb-ql" onclick="quickSearch('legal counsel','San Francisco, CA')">🌉 Counsel SF</button>
+        <button class="jb-ql" onclick="quickSearch('DOJ attorney','')">🏛️ DOJ Federal</button>
+        <button class="jb-ql" onclick="quickSearch('summer associate BigLaw','')">💼 Summer Associate</button>
+        <button class="jb-ql" onclick="quickSearch('legal technology analyst','')">🤖 Legal Tech</button>
+      </div>
+    </div>
+
+    <!-- Job boards grid -->
+    <div class="jb-divider">Click any board to search with your keywords</div>
+    <div class="jb-boards" id="jbBoardsGrid"></div>
+
+    <div class="jb-divider">Government & public sector jobs</div>
+    <div class="jb-boards" id="jbGovGrid"></div>
+
+    <div class="jb-divider">Law school specific & niche boards</div>
+    <div class="jb-boards" id="jbNicheGrid"></div>
+
+    <div class="info-box green" style="margin-top:1rem">
+      <div class="info-box-title">💡 Pro tip</div>
+      <div class="info-box-body">For the best results, use <strong>Indeed</strong> or <strong>LinkedIn</strong> for private sector roles, <strong>USAJobs</strong> for federal government, and <strong>Idealist</strong> for non-profit and public interest. Set up email alerts on each board with your keyword + location — you'll get new listings before most other applicants even know they exist.</div>
     </div>
   </div>
 
@@ -1212,11 +1160,102 @@ function toggleFilter(type,value,btn){
 
 function toggleWeek(id){document.getElementById(id)?.classList.toggle('open');}
 
+// JOB BOARDS DATA
+const JOB_BOARDS = [
+  {icon:'🔵',name:'Indeed',desc:'Largest job board in the US. Covers every industry, location, and level. Best for volume and entry-level roles.',badge:'free',
+   url:(k,l,lv)=>`https://www.indeed.com/jobs?q=${e(k)}${l?'&l='+e(l):''}${lv==='entry'?'&explvl=entry_level':lv==='internship'?'&jt=internship':''}`},
+  {icon:'🔷',name:'LinkedIn Jobs',desc:'Best for networking-adjacent job search. See who you know at companies. Strong for corporate and law firm roles.',badge:'free',
+   url:(k,l,lv)=>`https://www.linkedin.com/jobs/search/?keywords=${e(k)}${l?'&location='+e(l):''}${lv==='entry'?'&f_E=1,2':lv==='internship'?'&f_JT=I':''}`},
+  {icon:'🟠',name:'Glassdoor',desc:'See salaries, reviews, and interview questions alongside job listings. Great for researching firms before applying.',badge:'free',
+   url:(k,l,lv)=>`https://www.glassdoor.com/Job/jobs.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword=${e(k)}&sc.keyword=${e(k)}&locT=&locId=&jobType=${lv==='internship'?'internship':''}&fromAge=-1&filter.includeNoSalaryJobs=true&filter.radius=25`},
+  {icon:'🟢',name:'ZipRecruiter',desc:'AI-powered matching that sends your profile to employers. Good for paralegal and compliance roles.',badge:'free',
+   url:(k,l,lv)=>`https://www.ziprecruiter.com/candidate/search?search=${e(k)}&location=${e(l)}`},
+  {icon:'⚫',name:'Wellfound (AngelList)',desc:'Best for legal roles at startups and tech companies. Privacy counsel, legal ops, and general counsel at growth-stage firms.',badge:'free',
+   url:(k,l,lv)=>`https://wellfound.com/jobs?q=${e(k)}&l=${e(l)}`},
+  {icon:'🟣',name:'The Muse',desc:'Curated job listings with company culture profiles. Great for finding law firms and legal departments with values alignment.',badge:'free',
+   url:(k,l,lv)=>`https://www.themuse.com/search?q=${e(k)}`},
+];
+
+const GOV_BOARDS = [
+  {icon:'🦅',name:'USAJobs.gov',desc:'Official federal government job board. Every DOJ, EEOC, courts, and federal agency opening. PSLF-eligible roles.',badge:'gov',
+   url:(k,l,lv)=>`https://www.usajobs.gov/Search/Results?k=${e(k)}${l?'&l='+e(l):''}`},
+  {icon:'🏛️',name:'GovernmentJobs.com',desc:'State and local government positions. DA offices, public defenders, state AGs, city attorneys across all 50 states.',badge:'gov',
+   url:(k,l,lv)=>`https://www.governmentjobs.com/careers/search?keyword=${e(k)}&location=${e(l)}`},
+  {icon:'⚖️',name:'NALP (Law School Jobs)',desc:'National Association for Law Placement. Entry-level attorney positions posted by law firms, government, and public interest.',badge:'gov',
+   url:(k,l,lv)=>`https://www.nalp.org/joblistings`},
+  {icon:'🌿',name:'Idealist',desc:'Non-profit, public interest, and social justice legal jobs. Best for Legal Aid, civil rights orgs, and advocacy roles.',badge:'gov',
+   url:(k,l,lv)=>`https://www.idealist.org/en/jobs?q=${e(k)}&location=${e(l)}`},
+];
+
+const NICHE_BOARDS = [
+  {icon:'📋',name:'Lawcrossing',desc:'Aggregates attorney job listings from thousands of sources including firm websites, government, and corporate postings.',badge:'partner',
+   url:(k,l,lv)=>`https://www.lawcrossing.com/attorney-jobs/`},
+  {icon:'🎓',name:'Symplicity (Law Schools)',desc:'If enrolled, your law school career office posts exclusive OCI and direct-hire positions here. Check your school portal.',badge:'partner',
+   url:(k,l,lv)=>`https://law.symplicity.com/`},
+  {icon:'📰',name:'Law.com Legal Jobs',desc:'Jobs posted directly by Am Law 200 firms, courts, and corporate legal departments. High-quality listings.',badge:'partner',
+   url:(k,l,lv)=>`https://jobs.law.com/jobs/?keywords=${e(k)}&location=${e(l)}`},
+  {icon:'🔎',name:'Robert Half Legal',desc:'Staffing agency specializing in legal placement. Paralegal, legal secretary, and contract attorney roles.',badge:'partner',
+   url:(k,l,lv)=>`https://www.roberthalf.com/us/en/legal-jobs`},
+];
+
+function e(s){return encodeURIComponent(s||'');}
+
+function getSearchParams(){
+  const k=document.getElementById('jbKeyword')?.value||'paralegal attorney';
+  const l=document.getElementById('jbLocation')?.value||'';
+  const lv=document.getElementById('jbLevel')?.value||'';
+  return {k,l,lv};
+}
+
+function buildBoardCard(board){
+  const {k,l,lv}=getSearchParams();
+  const div=document.createElement('div');
+  div.className='jb-board-card';
+  div.innerHTML=`
+    <div class="jb-board-top">
+      <div class="jb-board-name"><span class="jb-board-icon">${board.icon}</span>${board.name}</div>
+      <span class="jb-board-badge badge-${board.badge}">${board.badge==='free'?'Free':board.badge==='gov'?'Gov / Free':'Partner'}</span>
+    </div>
+    <div class="jb-board-desc">${board.desc}</div>
+    <a class="jb-board-link" href="${board.url(k,l,lv)}" target="_blank" data-board="${board.name}">Search ${board.name} →</a>`;
+  return div;
+}
+
+function buildBoards(){
+  const grids=[
+    {id:'jbBoardsGrid',data:JOB_BOARDS},
+    {id:'jbGovGrid',data:GOV_BOARDS},
+    {id:'jbNicheGrid',data:NICHE_BOARDS},
+  ];
+  grids.forEach(({id,data})=>{
+    const g=document.getElementById(id);
+    if(!g)return;
+    g.innerHTML='';
+    data.forEach(b=>g.appendChild(buildBoardCard(b)));
+  });
+}
+
+function searchAllBoards(){
+  buildBoards(); // refresh all links with new params
+  const {k,l,lv}=getSearchParams();
+  // open Indeed automatically as primary
+  window.open(JOB_BOARDS[0].url(k,l,lv),'_blank');
+}
+
+function quickSearch(keyword,location){
+  const ki=document.getElementById('jbKeyword');
+  const li=document.getElementById('jbLocation');
+  if(ki)ki.value=keyword;
+  if(li)li.value=location;
+  buildBoards();
+}
+
 // INIT
 buildCareerPath('privatePath',PRIVATE_CAREER);
 buildCareerPath('govPath',GOV_CAREER);
 buildLawTypes();
 buildHSGuide();
+buildBoards();
 renderCards(ALL_LISTINGS.filter(l=>l.type!=='job'));
 </script>
 </body>
